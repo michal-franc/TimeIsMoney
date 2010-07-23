@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<profiles>
+  <profile profileName="Default">
+    <host>
+      <hostData>localhost</hostData>
+    </host>
+    <host>
+      <hostData>www.onet.pl</hostData>
+    </host>
+  </profile>
+  <profile profileName="Praca">
+    <host>
+      <hostData>www.tvn24.pl</hostData>
+    </host>
+    <host>
+      <hostData>www.onet.pl</hostData>
+    </host>
+    <host>
+      <hostData>www.gamershell.com</hostData>
+    </host>
+    <host>
+      <hostData>www.demotywatory.pl/</hostData>
+    </host>
+    <host>
+      <hostData>www.komixxy.pl</hostData>
+    </host>
+    <host>
+      <hostData>http://www.gry-online.pl/</hostData>
+    </host>
+    <host>
+      <hostData>http://www.kretyn.com/</hostData>
+    </host>
+  </profile>
+</profiles>

@@ -1,0 +1,10 @@
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\bin\Debug\TimeIsMoney.exe
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\bin\Debug\TimeIsMoney.pdb
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.Form1.resources
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.Properties.Resources.resources
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.exe
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.pdb
+C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.EditMessageBox.resources
