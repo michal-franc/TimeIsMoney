@@ -31,6 +31,11 @@ namespace TimeIsMoney.XMLLogic
             document.Save(filePath);
         }
 
+        /// <summary>
+        /// Method used to set the ID and Position of the Task. Tasks in todo list need unique ID and correct Position
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="task"></param>
         private static void SetIdAndPos(string filePath,Task task)
         {
             List<Task> tasks = ReadXML(filePath);

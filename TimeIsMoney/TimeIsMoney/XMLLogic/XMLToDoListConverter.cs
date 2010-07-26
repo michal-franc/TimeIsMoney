@@ -10,6 +10,12 @@ namespace TimeIsMoney.XMLLogic
     {
         #region IXMLConverter Members
 
+
+        /// <summary>
+        /// Creates XElement from the obj. The xml attributes are created from the object parameters.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>XElement with attributes created from the parameteres.</returns>
         public XElement CreateXML(object obj)
         {
             Type type = obj.GetType();

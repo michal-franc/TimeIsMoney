@@ -10,31 +10,28 @@ using System.Threading;
 
 namespace TimeIsMoney
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form , INotified
     {
 
         globalKeyboardHook gkh = new globalKeyboardHook();
         EditMessageBox box = new EditMessageBox();
-        ListBox list = new ListBox();
-
+        BinSelector binSelector;
 
         public Form1()
         {
             InitializeComponent();
-			//test
+
+            Settings set = Settings.Load();
+
+            Reminder.Run(this);
 
             listBoxTasks.DisplayMember = "Title";
 
-            list.Size = new System.Drawing.Size(100, 100);
-            
-            
-            //Fill with Bins
-            list.Items.Add("Koszyk");
-            list.SelectedIndexChanged += new EventHandler(list_SelectedIndexChanged);
-            list.Hide();
+            //TODO : Atm empty list , need to to a list from the bins list
+            binSelector = new BinSelector(set.Lists);
+            this.Controls.Add(binSelector);
 
-
-            foreach(Task task in XMLLogic.XMLLogic.ReadXML("Koszyk.tdl"))
+            foreach(Task task in XMLLogic.XMLLogic.ReadXML(set.BinPath))
             {
                 listBoxTasks.Items.Add( task );
             }
@@ -44,24 +41,6 @@ namespace TimeIsMoney
             gkh.HookedKeys.Add(Keys.B);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
             gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
-
-            //Thread backgroundWorker = new Thread(delegate() {
-
-            //    while(true)
-            //    {
-            //        if (DateTime.Now.Hour >= 20)
-            //        {
-            //            if (listBoxTasks.Items.Count > 0)
-            //            {
-            //                MessageBox.Show("Masz zadania do przydzielenia !!");
-            //            }
-            //        }
-            //        Thread.Sleep(TimeSpan.FromMinutes(10));
-            //    }
-                
-            //});
-
-            //backgroundWorker.Start();
 		
         }
 
@@ -74,7 +53,9 @@ namespace TimeIsMoney
         private void Form1_Resize(object sender, EventArgs e)
         {
             if (FormWindowState.Minimized == WindowState)
+            {
                 Hide();
+            }
         }
 
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -93,7 +74,7 @@ namespace TimeIsMoney
             CustomKeyEventArgs custom = e as CustomKeyEventArgs;
             if (custom.isCtrl && custom.isAlt)
             {
-                box.textBoxData.Clear();
+               box.textBoxData.Clear();
                box.Show();
                box.Focus();
             }
@@ -102,26 +83,29 @@ namespace TimeIsMoney
         private void listBoxTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
            Rectangle rect =  listBoxTasks.GetItemRectangle(listBoxTasks.SelectedIndex);
-
-           list.Location = new Point(rect.X + listBoxTasks.Location.X, rect.Y+listBoxTasks.Location.Y);
-
-           this.Controls.Add(list);
-           list.BringToFront();
-           list.Show();
-           list.Focus();
+           binSelector.ShowList(new Point(rect.X + listBoxTasks.Location.X, rect.Y + listBoxTasks.Location.Y)); 
         }
 
-        void list_SelectedIndexChanged(object sender, EventArgs e)
+        #region INotified Members
+
+        public void Notify()
         {
-            AddToBin((Task)listBoxTasks.SelectedItem,list.SelectedItem.ToString());
-            list.Hide();
+            MessageBox.Show("There are still unsorted items");
         }
 
-        private void AddToBin(Task task, string binName)
+        #endregion
+
+        #region INotified Members
+
+
+        public bool IsNotified()
         {
-            string filePath = String.Format("{0}.tdl", binName);
-            XMLLogic.XMLLogic.AddToXml(task, filePath);
+            if (this.listBoxTasks.Items.Count > 0)
+                return true;
+            else
+                return false;
         }
 
+        #endregion
     }
 }

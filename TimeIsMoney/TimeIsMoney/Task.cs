@@ -7,6 +7,9 @@ using TimeIsMoney.XMLLogic;
 
 namespace TimeIsMoney
 {
+    /// <summary>
+    /// Class representing Task
+    /// </summary>
     public class Task
     {
         public string Title { get; set; }
@@ -35,7 +38,10 @@ namespace TimeIsMoney
         }
 
 
-
+        /// <summary>
+        /// Constructor which creates Task from the XElement
+        /// </summary>
+        /// <param name="element"></param>
         public Task(XElement element)
         {
             Title = (string)element.Attribute("TITLE") == null ? String.Empty : (string)element.Attribute("TITLE");
@@ -55,6 +61,11 @@ namespace TimeIsMoney
             Comments = (string)element.Attribute("COMMENTS") == null ? String.Empty : (string)element.Attribute("COMMENTS");
         }
 
+        /// <summary>
+        /// Used to Create XML Object
+        /// </summary>
+        /// <param name="converter">Converter which defines the object , its attributes etc.</param>
+        /// <returns></returns>
         public XElement CreateXmlElement(IXMLConverter converter)
         {
             return converter.CreateXML(this);

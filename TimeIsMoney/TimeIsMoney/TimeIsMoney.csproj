@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinSelector.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="EditMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,9 +62,13 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalKeyBoardHook.cs" />
+    <Compile Include="Reminder\INotified.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reminder\Reminder.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Task.cs" />
+    <Compile Include="TaskBin.cs" />
     <Compile Include="XMLLogic\IXMLConverter.cs" />
     <Compile Include="XMLLogic\XMLLogic.cs" />
     <Compile Include="XMLLogic\XMLToDoListConverter.cs" />

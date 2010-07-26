@@ -8,3 +8,13 @@ C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Deb
 C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.exe
 C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.pdb
 C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.EditMessageBox.resources
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.exe
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.pdb
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\bin\Debug\TimeIsMoney.exe
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\bin\Debug\TimeIsMoney.pdb
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.EditMessageBox.resources
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.Form1.resources
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.Properties.Resources.resources
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\GenerateResource.write.1.tlog

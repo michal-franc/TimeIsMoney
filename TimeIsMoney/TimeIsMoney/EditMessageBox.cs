@@ -9,11 +9,15 @@ using System.Windows.Forms;
 
 namespace TimeIsMoney
 {
+    /// <summary>
+    /// Ipnut Dialog Box Form
+    /// </summary>
     public partial class EditMessageBox : Form
     {
         public EditMessageBox()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyDown += new KeyEventHandler(EditMessageBox_KeyDown);
         }
 
