@@ -22,14 +22,13 @@ namespace TimeIsMoney
         /// <param name="conditionVariable">Parameter used to specify if the reminding condition is true</param>
         /// <param name="notifiedObject">Object which is being notified about evvent.</param>
         /// <returns></returns>
-        public static void Run(INotified notifiedObject)
+        public static void Run(INotified notifiedObject,TimeSpan remindTime)
         {
             Thread backgroundWorker = new Thread(delegate()
             {
-
                 while (true)
                 {
-                    if (DateTime.Now.Hour >= 20)
+                    if (DateTime.Now.TimeOfDay.CompareTo(remindTime) >=1)
                     {
                         if (notifiedObject.IsNotified())
                             notifiedObject.Notify();

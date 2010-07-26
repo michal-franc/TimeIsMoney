@@ -23,8 +23,6 @@ namespace TimeIsMoney
 
             Settings set = Settings.Load();
 
-            Reminder.Run(this);
-
             listBoxTasks.DisplayMember = "Title";
 
             //TODO : Atm empty list , need to to a list from the bins list
@@ -41,7 +39,8 @@ namespace TimeIsMoney
             gkh.HookedKeys.Add(Keys.B);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
             gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
-		
+
+            Reminder.Run(this, set.RemindTime);		
         }
 
         void gkh_KeyUp(object sender, KeyEventArgs e)
@@ -66,7 +65,7 @@ namespace TimeIsMoney
 
         void EditMessageBoxClosed(object sender, EventArgs e)
         {
-            listBoxTasks.Items.Add(box.textBoxData.Text);
+            listBoxTasks.Items.Add(new Task(box.textBoxData.Text));
         }
 
         void gkh_KeyDown(object sender, KeyEventArgs e)
@@ -82,15 +81,23 @@ namespace TimeIsMoney
 
         private void listBoxTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
-           Rectangle rect =  listBoxTasks.GetItemRectangle(listBoxTasks.SelectedIndex);
-           binSelector.ShowList(new Point(rect.X + listBoxTasks.Location.X, rect.Y + listBoxTasks.Location.Y)); 
+            if (listBoxTasks.SelectedIndex >= 0)
+            {
+                Rectangle rect = listBoxTasks.GetItemRectangle(listBoxTasks.SelectedIndex);
+                binSelector.ShowList(new Point(rect.X + listBoxTasks.Location.X, rect.Y + listBoxTasks.Location.Y));
+            }
         }
 
         #region INotified Members
 
         public void Notify()
         {
-            MessageBox.Show("There are still unsorted items");
+            if (listBoxTasks.Items.Count <= 1)
+                notifyIcon1.BalloonTipText = "There is still 1 unsorted item";
+            else
+                notifyIcon1.BalloonTipText = String.Format("There are still {0} unsorted items", listBoxTasks.Items.Count);
+
+            notifyIcon1.ShowBalloonTip(3000);
         }
 
         #endregion

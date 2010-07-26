@@ -13,7 +13,25 @@ namespace TimeIsMoney
     {
         public string BinPath { get; set; }
 
+        private TimeSpan m_RemindTime;
+
+        [XmlIgnore]
+        public TimeSpan RemindTime
+        {
+            get { return m_RemindTime; }
+            set { m_RemindTime = value; }
+        }
+
+        // Pretend property for serialization
+        [XmlElement("RemindTime")]
+        public long RemindTimetTicks
+        {
+            get { return m_RemindTime.Ticks; }
+            set { m_RemindTime = new TimeSpan(value); }
+        }
+ 
         public List<TaskBin> Lists { get; set; }
+ 
             
         private Settings()
         {

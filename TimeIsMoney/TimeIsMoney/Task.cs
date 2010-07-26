@@ -37,6 +37,10 @@ namespace TimeIsMoney
 
         }
 
+        public Task(string title)
+        {
+            this.Title = title;
+        }
 
         /// <summary>
         /// Constructor which creates Task from the XElement
