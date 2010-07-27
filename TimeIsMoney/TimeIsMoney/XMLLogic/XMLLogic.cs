@@ -50,13 +50,14 @@ namespace TimeIsMoney.XMLLogic
                 int pos = 0;
                 foreach (Task t in tasks)
                 {
-                    if (t.ID > id)
-                        id = t.ID;
-                    if (t.Pos > pos)
-                        pos = t.Pos;
+                    if (t.ID >= id)
+                        id = t.ID+1;
+                    if (t.Pos >= pos)
+                        pos = t.Pos+1;
                 }
+                task.Pos = pos;
+                task.ID = id;
             }
-
         }
     }
 }

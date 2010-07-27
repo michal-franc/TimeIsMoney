@@ -16,12 +16,13 @@ namespace TimeIsMoney
         globalKeyboardHook gkh = new globalKeyboardHook();
         EditMessageBox box = new EditMessageBox();
         BinSelector binSelector;
+        Settings set;
 
         public Form1()
         {
             InitializeComponent();
 
-            Settings set = Settings.Load();
+            set = Settings.Load();
 
             listBoxTasks.DisplayMember = "Title";
 
@@ -65,7 +66,10 @@ namespace TimeIsMoney
 
         void EditMessageBoxClosed(object sender, EventArgs e)
         {
-            listBoxTasks.Items.Add(new Task(box.textBoxData.Text));
+            if (box.textBoxData.Text.Length > 0)
+            {
+                listBoxTasks.Items.Add(new Task(box.textBoxData.Text));
+            }
         }
 
         void gkh_KeyDown(object sender, KeyEventArgs e)
@@ -73,9 +77,9 @@ namespace TimeIsMoney
             CustomKeyEventArgs custom = e as CustomKeyEventArgs;
             if (custom.isCtrl && custom.isAlt)
             {
-               box.textBoxData.Clear();
-               box.Show();
-               box.Focus();
+                box.textBoxData.Clear();
+                box.Show();
+                box.Focus();
             }
         }
 
@@ -107,6 +111,9 @@ namespace TimeIsMoney
 
         public bool IsNotified()
         {
+            if (!set.ReminderOn)
+                return false;
+
             if (this.listBoxTasks.Items.Count > 0)
                 return true;
             else

@@ -36,8 +36,11 @@ namespace TimeIsMoney
                 ListBox listBoxTasks = parent.Controls.Find("listBoxTasks", true)[0] as ListBox;
                 if (listBoxTasks != null)
                 {
-                    AddToBin((Task)listBoxTasks.SelectedItem, m_list.SelectedItem.ToString());
-                    m_list.Hide();
+                    if (m_list.SelectedItem != null)
+                    {
+                        AddToBin((Task)listBoxTasks.SelectedItem, m_list.SelectedItem.ToString());
+                        m_list.Hide();
+                    }
                 }
             }
         }
@@ -65,7 +68,7 @@ namespace TimeIsMoney
                 ListBox listBoxTasks = parent.Controls.Find("listBoxTasks", true)[0] as ListBox;
                 if (listBoxTasks != null)
                 {
-                    listBoxTasks.Items.RemoveAt(0);
+                    listBoxTasks.Items.RemoveAt(listBoxTasks.SelectedIndex);
                 }
             }
 

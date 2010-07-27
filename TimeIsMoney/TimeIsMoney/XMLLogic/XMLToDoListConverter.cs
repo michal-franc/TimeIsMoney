@@ -32,7 +32,7 @@ namespace TimeIsMoney.XMLLogic
                 }
             }
 
-            XElement element = new XElement("Task", attributes.ToArray());
+            XElement element = new XElement("TASK", attributes.ToArray());
 
             return element;
         }
