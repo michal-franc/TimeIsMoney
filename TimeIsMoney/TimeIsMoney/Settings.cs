@@ -40,7 +40,7 @@ namespace TimeIsMoney
             
         private Settings()
         {
-
+            // Default Values
         }
 
         public void Save()
