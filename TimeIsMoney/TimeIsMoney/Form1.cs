@@ -26,7 +26,6 @@ namespace TimeIsMoney
 
             listBoxTasks.DisplayMember = "Title";
 
-            //TODO : Atm empty list , need to to a list from the bins list
             binSelector = new BinSelector(set.Lists);
             this.Controls.Add(binSelector);
 

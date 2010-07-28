@@ -12,7 +12,7 @@ namespace TimeIsMoney
     public class Settings
     {
         public string BinPath { get; set; }
-
+        public string ToDoPath { get; set; }
         public bool ReminderOn { get; set; }
         
         #region RemindTime

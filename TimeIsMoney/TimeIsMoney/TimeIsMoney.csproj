@@ -49,6 +49,12 @@
     <Compile Include="BinSelector.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ButtonListBox\ButtonsListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ButtonListBox\ButtonsListBox.Designer.cs">
+      <DependentUpon>ButtonsListBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="XMLLogic\IXMLConverter.cs" />
     <Compile Include="XMLLogic\XMLLogic.cs" />
     <Compile Include="XMLLogic\XMLToDoListConverter.cs" />
+    <EmbeddedResource Include="ButtonListBox\ButtonsListBox.resx">
+      <DependentUpon>ButtonsListBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditMessageBox.resx">
       <DependentUpon>EditMessageBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +95,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -96,6 +106,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\minus.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\plus.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
