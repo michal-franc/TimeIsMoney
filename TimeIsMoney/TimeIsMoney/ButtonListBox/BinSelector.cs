@@ -10,18 +10,13 @@ namespace TimeIsMoney
     public class BinSelector : Control
     {
         public ListBox m_list;
-        public List<TaskBin> m_bins;
         public BinSelector(List<TaskBin> Bins)
         {
-            m_bins = Bins;
-
             m_list = new ListBox();
             m_list.Size = new System.Drawing.Size(100, 100);
 
-            foreach (TaskBin bin in m_bins)
-            {
-                m_list.Items.Add(bin.Name);
-            }
+            m_list.DisplayMember = "Name";
+            m_list.DataSource = Bins;
 
             m_list.SelectedIndexChanged += new EventHandler(list_SelectedIndexChanged);
             m_list.Hide();
@@ -38,29 +33,17 @@ namespace TimeIsMoney
                 {
                     if (m_list.SelectedItem != null)
                     {
-                        AddToBin((Task)listBoxTasks.SelectedItem, m_list.SelectedItem.ToString());
+                        AddToBin((Task)listBoxTasks.SelectedItem, ((TaskBin)m_list.SelectedItem).Address);
                         m_list.Hide();
                     }
                 }
             }
         }
 
-        private void AddToBin(Task task, string binName)
+        private void AddToBin(Task task, string filePath)
         {
-            string filePath = String.Empty;
-
-            foreach (TaskBin bin in m_bins)
-            {
-                if (bin.Name == binName)
-                {
-                    filePath = bin.Address;
-                    break;
-                }
-            }
-            
 
             XMLLogic.XMLLogic.AddToXml(task, filePath);
-            
 
             Form parent =this.Parent.FindForm();
             if (parent != null)

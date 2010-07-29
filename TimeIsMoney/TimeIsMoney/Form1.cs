@@ -27,6 +27,8 @@ namespace TimeIsMoney
             listBoxTasks.DisplayMember = "Title";
 
             binSelector = new BinSelector(set.Lists);
+            this.buttonListBox.SetData(set.Lists);
+
             this.Controls.Add(binSelector);
 
             foreach(Task task in XMLLogic.XMLLogic.ReadXML(set.BinPath))

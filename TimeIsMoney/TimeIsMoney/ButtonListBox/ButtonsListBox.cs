@@ -17,18 +17,27 @@ namespace TimeIsMoney
 
             listBoxMain.DisplayMember = "Name";
         }
+        public void SetData(List<TaskBin> data)
+        {
+                listBoxMain.DataSource = data;
+        }
+
 
         private void buttonAddItem_Click(object sender, EventArgs e)
         {
             if (textBoxTodoTitle.Text.Length > 0 && textBoxTodoPath.Text.Length > 0)
             {
-                listBoxMain.Items.Add(new TaskBin(){ Address=textBoxTodoPath.Text,  Name=textBoxTodoTitle.Text});
+                 ((List<TaskBin>)listBoxMain.DataSource).Add(new TaskBin(){ Address=textBoxTodoPath.Text,  Name=textBoxTodoTitle.Text});
+                 listBoxMain.eReloadDataSource();
             }
         }
 
         private void buttonEleteItem_Click(object sender, EventArgs e)
         {
-
+            if (listBoxMain.SelectedItem != null)
+            {
+                listBoxMain.Items.Remove(listBoxMain.SelectedItem);
+            }
         }
     }
 }
