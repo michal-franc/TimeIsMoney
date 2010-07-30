@@ -9,12 +9,11 @@ namespace TimeIsMoney
 {
     public static class Reminder
     {
-        //TODO :  Atm we re just using simple logic
 
         /// <summary>
         /// Parameter used to
         /// </summary>
-        public static bool remind = false;
+        public static bool RemindWholeDay = false;
 
         /// <summary>
         /// Starts the thread of the reminder.
@@ -28,7 +27,7 @@ namespace TimeIsMoney
             {
                 while (true)
                 {
-                    if (DateTime.Now.TimeOfDay.CompareTo(remindTime) >=1)
+                    if (DateTime.Now.TimeOfDay.CompareTo(remindTime) >=1 || RemindWholeDay)
                     {
                         if (notifiedObject.IsNotified())
                             notifiedObject.Notify();

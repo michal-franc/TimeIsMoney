@@ -14,6 +14,7 @@ namespace TimeIsMoney
         public string BinPath { get; set; }
         public string ToDoPath { get; set; }
         public bool ReminderOn { get; set; }
+        public bool RemindWholeDay { get; set; }
         
         #region RemindTime
         private TimeSpan m_RemindTime;

@@ -47,7 +47,8 @@ namespace TimeIsMoney
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
             gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
 
-            Reminder.Run(this, set.RemindTime);		
+            Reminder.Run(this, set.RemindTime);
+            Reminder.RemindWholeDay = set.RemindWholeDay;
         }
 
         void gkh_KeyUp(object sender, KeyEventArgs e)
