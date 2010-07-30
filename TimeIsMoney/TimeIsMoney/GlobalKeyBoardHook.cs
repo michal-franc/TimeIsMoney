@@ -47,8 +47,6 @@ namespace TimeIsMoney
         const int WM_ALT = 164;
 		#endregion
 
-        
-
 		#region Instance Variables
 		/// <summary>
 		/// The collections of keys to watch for

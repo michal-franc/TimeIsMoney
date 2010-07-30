@@ -43,15 +43,18 @@ namespace TimeIsMoney
         private void AddToBin(Task task, string filePath)
         {
 
-            XMLLogic.XMLLogic.AddToXml(task, filePath);
 
-            Form parent =this.Parent.FindForm();
+            XMLLogic.XMLLogic.AddToXml(task, filePath);
+            
+
+            Form1 parent =this.Parent.FindForm() as Form1;
             if (parent != null)
             {
                 ListBox listBoxTasks = parent.Controls.Find("listBoxTasks", true)[0] as ListBox;
                 if (listBoxTasks != null)
                 {
-                    listBoxTasks.Items.RemoveAt(listBoxTasks.SelectedIndex);
+                    parent.unsortedTasks.RemoveAt(listBoxTasks.SelectedIndex);
+                    listBoxTasks.eReloadDataSource();
                 }
             }
 

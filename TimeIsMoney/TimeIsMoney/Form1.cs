@@ -16,7 +16,8 @@ namespace TimeIsMoney
         globalKeyboardHook gkh = new globalKeyboardHook();
         EditMessageBox box = new EditMessageBox();
         BinSelector binSelector;
-        Settings set;
+        public List<Task> unsortedTasks = new List<Task>();
+        public Settings set;
 
         public Form1()
         {
@@ -33,8 +34,12 @@ namespace TimeIsMoney
 
             foreach(Task task in XMLLogic.XMLLogic.ReadXML(set.BinPath))
             {
-                listBoxTasks.Items.Add( task );
+                unsortedTasks.Add(task);
             }
+
+            listBoxTasks.DataSource = unsortedTasks;
+            listBoxTasks.SelectedIndexChanged += new System.EventHandler(this.listBoxTasks_SelectedIndexChanged);
+
 
             box.Deactivate += new EventHandler(EditMessageBoxClosed);
 
@@ -69,7 +74,9 @@ namespace TimeIsMoney
         {
             if (box.textBoxData.Text.Length > 0)
             {
-                listBoxTasks.Items.Add(new Task(box.textBoxData.Text));
+                unsortedTasks.Add(new Task(box.textBoxData.Text));
+                XMLLogic.XMLLogic.AddToXml(unsortedTasks, set.BinPath);
+                listBoxTasks.eReloadDataSource();
             }
         }
 

@@ -31,6 +31,23 @@ namespace TimeIsMoney.XMLLogic
             document.Save(filePath);
         }
 
+        internal static void AddToXml(List<Task> tasks, string filePath)
+        {
+            XDocument document = XDocument.Load(filePath);
+            XContainer element = document.Root;
+
+            foreach (Task t in tasks)
+            {
+
+                SetIdAndPos(filePath, t);
+
+
+                element.Add(t.CreateXmlElement(new XMLToDoListConverter()));
+            }
+
+            document.Save(filePath);
+        }
+
         /// <summary>
         /// Method used to set the ID and Position of the Task. Tasks in todo list need unique ID and correct Position
         /// </summary>

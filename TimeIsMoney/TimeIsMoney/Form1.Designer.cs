@@ -42,7 +42,6 @@
             this.listBoxTasks.Name = "listBoxTasks";
             this.listBoxTasks.Size = new System.Drawing.Size(125, 238);
             this.listBoxTasks.TabIndex = 0;
-            this.listBoxTasks.SelectedIndexChanged += new System.EventHandler(this.listBoxTasks_SelectedIndexChanged);
             // 
             // notifyIcon1
             // 
