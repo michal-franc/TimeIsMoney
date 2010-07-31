@@ -12,10 +12,13 @@ namespace TimeIsMoney
 {
     public partial class Form1 : Form , INotified
     {
+        private ListBox listSelector = new ListBox()
+        {
+            Size = new System.Drawing.Size(100, 100),
+        };
 
         globalKeyboardHook gkh = new globalKeyboardHook();
         EditMessageBox box = new EditMessageBox();
-        BinSelector binSelector;
         public List<Task> unsortedTasks = new List<Task>();
         public Settings set;
 
@@ -25,12 +28,17 @@ namespace TimeIsMoney
 
             set = Settings.Load();
 
+            //
+            //listSelector
+            //
+            this.Controls.Add(listSelector);
+            listSelector.DataSource = set.Lists;
+            listSelector.DisplayMember = "Name";
+            listSelector.SelectedIndexChanged += new EventHandler(list_SelectedIndexChanged);
+
             listBoxTasks.DisplayMember = "Title";
 
-            binSelector = new BinSelector(set.Lists);
             this.buttonListBox.SetData(set.Lists);
-
-            this.Controls.Add(binSelector);
 
             foreach(Task task in XMLLogic.XMLLogic.ReadXML(set.BinPath))
             {
@@ -54,6 +62,21 @@ namespace TimeIsMoney
         void gkh_KeyUp(object sender, KeyEventArgs e)
         {
 
+        }
+
+
+
+        private void list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AddToBin((Task)listBoxTasks.SelectedItem, ((TaskBin)listSelector.SelectedItem).Address);
+            listSelector.Hide();
+        }
+
+        private void AddToBin(Task task, string filePath)
+        {
+            XMLLogic.XMLLogic.AddToXml(task, filePath);
+            unsortedTasks.RemoveAt(listBoxTasks.SelectedIndex);
+            listBoxTasks.eReloadDataSource();
         }
 
 
@@ -97,7 +120,11 @@ namespace TimeIsMoney
             if (listBoxTasks.SelectedIndex >= 0)
             {
                 Rectangle rect = listBoxTasks.GetItemRectangle(listBoxTasks.SelectedIndex);
-                binSelector.ShowList(new Point(rect.X + listBoxTasks.Location.X, rect.Y + listBoxTasks.Location.Y));
+
+                listSelector.Location = new Point(rect.X + listBoxTasks.Location.X, rect.Y + listBoxTasks.Location.Y);
+                listSelector.BringToFront();
+                listSelector.Show();
+                listSelector.Focus();
             }
         }
 

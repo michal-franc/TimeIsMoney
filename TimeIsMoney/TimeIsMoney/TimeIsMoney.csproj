@@ -46,9 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ButtonListBox\BinSelector.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ButtonListBox\ButtonsListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

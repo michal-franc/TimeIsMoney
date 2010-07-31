@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <TODOLIST FILENAME="C:\Users\LaM\Desktop\TimeIsMoney\TimeIsMoney\TimeIsMoney\TimeIsMoney\bin\Debug\Koszyk.tdl" PROJECTNAME="" FILEFORMAT="9" NEXTUNIQUEID="2" LASTMODIFIED="2010-07-19" FILEVERSION="70" EARLIESTDUEDATE="0.00000000">
   <TASK TITLE="test 11" ID="1" POS="1" PRIORITY="0" RISK="0" PERCENTDONE="0" />
+  <TASK TITLE="test" ID="2" POS="2" PRIORITY="0" RISK="0" PERCENTDONE="0" />
 </TODOLIST>
