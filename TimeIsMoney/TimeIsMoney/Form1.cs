@@ -43,7 +43,6 @@ namespace TimeIsMoney
             listBoxTasks.DataSource = unsortedTasks;
             this.listBoxTasks.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBoxTasks_MouseClick);
 
-
             box.Deactivate += new EventHandler(EditMessageBoxClosed);
 
             gkh.HookedKeys.Add(Keys.B);
@@ -73,6 +72,8 @@ namespace TimeIsMoney
                 XMLLogic.XMLLogic.AddToXml(task, filePath);
                 unsortedTasks.RemoveAt(listBoxTasks.SelectedIndex);
                 listBoxTasks.eReloadDataSource();
+                XMLLogic.XMLLogic.AddToXml(unsortedTasks,set.BinPath);
+
             }
         }
 
@@ -156,6 +157,11 @@ namespace TimeIsMoney
                     listSelector.Focus();
                 }
             }
+        }
+
+        private void buttonSaveSettings_Click(object sender, EventArgs e)
+        {
+            set.Save();
         }
     }
 }

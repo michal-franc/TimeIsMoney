@@ -2,11 +2,16 @@
 <Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <BinPath>C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\bin\Debug\Koszyk.tdl</BinPath>
   <ReminderOn>true</ReminderOn>
+  <RemindWholeDay>false</RemindWholeDay>
   <RemindTime>720000000000</RemindTime>
   <Lists>
     <TaskBin>
       <Address>C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\bin\Debug\Docelowy.tdl</Address>
       <Name>Docelowy</Name>
+    </TaskBin>
+    <TaskBin>
+      <Address>C:\Users\LaM\Desktop\TODOS\Projekty\ASP.tdl</Address>
+      <Name>ASP</Name>
     </TaskBin>
   </Lists>
 </Settings>

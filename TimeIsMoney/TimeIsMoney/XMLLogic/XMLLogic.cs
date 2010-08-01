@@ -34,11 +34,11 @@ namespace TimeIsMoney.XMLLogic
             XDocument document = XDocument.Load(filePath);
             XContainer element = document.Root;
 
+            document.Root.Descendants("TASK").Remove();
+            
             foreach (Task t in tasks)
             {
-
                 SetIdAndPos(filePath, t);
-
 
                 element.Add(t.CreateXmlElement(new XMLToDoListConverter()));
             }
