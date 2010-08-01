@@ -1,6 +1,5 @@
 ﻿using System;
 using TimeIsMoney.ButtonListBox;
-using System.Collections.Generic;
 
 namespace TimeIsMoney
 {

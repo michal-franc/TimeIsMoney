@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -24,6 +22,9 @@ namespace TimeIsMoney
 	/// </summary>
 	class globalKeyboardHook {
 		#region Constant, Structure and Delegate Definitions
+
+
+
 		/// <summary>
 		/// defines the callback type for the hook
 		/// </summary>
@@ -78,9 +79,24 @@ namespace TimeIsMoney
 		/// <summary>
 		/// Initializes a new instance of the <see cref="globalKeyboardHook"/> class and installs the keyboard hook.
 		/// </summary>
-		public globalKeyboardHook() {
-			hook();
-		}
+        /// 
+
+        keyboardHookProc khp;
+
+        public globalKeyboardHook() 
+        {
+        //assign a method to the delegate, which is hookProc in the example
+        khp = new keyboardHookProc(hookProc);
+        hook();
+        }
+
+        //And I modified this function:
+        public void hook() 
+        {
+        IntPtr hInstance = LoadLibrary("User32");
+        hhook = SetWindowsHookEx(WH_KEYBOARD_LL, khp, hInstance, 0);
+        }
+
 
 		/// <summary>
 		/// Releases unmanaged resources and performs other cleanup operations before the
@@ -92,13 +108,6 @@ namespace TimeIsMoney
 		#endregion
 
 		#region Public Methods
-		/// <summary>
-		/// Installs the global hook
-		/// </summary>
-		public void hook() {
-			IntPtr hInstance = LoadLibrary("User32");
-			hhook = SetWindowsHookEx(WH_KEYBOARD_LL, hookProc, hInstance, 0);
-		}
 
 		/// <summary>
 		/// Uninstalls the global hook

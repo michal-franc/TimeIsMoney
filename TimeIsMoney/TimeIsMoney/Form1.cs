@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading;
 
 namespace TimeIsMoney
 {
@@ -53,15 +48,9 @@ namespace TimeIsMoney
 
             gkh.HookedKeys.Add(Keys.B);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
-            gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
 
             Reminder.Run(this, set.RemindTime);
             Reminder.RemindWholeDay = set.RemindWholeDay;
-        }
-
-        void gkh_KeyUp(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void listSelector_MouseClick(object sender, MouseEventArgs e)
