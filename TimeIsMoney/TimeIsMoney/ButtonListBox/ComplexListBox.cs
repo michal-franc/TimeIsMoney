@@ -41,7 +41,7 @@ namespace TimeIsMoney
                 }
                 else if(prop.IsDefined(typeof(EditableDialogBox),false))
                 {
-                    newBox.CreateFileDialogButton(prop.Name,"");
+                    newBox.CreateFileDialogButton(prop.Name,"TODO list file (*.tdl)|*.tdl|All files (*.*)|*.*");
                 }
 
             }

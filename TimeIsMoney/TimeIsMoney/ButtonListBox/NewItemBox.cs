@@ -12,6 +12,8 @@ namespace TimeIsMoney.ButtonListBox
         public NewItemBox()
         {
             InitializeComponent();
+            dialog.CheckFileExists = true;
+            dialog.CheckPathExists = true;
         }
 
 
@@ -26,7 +28,7 @@ namespace TimeIsMoney.ButtonListBox
         {
             this.Controls.Add(new Label() { Text = name, Location = new Point(0, y) });
 
-
+            dialog.Filter = filter;
             TextBox dialogText = new TextBox();
             dialogText.Click += new EventHandler(dialog_Click);
             dialogText.Location = Location = new Point(0, y + 20);
@@ -36,7 +38,16 @@ namespace TimeIsMoney.ButtonListBox
 
         private void dialog_Click(object sender, EventArgs e)
         {
-            dialog.ShowDialog();
+            if (DialogResult.OK == dialog.ShowDialog())
+            {
+                TextBox txtBox = sender as TextBox;
+                if (txtBox != null)
+                {
+                    txtBox.Text = dialog.FileName;
+                }
+            }
+
+
         }
 
         public string GenerateStringObject()
