@@ -34,7 +34,7 @@ namespace TimeIsMoney
             this.Controls.Add(listSelector);
             listSelector.DataSource = set.Lists;
             listSelector.DisplayMember = "Name";
-            listSelector.SelectedIndexChanged += new EventHandler(list_SelectedIndexChanged);
+            listSelector.MouseClick += new MouseEventHandler(listSelector_MouseClick);
             listSelector.Hide();
 
             listBoxTasks.DisplayMember = "Title";
@@ -46,7 +46,7 @@ namespace TimeIsMoney
             }
 
             listBoxTasks.DataSource = unsortedTasks;
-            listBoxTasks.SelectedIndexChanged += new System.EventHandler(this.listBoxTasks_SelectedIndexChanged);
+            this.listBoxTasks.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBoxTasks_MouseClick);
 
 
             box.Deactivate += new EventHandler(EditMessageBoxClosed);
@@ -64,12 +64,15 @@ namespace TimeIsMoney
 
         }
 
-        private void list_SelectedIndexChanged(object sender, EventArgs e)
+        private void listSelector_MouseClick(object sender, MouseEventArgs e)
         {
             if (listSelector.SelectedItem != null)
             {
-                AddToBin((Task)listBoxTasks.SelectedItem, ((TaskBin)listSelector.SelectedItem).Address);
-                listSelector.Hide();
+                if (listSelector.SelectedIndex == listSelector.IndexFromPoint(e.X, e.Y))
+                {
+                    AddToBin((Task)listBoxTasks.SelectedItem, ((TaskBin)listSelector.SelectedItem).Address);
+                    listSelector.Hide();
+                }
 
             }
         }
@@ -119,21 +122,6 @@ namespace TimeIsMoney
                 box.Focus();
             }
         }
-
-        private void listBoxTasks_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxTasks.SelectedIndex >= 0)
-            {
-                Rectangle rect = listBoxTasks.GetItemRectangle(listBoxTasks.SelectedIndex);
-
-                listSelector.Location = new Point(rect.X + listBoxTasks.Location.X, rect.Y + listBoxTasks.Location.Y);
-                listSelector.eReloadDataSource();
-                listSelector.BringToFront();
-                listSelector.Show();
-                listSelector.Focus();
-            }
-        }
-
         #region INotified Members
 
         public void Notify()
@@ -163,5 +151,22 @@ namespace TimeIsMoney
         }
 
         #endregion
+
+        private void listBoxTasks_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listBoxTasks.SelectedIndex >= 0)
+            {
+                if (listBoxTasks.SelectedIndex == listBoxTasks.IndexFromPoint(e.X, e.Y))
+                {
+                    Rectangle rect = listBoxTasks.GetItemRectangle(listBoxTasks.SelectedIndex);
+
+                    listSelector.Location = new Point(rect.X + listBoxTasks.Location.X, rect.Y + listBoxTasks.Location.Y);
+                    listSelector.eReloadDataSource();
+                    listSelector.BringToFront();
+                    listSelector.Show();
+                    listSelector.Focus();
+                }
+            }
+        }
     }
 }

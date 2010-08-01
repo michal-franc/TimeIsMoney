@@ -50,10 +50,10 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
-            // buttonListBox
+            // complexListBox
             // 
             this.complexListBox.Location = new System.Drawing.Point(143, 16);
-            this.complexListBox.Name = "buttonListBox";
+            this.complexListBox.Name = "complexListBox";
             this.complexListBox.Size = new System.Drawing.Size(263, 194);
             this.complexListBox.TabIndex = 1;
             // 
