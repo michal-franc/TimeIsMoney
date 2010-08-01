@@ -35,10 +35,10 @@ namespace TimeIsMoney
             listSelector.DataSource = set.Lists;
             listSelector.DisplayMember = "Name";
             listSelector.SelectedIndexChanged += new EventHandler(list_SelectedIndexChanged);
+            listSelector.Hide();
 
             listBoxTasks.DisplayMember = "Title";
-
-            this.buttonListBox.SetData(set.Lists);
+            this.complexListBox.SetData(set.Lists,typeof(TaskBin),"Name");
 
             foreach(Task task in XMLLogic.XMLLogic.ReadXML(set.BinPath))
             {
@@ -64,19 +64,24 @@ namespace TimeIsMoney
 
         }
 
-
-
         private void list_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AddToBin((Task)listBoxTasks.SelectedItem, ((TaskBin)listSelector.SelectedItem).Address);
-            listSelector.Hide();
+            if (listSelector.SelectedItem != null)
+            {
+                AddToBin((Task)listBoxTasks.SelectedItem, ((TaskBin)listSelector.SelectedItem).Address);
+                listSelector.Hide();
+
+            }
         }
 
         private void AddToBin(Task task, string filePath)
         {
-            XMLLogic.XMLLogic.AddToXml(task, filePath);
-            unsortedTasks.RemoveAt(listBoxTasks.SelectedIndex);
-            listBoxTasks.eReloadDataSource();
+            if (task != null)
+            {
+                XMLLogic.XMLLogic.AddToXml(task, filePath);
+                unsortedTasks.RemoveAt(listBoxTasks.SelectedIndex);
+                listBoxTasks.eReloadDataSource();
+            }
         }
 
 
@@ -122,6 +127,7 @@ namespace TimeIsMoney
                 Rectangle rect = listBoxTasks.GetItemRectangle(listBoxTasks.SelectedIndex);
 
                 listSelector.Location = new Point(rect.X + listBoxTasks.Location.X, rect.Y + listBoxTasks.Location.Y);
+                listSelector.eReloadDataSource();
                 listSelector.BringToFront();
                 listSelector.Show();
                 listSelector.Focus();

@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBoxTasks = new System.Windows.Forms.ListBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.buttonListBox = new TimeIsMoney.ButtonsListBox();
+            this.complexListBox = new TimeIsMoney.ComplexListBox();
             this.SuspendLayout();
             // 
             // listBoxTasks
@@ -52,10 +52,10 @@
             // 
             // buttonListBox
             // 
-            this.buttonListBox.Location = new System.Drawing.Point(143, 16);
-            this.buttonListBox.Name = "buttonListBox";
-            this.buttonListBox.Size = new System.Drawing.Size(263, 194);
-            this.buttonListBox.TabIndex = 1;
+            this.complexListBox.Location = new System.Drawing.Point(143, 16);
+            this.complexListBox.Name = "buttonListBox";
+            this.complexListBox.Size = new System.Drawing.Size(263, 194);
+            this.complexListBox.TabIndex = 1;
             // 
             // Form1
             // 
@@ -63,7 +63,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 266);
             this.Controls.Add(this.listBoxTasks);
-            this.Controls.Add(this.buttonListBox);
+            this.Controls.Add(this.complexListBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "TimeIsMoney";
@@ -75,7 +75,7 @@
 
         private System.Windows.Forms.ListBox listBoxTasks;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private ButtonsListBox buttonListBox;
+        private ComplexListBox complexListBox;
     }
 }
 
