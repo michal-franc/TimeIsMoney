@@ -3,6 +3,8 @@
   <BinPath>C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\bin\Debug\Koszyk.tdl</BinPath>
   <ReminderOn>true</ReminderOn>
   <RemindWholeDay>false</RemindWholeDay>
+  <RemindDelay>10</RemindDelay>
+  <BallonTipDelay>3000</BallonTipDelay>
   <RemindTime>720000000000</RemindTime>
   <Lists>
     <TaskBin>

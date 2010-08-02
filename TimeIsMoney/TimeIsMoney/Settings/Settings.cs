@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace TimeIsMoney
+namespace TimeIsMoney.Settings
 {
     [Serializable]
     public class Settings
@@ -12,7 +12,9 @@ namespace TimeIsMoney
         public string ToDoPath { get; set; }
         public bool ReminderOn { get; set; }
         public bool RemindWholeDay { get; set; }
-        
+        public int RemindDelay { get; set; }
+        public int BallonTipDelay { get; set; }
+
         #region RemindTime
         private TimeSpan m_RemindTime;
 

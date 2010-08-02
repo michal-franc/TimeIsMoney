@@ -17,7 +17,7 @@ namespace TimeIsMoney
         /// <param name="conditionVariable">Parameter used to specify if the reminding condition is true</param>
         /// <param name="notifiedObject">Object which is being notified about evvent.</param>
         /// <returns></returns>
-        public static void Run(INotified notifiedObject,TimeSpan remindTime)
+        public static void Run(INotified notifiedObject,TimeSpan remindTime,int remindDelay)
         {
             Thread backgroundWorker = new Thread(delegate()
             {
@@ -28,7 +28,7 @@ namespace TimeIsMoney
                         if (notifiedObject.IsNotified())
                             notifiedObject.Notify();
                     }
-                    Thread.Sleep(TimeSpan.FromMinutes(10));
+                    Thread.Sleep(TimeSpan.FromMinutes(remindDelay));
                 }
 
             });

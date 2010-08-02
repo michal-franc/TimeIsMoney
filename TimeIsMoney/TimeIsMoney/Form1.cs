@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using TimeIsMoney.Settings;
 
 namespace TimeIsMoney
 {
@@ -14,14 +15,19 @@ namespace TimeIsMoney
 
         globalKeyboardHook gkh = new globalKeyboardHook();
         EditMessageBox box = new EditMessageBox();
+        SettingsForm settingsForm = new SettingsForm();
         public List<Task> unsortedTasks = new List<Task>();
-        public Settings set;
+        public Settings.Settings set;
 
         public Form1()
         {
             InitializeComponent();
 
-            set = Settings.Load();
+            set = Settings.Settings.Load();
+
+            this.Menu = new MainMenu();
+            this.Menu.MenuItems.Add(new MenuItem("Settings",new EventHandler(settings_OnClick)));
+
 
             //
             //listSelector
@@ -33,7 +39,7 @@ namespace TimeIsMoney
             listSelector.Hide();
 
             listBoxTasks.DisplayMember = "Title";
-            this.complexListBox.SetData(set.Lists,typeof(TaskBin),"Name");
+            settingsForm.complexListBox.SetData(set.Lists,typeof(TaskBin),"Name");
 
             foreach(Task task in XMLLogic.XMLLogic.ReadXML(set.BinPath))
             {
@@ -48,8 +54,13 @@ namespace TimeIsMoney
             gkh.HookedKeys.Add(Keys.B);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
 
-            Reminder.Run(this, set.RemindTime);
+            Reminder.Run(this, set.RemindTime,set.RemindDelay);
             Reminder.RemindWholeDay = set.RemindWholeDay;
+        }
+
+        protected void settings_OnClick(object sender, EventArgs e)
+        {
+            settingsForm.ShowDialog();
         }
 
         private void listSelector_MouseClick(object sender, MouseEventArgs e)
@@ -121,7 +132,7 @@ namespace TimeIsMoney
             else
                 notifyIcon1.BalloonTipText = String.Format("There are still {0} unsorted items", listBoxTasks.Items.Count);
 
-            notifyIcon1.ShowBalloonTip(3000);
+            notifyIcon1.ShowBalloonTip(set.BallonTipDelay++);
         }
 
         #endregion

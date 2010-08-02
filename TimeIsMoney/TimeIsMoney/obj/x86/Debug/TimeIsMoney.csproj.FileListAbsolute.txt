@@ -19,3 +19,4 @@ C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsM
 C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.ComplexListBox.resources
+C:\msysgit\msysgit\git\TimeIsMoney\TimeIsMoney\TimeIsMoney\obj\x86\Debug\TimeIsMoney.Settings.SettingsForm.resources

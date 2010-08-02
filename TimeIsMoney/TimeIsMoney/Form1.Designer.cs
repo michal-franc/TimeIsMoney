@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBoxTasks = new System.Windows.Forms.ListBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.complexListBox = new TimeIsMoney.ComplexListBox();
-            this.buttonSaveSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxTasks
@@ -51,34 +49,19 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
-            // complexListBox
-            // 
-            this.complexListBox.Location = new System.Drawing.Point(143, 16);
-            this.complexListBox.Name = "complexListBox";
-            this.complexListBox.Size = new System.Drawing.Size(263, 194);
-            this.complexListBox.TabIndex = 1;
-            // 
-            // buttonSaveSettings
-            // 
-            this.buttonSaveSettings.Location = new System.Drawing.Point(157, 216);
-            this.buttonSaveSettings.Name = "buttonSaveSettings";
-            this.buttonSaveSettings.Size = new System.Drawing.Size(114, 23);
-            this.buttonSaveSettings.TabIndex = 2;
-            this.buttonSaveSettings.Text = "Save Settings";
-            this.buttonSaveSettings.UseVisualStyleBackColor = true;
-            this.buttonSaveSettings.Click += new System.EventHandler(this.buttonSaveSettings_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 266);
-            this.Controls.Add(this.buttonSaveSettings);
+            this.ClientSize = new System.Drawing.Size(146, 266);
             this.Controls.Add(this.listBoxTasks);
-            this.Controls.Add(this.complexListBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
+            this.ShowInTaskbar = false;
             this.Text = "TimeIsMoney";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }
@@ -87,8 +70,6 @@
 
         private System.Windows.Forms.ListBox listBoxTasks;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private ComplexListBox complexListBox;
-        private System.Windows.Forms.Button buttonSaveSettings;
     }
 }
 
