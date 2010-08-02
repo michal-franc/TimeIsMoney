@@ -8,9 +8,14 @@ namespace TimeIsMoney
     /// </summary>
     public partial class EditMessageBox : Form
     {
+        private bool resized = false;
+        private System.Drawing.Size size;
+
         public EditMessageBox()
         {
             InitializeComponent();
+            size = new System.Drawing.Size(450, 50);
+            this.Size = size;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.KeyDown += new KeyEventHandler(EditMessageBox_KeyDown);
         }
@@ -26,6 +31,20 @@ namespace TimeIsMoney
         private void buttonOK_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!resized)
+            {
+                this.Size = new System.Drawing.Size(this.Size.Width, 200);
+                resized = true;
+            }
+            else
+            {
+                this.Size = size;
+                resized = false;
+            }
         }
     }
 }

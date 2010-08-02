@@ -60,10 +60,10 @@
     </Compile>
     <Compile Include="ComplexListBox\Attributes.cs" />
     <Compile Include="ComplexListBox\IEditable.cs" />
-    <Compile Include="EditMessageBox.cs">
+    <Compile Include="EditMessageBox\EditMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditMessageBox.Designer.cs">
+    <Compile Include="EditMessageBox\EditMessageBox.Designer.cs">
       <DependentUpon>EditMessageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Extension.cs" />
@@ -93,7 +93,7 @@
     <EmbeddedResource Include="ComplexListBox\ComplexListBox.resx">
       <DependentUpon>ComplexListBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditMessageBox.resx">
+    <EmbeddedResource Include="EditMessageBox\EditMessageBox.resx">
       <DependentUpon>EditMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">

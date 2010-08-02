@@ -34,7 +34,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(44, 202);
+            this.buttonSave.Location = new System.Drawing.Point(28, 202);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 2;
@@ -53,7 +53,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(158, 262);
+            this.ClientSize = new System.Drawing.Size(148, 262);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.complexListBox);
             this.MaximizeBox = false;
