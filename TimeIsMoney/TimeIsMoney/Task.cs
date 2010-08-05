@@ -20,6 +20,9 @@ namespace TimeIsMoney
         public int PercentDone { get; set; }
         public string StartDate{ get; set; }
         public string StartDateString { get; set; }
+        public string DueDate { get; set; }
+        public string DueDateString { get; set; }
+        public int TimeEstimate { get; set; }
         public string CreationDate { get; set; }
         public string CreationDateString { get; set; }
         public string PriorityColor { get; set; }
@@ -35,9 +38,11 @@ namespace TimeIsMoney
 
         }
 
-        public Task(string title)
+        public Task(string title,int estTime,DateTime dueDate)
         {
             this.Title = title;
+            this.TimeEstimate = estTime;
+            this.DueDateString = dueDate.ToShortDateString();
         }
 
         /// <summary>
@@ -47,15 +52,18 @@ namespace TimeIsMoney
         public Task(XElement element)
         {
             Title = (string)element.Attribute("TITLE") == null ? String.Empty : (string)element.Attribute("TITLE");
-            ID = (int)element.Attribute("ID") == null ? -1 : (int)element.Attribute("ID");
-            Pos = (int)element.Attribute("POS") == null ? -1 : (int)element.Attribute("POS");
+            ID = (element.Attribute("ID") == null) ? -1 : (int)element.Attribute("ID");
+            Pos = (element.Attribute("POS") == null) ? -1 : (int)element.Attribute("POS");
             LastMod = (string)element.Attribute("LASTMOD") == null ? String.Empty : (string)element.Attribute("LASTMOD");
             LastModString = (string)element.Attribute("LASTMODSTRING") == null ? String.Empty : (string)element.Attribute("LASTMODSTRING");
-            Priority = (int)element.Attribute("PRIORITY") == null ? -1 : (int)element.Attribute("PRIORITY");
-            Risk = (int)element.Attribute("RISK") == null ? -1 : (int)element.Attribute("RISK");
-            PercentDone = (int)element.Attribute("PERCENTDONE") == null ? -1 : (int)element.Attribute("PERCENTDONE");
+            Priority = (element.Attribute("PRIORITY") == null) ? -1 : (int)element.Attribute("PRIORITY");
+            Risk = (element.Attribute("RISK") == null) ? -1 : (int)element.Attribute("RISK");
+            PercentDone = (element.Attribute("PERCENTDONE") == null) ? -1 : (int)element.Attribute("PERCENTDONE");
             StartDate = (string)element.Attribute("STARTDATE") == null ? String.Empty : (string)element.Attribute("STARTDATE");
             StartDateString = (string)element.Attribute("STARTDATESTRING") == null ? String.Empty : (string)element.Attribute("STARTDATESTRING");
+            DueDate = (string)element.Attribute("DUEDATE") == null ? String.Empty : (string)element.Attribute("DUEDATE");
+            DueDateString = (string)element.Attribute("DUEDATESTRING") == null ? String.Empty : (string)element.Attribute("DUEDATESTRING");
+            TimeEstimate = (element.Attribute("TIMEESTIMATE") == null) ? 0 : (int)element.Attribute("TIMEESTIMATE");
             CreationDate = (string)element.Attribute("CREATIONDATE") == null ? String.Empty : (string)element.Attribute("CREATIONDATE");
             CreationDateString = (string)element.Attribute("CREATIONDATESTRING") == null ? String.Empty : (string)element.Attribute("CREATIONDATESTRING");
             PriorityColor = (string)element.Attribute("PRIORITYCOLOR") == null ? String.Empty : (string)element.Attribute("PRIORITYCOLOR");
