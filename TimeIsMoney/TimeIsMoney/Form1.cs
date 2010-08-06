@@ -6,7 +6,7 @@ using TimeIsMoney.Settings;
 
 namespace TimeIsMoney
 {
-    public partial class Form1 : Form , INotified
+    public partial class Form1 : Form, INotified
     {
         private ListBox listSelector = new ListBox()
         {
@@ -26,8 +26,14 @@ namespace TimeIsMoney
             set = Settings.Settings.Load();
 
             this.Menu = new MainMenu();
-            this.Menu.MenuItems.Add(new MenuItem("Settings",new EventHandler(settings_OnClick)));
+            this.Menu.MenuItems.Add(new MenuItem("Settings", new EventHandler(settings_OnClick)));
 
+
+            //
+            //NotifyIcon
+            //
+            notifyIcon1.ContextMenu = new System.Windows.Forms.ContextMenu();
+            notifyIcon1.ContextMenu.MenuItems.Add(new MenuItem("Close", new EventHandler(Close_MouseClick)));
 
             //
             //listSelector
@@ -39,9 +45,9 @@ namespace TimeIsMoney
             listSelector.Hide();
 
             listBoxTasks.DisplayMember = "Title";
-            settingsForm.complexListBox.SetData(set.Lists,typeof(TaskBin),"Name");
+            settingsForm.complexListBox.SetData(set.Lists, typeof(TaskBin), "Name");
 
-            foreach(Task task in XMLLogic.XMLLogic.ReadXML(set.BinPath))
+            foreach (Task task in XMLLogic.XMLLogic.ReadXML(set.BinPath))
             {
                 unsortedTasks.Add(task);
             }
@@ -54,8 +60,24 @@ namespace TimeIsMoney
             gkh.HookedKeys.Add(Keys.B);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
 
-            Reminder.Run(this, set.RemindTime,set.RemindDelay);
+            Reminder.Run(this, set.RemindTime, set.RemindDelay);
             Reminder.RemindWholeDay = set.RemindWholeDay;
+        }
+
+        protected override CreateParams CreateParams
+        {
+
+            get
+            {
+
+                CreateParams param = base.CreateParams;
+
+                param.ClassStyle = param.ClassStyle | 0x200;
+
+                return param;
+
+            }
+
         }
 
         protected void settings_OnClick(object sender, EventArgs e)
@@ -83,7 +105,7 @@ namespace TimeIsMoney
                 XMLLogic.XMLLogic.AddToXml(task, filePath);
                 unsortedTasks.RemoveAt(listBoxTasks.SelectedIndex);
                 listBoxTasks.eReloadDataSource();
-                XMLLogic.XMLLogic.AddToXml(unsortedTasks,set.BinPath);
+                XMLLogic.XMLLogic.AddToXml(unsortedTasks, set.BinPath);
 
             }
         }
@@ -107,7 +129,7 @@ namespace TimeIsMoney
         {
             if (box.textBoxData.Text.Length > 0)
             {
-                unsortedTasks.Add(new Task(box.textBoxData.Text,Int32.Parse(box.textBoxEstTime.Text),box.dateTimePicker.Value));
+                unsortedTasks.Add(new Task(box.textBoxData.Text, Int32.Parse(box.textBoxEstTime.Text), box.dateTimePicker.Value,Convert.ToInt32(box.comboBoxPriority.SelectedItem)));
                 XMLLogic.XMLLogic.AddToXml(unsortedTasks, set.BinPath);
                 listBoxTasks.eReloadDataSource();
             }
@@ -173,6 +195,12 @@ namespace TimeIsMoney
         private void buttonSaveSettings_Click(object sender, EventArgs e)
         {
             set.Save();
+        }
+
+        private void Close_MouseClick(object sender, EventArgs e)
+        {
+            notifyIcon1.Dispose();
+            Application.Exit();
         }
     }
 }

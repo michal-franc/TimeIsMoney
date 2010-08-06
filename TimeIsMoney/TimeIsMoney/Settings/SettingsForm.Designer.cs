@@ -56,12 +56,14 @@
             this.ClientSize = new System.Drawing.Size(148, 262);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.complexListBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SettingsForm";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }
