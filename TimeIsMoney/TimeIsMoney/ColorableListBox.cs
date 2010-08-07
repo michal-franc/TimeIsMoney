@@ -7,11 +7,7 @@ namespace TimeIsMoney
     {
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            SolidBrush redBrush = new SolidBrush(Color.Red);
-            SolidBrush blueBrush = new SolidBrush(Color.Blue);
-            SolidBrush greenBrush = new SolidBrush(Color.Green);
             SolidBrush whiteBrush = new SolidBrush(Color.White);
-
 
             if (e.Index >= 0)
             {
@@ -23,14 +19,20 @@ namespace TimeIsMoney
                 {
                     if (item.Priority <= 3)
                     {
+                        Color col = Color.FromArgb(0, 255 - (e.Index * 60), 0);
+                        SolidBrush greenBrush = new SolidBrush(col);
                         e.Graphics.FillRectangle(greenBrush, rect);
                     }
                     else if (item.Priority > 3 && item.Priority <= 7)
                     {
+                        Color col = Color.FromArgb(0, 0, 255 - ((e.Index - 4) * 60));
+                        SolidBrush blueBrush = new SolidBrush(col);
                         e.Graphics.FillRectangle(blueBrush, rect);
                     }
                     else if (item.Priority > 7)
                     {
+                        Color col = Color.FromArgb(255 - ((e.Index - 8) * 60), 0, 0);
+                        SolidBrush redBrush = new SolidBrush(col);
                         e.Graphics.FillRectangle(redBrush, rect);
                     }
                     e.Graphics.DrawString(item.Title,
