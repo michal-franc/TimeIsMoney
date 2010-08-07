@@ -129,7 +129,11 @@ namespace TimeIsMoney
         {
             if (box.textBoxData.Text.Length > 0)
             {
-                unsortedTasks.Add(new Task(box.textBoxData.Text, Int32.Parse(box.textBoxEstTime.Text), box.dateTimePicker.Value,Convert.ToInt32(box.comboBoxPriority.SelectedItem)));
+                unsortedTasks.Add(new Task(box.textBoxData.Text, 
+                    Int32.Parse(box.textBoxEstTime.Text),
+                    box.dateTimePicker.Value,
+                    Convert.ToInt32(box.comboBoxPriority.SelectedItem)));
+
                 XMLLogic.XMLLogic.AddToXml(unsortedTasks, set.BinPath);
                 listBoxTasks.eReloadDataSource();
             }

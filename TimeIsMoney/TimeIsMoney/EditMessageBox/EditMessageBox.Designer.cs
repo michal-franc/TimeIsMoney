@@ -31,12 +31,12 @@
             this.textBoxData = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBoxPriority = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.textBoxEstTime = new System.Windows.Forms.TextBox();
+            this.comboBoxPriority = new TimeIsMoney.ColorAbleComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,27 +75,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 100);
             this.panel1.TabIndex = 3;
-            // 
-            // comboBoxPriority
-            // 
-            this.comboBoxPriority.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBoxPriority.FormattingEnabled = true;
-            this.comboBoxPriority.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.comboBoxPriority.Location = new System.Drawing.Point(118, 59);
-            this.comboBoxPriority.Name = "comboBoxPriority";
-            this.comboBoxPriority.Size = new System.Drawing.Size(29, 21);
-            this.comboBoxPriority.TabIndex = 5;
             // 
             // label3
             // 
@@ -140,6 +119,17 @@
             this.textBoxEstTime.Size = new System.Drawing.Size(100, 20);
             this.textBoxEstTime.TabIndex = 0;
             // 
+            // comboBoxPriority
+            // 
+            this.comboBoxPriority.BackColor = System.Drawing.Color.White;
+            this.comboBoxPriority.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBoxPriority.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBoxPriority.FormattingEnabled = true;
+            this.comboBoxPriority.Location = new System.Drawing.Point(118, 59);
+            this.comboBoxPriority.Name = "comboBoxPriority";
+            this.comboBoxPriority.Size = new System.Drawing.Size(35, 21);
+            this.comboBoxPriority.TabIndex = 5;
+            // 
             // EditMessageBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,7 +164,7 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.DateTimePicker dateTimePicker;
         public System.Windows.Forms.TextBox textBoxEstTime;
-        public System.Windows.Forms.ComboBox comboBoxPriority;
+        public ColorAbleComboBox comboBoxPriority;
         private System.Windows.Forms.Label label3;
     }
 }

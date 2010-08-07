@@ -62,7 +62,7 @@ namespace TimeIsMoney.Settings
                 return set;
             }
             // If There was a problem loading settings ... load default options.
-            catch(Exception ex)
+            catch
             {
                 return new Settings();
             }
