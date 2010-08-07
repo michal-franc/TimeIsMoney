@@ -30,17 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.listBoxTasks = new System.Windows.Forms.ListBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.listBoxTasks = new TimeIsMoney.ColorableListBox();
             this.SuspendLayout();
-            // 
-            // listBoxTasks
-            // 
-            this.listBoxTasks.FormattingEnabled = true;
-            this.listBoxTasks.Location = new System.Drawing.Point(12, 16);
-            this.listBoxTasks.Name = "listBoxTasks";
-            this.listBoxTasks.Size = new System.Drawing.Size(125, 238);
-            this.listBoxTasks.TabIndex = 0;
             // 
             // notifyIcon1
             // 
@@ -48,6 +40,15 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
+            // listBoxTasks
+            // 
+            this.listBoxTasks.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.listBoxTasks.FormattingEnabled = true;
+            this.listBoxTasks.Location = new System.Drawing.Point(12, 16);
+            this.listBoxTasks.Name = "listBoxTasks";
+            this.listBoxTasks.Size = new System.Drawing.Size(125, 238);
+            this.listBoxTasks.TabIndex = 0;
             // 
             // Form1
             // 
@@ -69,7 +70,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBoxTasks;
+        private ColorableListBox listBoxTasks;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }

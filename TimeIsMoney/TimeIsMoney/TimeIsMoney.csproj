@@ -49,6 +49,9 @@
     <Compile Include="ColorAbleComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ColorableListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ComplexListBox\NewItemBox.cs">
       <SubType>Form</SubType>
     </Compile>

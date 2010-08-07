@@ -12,24 +12,28 @@ namespace TimeIsMoney
             SolidBrush greenBrush = new SolidBrush(Color.Green);
             SolidBrush whiteBrush = new SolidBrush(Color.White);
 
-            Rectangle rect = new Rectangle(
-                e.Bounds.X, e.Bounds.Y, 
-                e.Bounds.Width, e.Bounds.Height);
 
-            if (e.Index <= 3)
+            if (e.Index >= 0)
             {
-                e.Graphics.FillRectangle(greenBrush, rect);
+                Rectangle rect = new Rectangle(
+                    e.Bounds.X, e.Bounds.Y,
+                    e.Bounds.Width, e.Bounds.Height);
+
+                if (e.Index <= 3)
+                {
+                    e.Graphics.FillRectangle(greenBrush, rect);
+                }
+                else if (e.Index > 3 && e.Index <= 7)
+                {
+                    e.Graphics.FillRectangle(blueBrush, rect);
+                }
+                else if (e.Index > 7)
+                {
+                    e.Graphics.FillRectangle(redBrush, rect);
+                }
+                e.Graphics.DrawString(Items[e.Index].ToString(),
+                    Font, whiteBrush, new PointF(rect.X, rect.Y));
             }
-            else if (e.Index > 3 && e.Index <= 7)
-            {
-                e.Graphics.FillRectangle(blueBrush, rect);
-            }
-            else if (e.Index > 7)
-            {
-                e.Graphics.FillRectangle(redBrush, rect);
-            }
-            e.Graphics.DrawString(Items[e.Index].ToString(), 
-                Font, whiteBrush, new PointF(rect.X, rect.Y));
         }
     }
 }

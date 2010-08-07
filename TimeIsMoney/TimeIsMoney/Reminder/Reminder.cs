@@ -10,6 +10,7 @@ namespace TimeIsMoney
         /// Parameter used to
         /// </summary>
         public static bool RemindWholeDay = false;
+        private static Thread backgroundWorker;
 
         /// <summary>
         /// Starts the thread of the reminder.
@@ -19,7 +20,7 @@ namespace TimeIsMoney
         /// <returns></returns>
         public static void Run(INotified notifiedObject,TimeSpan remindTime,int remindDelay)
         {
-            Thread backgroundWorker = new Thread(delegate()
+            backgroundWorker = new Thread(delegate()
             {
                 while (true)
                 {
@@ -39,7 +40,7 @@ namespace TimeIsMoney
 
         public static void Stop()
         {
-
+            backgroundWorker.Abort();
         }
     }
 }

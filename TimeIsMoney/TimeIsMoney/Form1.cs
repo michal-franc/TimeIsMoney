@@ -156,15 +156,11 @@ namespace TimeIsMoney
             if (listBoxTasks.Items.Count <= 1)
                 notifyIcon1.BalloonTipText = "There is still 1 unsorted item";
             else
-                notifyIcon1.BalloonTipText = String.Format("There are still {0} unsorted items", listBoxTasks.Items.Count);
+                notifyIcon1.BalloonTipText = String.Format(
+                    "There are still {0} unsorted items", listBoxTasks.Items.Count);
 
             notifyIcon1.ShowBalloonTip(set.BallonTipDelay++);
         }
-
-        #endregion
-
-        #region INotified Members
-
 
         public bool IsNotified()
         {
