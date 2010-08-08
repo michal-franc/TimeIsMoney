@@ -20,6 +20,7 @@ namespace TimeIsMoney
             this.KeyDown += new KeyEventHandler(EditMessageBox_KeyDown);
             this.comboBoxPriority.Items.AddRange(new object[] { "0", "1","2","3","4","5","6","7","8","9","10"});
             this.comboBoxPriority.SelectedIndex = 6;
+            this.textBoxEstTime.Text = "0";
         }
 
         private void EditMessageBox_KeyDown(object sender, KeyEventArgs e)
