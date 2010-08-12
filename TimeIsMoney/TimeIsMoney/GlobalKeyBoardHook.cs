@@ -7,14 +7,14 @@ using System.Windows.Forms;
 //Modified Source from http://www.codeproject.com/KB/cs/CSLLKeyboardHook.aspx
 namespace TimeIsMoney
 {
-    class CustomKeyEventArgs : KeyEventArgs
-    {
-        public bool isShift;
-        public bool isAlt;
-        public bool isCtrl;
+	class CustomKeyEventArgs : KeyEventArgs
+	{
+		public bool isShift;
+		public bool isAlt;
+		public bool isCtrl;
 
-        public CustomKeyEventArgs(Keys key) : base(key) { }
-    }
+		public CustomKeyEventArgs(Keys key) : base(key) { }
+	}
 
 
 	/// <summary>
@@ -43,9 +43,9 @@ namespace TimeIsMoney
 		const int WM_KEYUP = 0x101;
 		const int WM_SYSKEYDOWN = 0x104;
 		const int WM_SYSKEYUP = 0x105;
-        const int WM_SHIFT = 160;
-        const int WM_CTRL = 162;
-        const int WM_ALT = 164;
+		const int WM_SHIFT = 160;
+		const int WM_CTRL = 162;
+		const int WM_ALT = 164;
 		#endregion
 
 		#region Instance Variables
@@ -58,11 +58,11 @@ namespace TimeIsMoney
 		/// </summary>
 		IntPtr hhook = IntPtr.Zero;
 
-        private bool isShift = false;
-        private bool isCtrl = false;
-        private bool isAlt = false;
+		private bool isShift = false;
+		private bool isCtrl = false;
+		private bool isAlt = false;
 
-        #endregion
+		#endregion
 
 		#region Events
 		/// <summary>
@@ -79,23 +79,23 @@ namespace TimeIsMoney
 		/// <summary>
 		/// Initializes a new instance of the <see cref="globalKeyboardHook"/> class and installs the keyboard hook.
 		/// </summary>
-        /// 
+		/// 
 
-        keyboardHookProc khp;
+		keyboardHookProc khp;
 
-        public globalKeyboardHook() 
-        {
-        //assign a method to the delegate, which is hookProc in the example
-        khp = new keyboardHookProc(hookProc);
-        hook();
-        }
+		public globalKeyboardHook() 
+		{
+		//assign a method to the delegate, which is hookProc in the example
+		khp = new keyboardHookProc(hookProc);
+		hook();
+		}
 
-        //And I modified this function:
-        public void hook() 
-        {
-        IntPtr hInstance = LoadLibrary("User32");
-        hhook = SetWindowsHookEx(WH_KEYBOARD_LL, khp, hInstance, 0);
-        }
+		//And I modified this function:
+		public void hook() 
+		{
+		IntPtr hInstance = LoadLibrary("User32");
+		hhook = SetWindowsHookEx(WH_KEYBOARD_LL, khp, hInstance, 0);
+		}
 
 
 		/// <summary>
@@ -127,30 +127,30 @@ namespace TimeIsMoney
 			if (code >= 0) {
 				Keys key = (Keys)lParam.vkCode;
 
-                if (lParam.vkCode == WM_SHIFT)
-                {
-                    isShift = true;
-                }
+				if (lParam.vkCode == WM_SHIFT)
+				{
+					isShift = true;
+				}
 
-                if (lParam.vkCode == WM_ALT)
-                {
-                    isAlt = true;
-                }
+				if (lParam.vkCode == WM_ALT)
+				{
+					isAlt = true;
+				}
 
-                if (lParam.vkCode == WM_CTRL)
-                {
-                    isCtrl = true;                      
-                }
+				if (lParam.vkCode == WM_CTRL)
+				{
+					isCtrl = true;                      
+				}
 
-            
+			
 				if (HookedKeys.Contains(key)) {
-                    CustomKeyEventArgs kea = new CustomKeyEventArgs(key);
-                    kea.isShift = isShift;
-                    kea.isAlt = isAlt;
-                    kea.isCtrl = isCtrl;
-                    isShift = false;
-                    isCtrl = false;
-                    isAlt = false;
+					CustomKeyEventArgs kea = new CustomKeyEventArgs(key);
+					kea.isShift = isShift;
+					kea.isAlt = isAlt;
+					kea.isCtrl = isCtrl;
+					isShift = false;
+					isCtrl = false;
+					isAlt = false;
 
 					if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyDown != null)) {
 						KeyDown(this, kea) ;

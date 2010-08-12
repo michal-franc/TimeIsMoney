@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace TimeIsMoney
 {
@@ -18,19 +19,19 @@ namespace TimeIsMoney
                 {
                     if (item.Priority <= 3)
                     {
-                        Color col = Color.FromArgb(0, 255 - (e.Index * 60), 0);
+                        Color col = Color.FromArgb(0, 255 - (item.Priority * 60), 0);
                         SolidBrush greenBrush = new SolidBrush(col);
                         e.Graphics.FillRectangle(greenBrush, rect);
                     }
                     else if (item.Priority > 3 && item.Priority <= 7)
                     {
-                        Color col = Color.FromArgb(0, 0, 255 - ((e.Index - 4) * 60));
+                        Color col = Color.FromArgb(0, 0, 255 - ((item.Priority - 4) * 60));
                         SolidBrush blueBrush = new SolidBrush(col);
                         e.Graphics.FillRectangle(blueBrush, rect);
                     }
                     else if (item.Priority > 7)
                     {
-                        Color col = Color.FromArgb(255 - ((e.Index - 8) * 60), 0, 0);
+                        Color col = Color.FromArgb(255 - ((item.Priority - 8) * 60), 0, 0);
                         SolidBrush redBrush = new SolidBrush(col);
                         e.Graphics.FillRectangle(redBrush, rect);
                     }
