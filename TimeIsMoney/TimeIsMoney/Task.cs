@@ -10,6 +10,11 @@ namespace TimeIsMoney
     /// </summary>
     public class Task
     {
+        [NonSerialized]
+        private TimeTodo _timeTodo;
+
+        public TimeTodo TimeTodo { get { return _timeTodo; } set { _timeTodo = value;} }
+
         public string Title { get; set; }
         public int ID { get; set; }
         public int Pos { get; set; }
@@ -22,7 +27,10 @@ namespace TimeIsMoney
         public string StartDateString { get; set; }
         public string DueDate { get; set; }
         public string DueDateString { get; set; }
-        public int TimeEstimate { get; set; }
+
+        public double TimeEstimate { get{return this.TimeTodo.TimeEstimate;}}
+        public string TimeEstUnits {get{return this.TimeTodo.TimeEstUnits;}}
+
         public string CreationDate { get; set; }
         public string CreationDateString { get; set; }
         public string PriorityColor { get; set; }
@@ -38,10 +46,10 @@ namespace TimeIsMoney
 
         }
 
-        public Task(string title,int estTime,DateTime dueDate,int priority)
+        public Task(string title,int estTime,string estUnit,DateTime dueDate,int priority)
         {
             this.Title = title;
-            this.TimeEstimate = estTime;
+            this.TimeTodo = new TimeTodo(estTime,estUnit);
             this.DueDateString = dueDate.ToShortDateString();
             this.Priority = priority;
         }
@@ -64,12 +72,16 @@ namespace TimeIsMoney
             StartDateString = (string)element.Attribute("STARTDATESTRING") == null ? String.Empty : (string)element.Attribute("STARTDATESTRING");
             DueDate = (string)element.Attribute("DUEDATE") == null ? String.Empty : (string)element.Attribute("DUEDATE");
             DueDateString = (string)element.Attribute("DUEDATESTRING") == null ? String.Empty : (string)element.Attribute("DUEDATESTRING");
-            TimeEstimate = (element.Attribute("TIMEESTIMATE") == null) ? 0 : (int)element.Attribute("TIMEESTIMATE");
             CreationDate = (string)element.Attribute("CREATIONDATE") == null ? String.Empty : (string)element.Attribute("CREATIONDATE");
             CreationDateString = (string)element.Attribute("CREATIONDATESTRING") == null ? String.Empty : (string)element.Attribute("CREATIONDATESTRING");
             PriorityColor = (string)element.Attribute("PRIORITYCOLOR") == null ? String.Empty : (string)element.Attribute("PRIORITYCOLOR");
             PriorityWebColor = (string)element.Attribute("PRIORITYWEBCOLOR") == null ? String.Empty : (string)element.Attribute("PRIORITYWEBCOLOR");
             Comments = (string)element.Attribute("COMMENTS") == null ? String.Empty : (string)element.Attribute("COMMENTS");
+
+
+            TimeTodo = new TimeTodo(
+                ((element.Attribute("TIMEESTIMATE") == null) ? 0 : Double.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".",","))),
+                ((string)element.Attribute("TIMEESTUNITS") == null ? String.Empty : (string)element.Attribute("TIMEESTUNITS")));
         }
 
         /// <summary>

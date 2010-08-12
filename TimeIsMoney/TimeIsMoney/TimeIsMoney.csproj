@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Task.cs" />
     <Compile Include="TaskBin.cs" />
+    <Compile Include="TimeEstimate.cs" />
     <Compile Include="XMLLogic\IXMLConverter.cs" />
     <Compile Include="XMLLogic\XMLLogic.cs" />
     <Compile Include="XMLLogic\XMLToDoListConverter.cs" />

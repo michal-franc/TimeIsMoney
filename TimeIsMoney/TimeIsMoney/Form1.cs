@@ -131,6 +131,7 @@ namespace TimeIsMoney
             {
                 unsortedTasks.Add(new Task(box.textBoxData.Text,
                     Int32.Parse(box.textBoxEstTime.Text),
+                    "I",
                     box.dateTimePicker.Value,
                     Convert.ToInt32(box.comboBoxPriority.SelectedItem)));
 
