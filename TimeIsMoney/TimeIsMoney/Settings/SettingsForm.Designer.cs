@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.buttonSave = new System.Windows.Forms.Button();
-            this.complexListBox = new TimeIsMoney.ComplexListBox();
+            this.complexListBox = new ComplexListBox.ComplexListBox();
             this.SuspendLayout();
             // 
             // buttonSave
@@ -69,7 +69,7 @@
         }
 
 
-        public ComplexListBox complexListBox;
+        public ComplexListBox.ComplexListBox complexListBox;
 
         #endregion
         private System.Windows.Forms.Button buttonSave;

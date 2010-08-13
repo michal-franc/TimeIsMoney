@@ -4,22 +4,22 @@ using System.Reflection;
 using System.Windows.Forms;
 using TimeIsMoney.ButtonListBox;
 
-namespace TimeIsMoney
+namespace TimeIsMoney.ComplexListBox
 {
     public partial class ComplexListBox : UserControl
     {
         private NewItemBox newBox = new NewItemBox();
-        string newObj;
+        string _newObj;
         public ComplexListBox()
         {
             InitializeComponent();
 
-            newBox.FormClosing += new FormClosingEventHandler(newBox_FormClosing);
+            newBox.FormClosing += NewBoxFormClosing;
         }
 
-        void newBox_FormClosing(object sender, FormClosingEventArgs e)
+        void NewBoxFormClosing(object sender, FormClosingEventArgs e)
         {
-            newObj = newBox.GenerateStringObject();
+            _newObj = newBox.GenerateStringObject();
         }
 
         public List<PropertyInfo> propsToEdit = new List<PropertyInfo>();
@@ -51,7 +51,7 @@ namespace TimeIsMoney
         private void buttonAddItem_Click(object sender, EventArgs e)
         {
             newBox.ShowDialog();
-            ((List<TaskBin>)listBoxMain.DataSource).Add(new TaskBin().CreateFromString(newObj));
+            ((List<TaskBin>)listBoxMain.DataSource).Add(new TaskBin().CreateFromString(_newObj));
             listBoxMain.eReloadDataSource();
         }
 

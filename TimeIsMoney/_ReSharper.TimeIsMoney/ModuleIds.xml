@@ -1,0 +1,8 @@
+<Modules>
+  <Module PersistentId="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Windows.Forms" />
+  <Module PersistentId="1E7AA46C-094B-4256-B582-1077950E51DC" ModuleId="Tests" />
+  <Module PersistentId="DDFC91B6-CBED-466E-9B13-341F84635FD3" ModuleId="TimeIsMoney" />
+  <Module PersistentId="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" ModuleId="System.Drawing" />
+  <Module PersistentId="49DECE59-6489-4ADD-8B3D-40770EAA14FA" ModuleId="ReportModule" />
+  <Module PersistentId="F7D3C29C-A544-4702-AE86-F7D56487CF6B" ModuleId="XMLModule" />
+</Modules>

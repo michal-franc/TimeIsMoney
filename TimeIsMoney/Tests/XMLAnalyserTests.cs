@@ -1,33 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
 using NUnit.Framework;
-using TimeIsMoney;
 using TimeIsMoney.Notification;
 
-namespace XMLModule
+namespace Tests
 {
     [TestFixture]
-    public class XMLAnalyserTests
+    public class XmlAnalyserTests
     {   
 
         [Test]
-        public void EstimatedTimeCheckMinutes()
+        public void LowEstimatedTimeCheckMinutes()
         {
-            List<Task> results = XMLAnalyser.CheckItemsWithLowTime("tests.tdl", 30,"I");
-            Assert.IsTrue(results.Count == 1);
+            var results = XmlAnalyser.GetItemsWithLowEstTime("tests.tdl", 30, "I");
+            Assert.IsTrue(results.Count == 4);
         }
 
         [Test]
-        public void EstimatedTimeCheckHours()
+        public void LowEstimatedTimeCheckHours()
         {
-            List<Task> results = XMLAnalyser.CheckItemsWithLowTime("tests.tdl", 2, "H");
+            var results = XmlAnalyser.GetItemsWithLowEstTime("tests.tdl", 2, "H");
             Console.WriteLine(results.Count);
-            Assert.IsTrue(results.Count == 4);
+            Assert.IsTrue(results.Count == 7);
         }
-    
+        [Test]
+        public void NoEstimatedTimeCheckHours()
+        {
+            var results = XmlAnalyser.GetItemsWithLowEstTime("tests.tdl", 0, "I");
+            Assert.IsTrue(results.Count==3);
+        }
+
+        [Test]
+        public void LowDueDateTest()
+        {
+            var results = XmlAnalyser.GetItemsWithLowDueDate("tests.tdl", new DateTime(2010, 8, 13), TimeSpan.FromDays(1));
+                  
+            Assert.IsTrue(results.Count ==1);
+        }
+        [Test]
+        public void NoDueDateTest()
+        {
+            var results = XmlAnalyser.GetItemsWithNoDueDate("tests.tdl");
+
+            Assert.IsTrue(results.Count == 1);
+        
+        }
+
 
         public static void Main()
         {
+
         }
     }
 }

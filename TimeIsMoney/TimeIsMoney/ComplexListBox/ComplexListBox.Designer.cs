@@ -1,4 +1,4 @@
-﻿namespace TimeIsMoney
+﻿namespace TimeIsMoney.ComplexListBox
 {
     partial class ComplexListBox
     {

@@ -1,22 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TimeIsMoney.Notification
 {
-    public static  class XMLAnalyser
+    public static  class XmlAnalyser
     {
-        public static List<Task> CheckItemsWithLowTime(string filePath,int timeLimit,string timeUnit)
+        private static List<Task> _allItems;
+
+        public static List<Task> Load(string filepath,bool reload = false)
         {
-            List<Task> notifiedItems = new List<Task>();
-            List<Task> allItems = XMLLogic.XMLLogic.ReadXML(filePath);
-
-            foreach (Task t in allItems)
+            if (_allItems == null || reload)
             {
-                if (t.TimeTodo.Time < TimeTodo.ConvertTime(timeLimit,timeUnit) )
-                    notifiedItems.Add(t);
+                _allItems = XMLLogic.XMLLogic.ReadXML(filepath);
             }
-
-            return notifiedItems;
         }
 
+        public static List<Task> GetItemsWithLowEstTime(string filePath,int timeLimit,string timeUnit)
+        {
+            Load(filePath);
+
+            return _allItems.Where(t => t.TimeTodo.Time <= TimeTodo.ConvertTime(timeLimit, timeUnit)).ToList();
+        }
+
+        public static List<Task> GetItemsWithNoEstTime(string filePath, int timeLimit, string timeUnit)
+        {
+            Load(filePath);
+            return _allItems.Where(t => t.TimeTodo.Time == 0).ToList();
+        }
+
+        public static List<Task> GetItemsWithNoDueDate(string filePath)
+        {
+            Load(filePath);
+            return _allItems.Where(t => Convert.ToDateTime(t.DueDate) == DateTime.MinValue).ToList();
+        }
+
+        public static List<Task>  GetItemsWithLowDueDate(string filePath,DateTime dateTime, TimeSpan timeSpan)
+        {
+            Load(filePath);
+            return _allItems.Where(t => Convert.ToDateTime(t.DueDate) - dateTime <= timeSpan).ToList();
+        }
     }
 }
