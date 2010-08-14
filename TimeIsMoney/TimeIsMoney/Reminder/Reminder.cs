@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
-namespace TimeIsMoney
+namespace TimeIsMoney.Reminder
 {
     public static class Reminder
     {
@@ -9,38 +10,53 @@ namespace TimeIsMoney
         /// <summary>
         /// Parameter used to
         /// </summary>
-        public static bool RemindWholeDay = false;
-        private static Thread backgroundWorker;
+        public static bool RemindWholeDay;
+        private static Thread _backgroundWorker;
+        private static List<INotified> _notifiedObjects = new List<INotified>();
+
+
+
+        public static void AddObjectToNotify(INotified obj)
+        {
+            _notifiedObjects.Add(obj);
+        }
 
         /// <summary>
         /// Starts the thread of the reminder.
         /// </summary>
-        /// <param name="conditionVariable">Parameter used to specify if the reminding condition is true</param>
         /// <param name="notifiedObject">Object which is being notified about evvent.</param>
+        /// <param name="remindTime"></param>
+        /// <param name="remindDelay"></param>
         /// <returns></returns>
-        public static void Run(INotified notifiedObject,TimeSpan remindTime,int remindDelay)
+        public static void Run(TimeSpan remindTime,int remindDelay)
         {
-            backgroundWorker = new Thread(delegate()
+            _backgroundWorker = new Thread(delegate()
             {
                 while (true)
                 {
                     if (DateTime.Now.TimeOfDay.CompareTo(remindTime) >=1 || RemindWholeDay)
                     {
-                        if (notifiedObject.IsNotified())
-                            notifiedObject.Notify();
-                    }
-                    Thread.Sleep(TimeSpan.FromMinutes(remindDelay));
-                }
+                        foreach (INotified notified in _notifiedObjects)
+                        {
+                            Thread.Sleep(TimeSpan.FromSeconds(1));
 
+                            if (notified.IsNotified())
+                                notified.Notify();
+                        }
+                    }
+                    Thread.Sleep(TimeSpan.FromSeconds(remindDelay));
+                    
+                }
             });
 
-            backgroundWorker.Start();
+            _backgroundWorker.Start();
+            return;
 
         }
 
         public static void Stop()
         {
-            backgroundWorker.Abort();
+            _backgroundWorker.Abort();
         }
     }
 }

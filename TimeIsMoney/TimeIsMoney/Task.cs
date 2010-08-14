@@ -16,7 +16,7 @@ namespace TimeIsMoney
         public TimeTodo TimeTodo { get { return _timeTodo; } set { _timeTodo = value;} }
 
         public string Title { get; set; }
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int Pos { get; set; }
         public string LastMod { get; set; }
         public string LastModString { get; set; }
@@ -61,7 +61,7 @@ namespace TimeIsMoney
         public Task(XElement element)
         {
             Title = (string)element.Attribute("TITLE") == null ? String.Empty : (string)element.Attribute("TITLE");
-            ID = (element.Attribute("ID") == null) ? -1 : (int)element.Attribute("ID");
+            Id = (element.Attribute("ID") == null) ? -1 : (int)element.Attribute("ID");
             Pos = (element.Attribute("POS") == null) ? -1 : (int)element.Attribute("POS");
             LastMod = (string)element.Attribute("LASTMOD") == null ? String.Empty : (string)element.Attribute("LASTMOD");
             LastModString = (string)element.Attribute("LASTMODSTRING") == null ? String.Empty : (string)element.Attribute("LASTMODSTRING");

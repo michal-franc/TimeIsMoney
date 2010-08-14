@@ -56,7 +56,7 @@ namespace TimeIsMoney.XMLLogic
             List<Task> tasks = ReadXML(filePath);
             if (tasks.Count <= 0)
             {
-                task.ID = 1;
+                task.Id = 1;
                 task.Pos = 1;
             }
             else
@@ -65,13 +65,13 @@ namespace TimeIsMoney.XMLLogic
                 int pos = 0;
                 foreach (Task t in tasks)
                 {
-                    if (t.ID >= id)
-                        id = t.ID+1;
+                    if (t.Id >= id)
+                        id = t.Id+1;
                     if (t.Pos >= pos)
                         pos = t.Pos+1;
                 }
                 task.Pos = pos;
-                task.ID = id;
+                task.Id = id;
             }
         }
     }

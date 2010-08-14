@@ -81,6 +81,9 @@
     </Compile>
     <Compile Include="GlobalKeyBoardHook.cs" />
     <Compile Include="Notification\XMLAnalyser.cs" />
+    <Compile Include="Notifier.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reminder\INotified.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

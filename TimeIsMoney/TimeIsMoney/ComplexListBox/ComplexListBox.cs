@@ -27,8 +27,7 @@ namespace TimeIsMoney.ComplexListBox
         public void SetData(List<TaskBin> data,Type type,string displayMember)
         {
             listBoxMain.DataSource = data;
-            if(data.Count>0)
-                listBoxMain.DisplayMember = displayMember;
+            if (data != null && data.Count > 0) listBoxMain.DisplayMember = displayMember;
 
 
             int y = 0;

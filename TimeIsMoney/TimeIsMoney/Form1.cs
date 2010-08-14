@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using TimeIsMoney.Reminder;
 using TimeIsMoney.Settings;
 
 namespace TimeIsMoney
@@ -16,6 +17,7 @@ namespace TimeIsMoney
         globalKeyboardHook gkh = new globalKeyboardHook();
         EditMessageBox box = new EditMessageBox();
         SettingsForm settingsForm = new SettingsForm();
+        private Notifier notifier;
         public List<Task> unsortedTasks = new List<Task>();
         public Settings.Settings set;
 
@@ -24,7 +26,7 @@ namespace TimeIsMoney
             InitializeComponent();
 
             set = Settings.Settings.Load();
-
+            notifier = new Notifier(notifyIconUnsortedItems);
             this.Menu = new MainMenu();
             this.Menu.MenuItems.Add(new MenuItem("Settings", new EventHandler(settings_OnClick)));
 
@@ -32,13 +34,14 @@ namespace TimeIsMoney
             //
             //NotifyIcon
             //
-            notifyIcon1.ContextMenu = new System.Windows.Forms.ContextMenu();
-            notifyIcon1.ContextMenu.MenuItems.Add(new MenuItem("Close", new EventHandler(Close_MouseClick)));
+            notifyIconUnsortedItems.ContextMenu = new System.Windows.Forms.ContextMenu();
+            notifyIconUnsortedItems.ContextMenu.MenuItems.Add(new MenuItem("Close", new EventHandler(Close_MouseClick)));
 
             //
             //listSelector
             //
             this.Controls.Add(listSelector);
+            this.Controls.Add(notifier);
             listSelector.DataSource = set.Lists;
             listSelector.DisplayMember = "Name";
             listSelector.MouseClick += new MouseEventHandler(listSelector_MouseClick);
@@ -60,8 +63,10 @@ namespace TimeIsMoney
             gkh.HookedKeys.Add(Keys.B);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
 
-            Reminder.Run(this, set.RemindTime, set.RemindDelay);
-            Reminder.RemindWholeDay = set.RemindWholeDay;
+            Reminder.Reminder.AddObjectToNotify(notifier);
+            Reminder.Reminder.AddObjectToNotify(this);
+            Reminder.Reminder.Run(set.RemindTime, set.RemindDelay);
+            Reminder.Reminder.RemindWholeDay = set.RemindWholeDay;
         }
 
         protected override CreateParams CreateParams
@@ -155,12 +160,12 @@ namespace TimeIsMoney
         public void Notify()
         {
             if (listBoxTasks.Items.Count <= 1)
-                notifyIcon1.BalloonTipText = "There is still 1 unsorted item";
+                notifyIconUnsortedItems.BalloonTipText = "There is still 1 unsorted item";
             else
-                notifyIcon1.BalloonTipText = String.Format(
+                notifyIconUnsortedItems.BalloonTipText = String.Format(
                     "There are still {0} unsorted items", listBoxTasks.Items.Count);
 
-            notifyIcon1.ShowBalloonTip(set.BallonTipDelay++);
+            notifyIconUnsortedItems.ShowBalloonTip(set.BallonTipDelay++);
         }
 
         public bool IsNotified()
@@ -200,7 +205,7 @@ namespace TimeIsMoney
 
         private void Close_MouseClick(object sender, EventArgs e)
         {
-            notifyIcon1.Dispose();
+            notifyIconUnsortedItems.Dispose();
             Application.Exit();
         }
     }

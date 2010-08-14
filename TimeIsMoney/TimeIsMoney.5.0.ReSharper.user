@@ -1,0 +1,154 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="List`0" priority="0" />
+      <Item value="results" priority="3" />
+      <Item value="public" priority="4" />
+      <Item value="void" priority="3" />
+      <Item value="var" priority="2" />
+      <Item value="XMLAnalyser`0" priority="0" />
+      <Item value="DateTime`0" priority="7" />
+      <Item value="XMLLogic" priority="1" />
+      <Item value="XMLLogic`0" priority="1" />
+      <Item value="filePath" priority="2" />
+      <Item value="return" priority="0" />
+      <Item value="allItems" priority="0" />
+      <Item value="t" priority="3" />
+      <Item value="dateTime" priority="5" />
+      <Item value="timeSpan" priority="2" />
+      <Item value="new" priority="6" />
+      <Item value="TimeSpan" priority="0" />
+      <Item value="TimeSpan`0" priority="0" />
+      <Item value="DateTime" priority="0" />
+      <Item value="Assert`0" priority="1" />
+      <Item value="XmlAnalyser`0" priority="0" />
+      <Item value="static" priority="2" />
+      <Item value="LoaderOptimization`0" priority="0" />
+      <Item value="List" priority="2" />
+      <Item value="Task`0" priority="3" />
+      <Item value="private" priority="1" />
+      <Item value="if" priority="1" />
+      <Item value="_allItems" priority="5" />
+      <Item value="null" priority="0" />
+      <Item value="bool" priority="0" />
+      <Item value="Load`0" priority="0" />
+      <Item value="Console`0" priority="0" />
+      <Item value="String`0" priority="0" />
+      <Item value="out" priority="0" />
+      <Item value="foreach" priority="0" />
+      <Item value="ParallelEnumerable`0" priority="0" />
+      <Item value="dateTimeLimit" priority="0" />
+      <Item value="List&lt;Task&gt;" priority="1" />
+      <Item value="returnList" priority="1" />
+      <Item value="Task" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
+      <Item value="Indexer" priority="0" />
+      <Item value="Where`1" priority="1" />
+      <Item value="Count" priority="2" />
+      <Item value="Add`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@TimeIsMoney.Notification.XMLAnalyser">
+      <Item value="CheckItemsWithLowTime`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.DateTime">
+      <Item value="Now" priority="0" />
+      <Item value="MinValue" priority="0" />
+      <Item value="TryParse`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@TimeIsMoney.XMLLogic.XMLLogic">
+      <Item value="ReadXML`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:TimeIsMoney.Task">
+      <Item value="DueDate" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
+      <Item value="ToList`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Convert">
+      <Item value="ToDateTime`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.TimeSpan">
+      <Item value="FromDays`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@NUnit.Framework.Assert">
+      <Item value="IsTrue`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@TimeIsMoney.Notification.XmlAnalyser">
+      <Item value="GetItemsWithLowEstTime`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Console">
+      <Item value="WriteLine`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Empty" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="49DECE59-6489-4ADD-8B3D-40770EAA14FA/f:App.xaml.cs" caret="190" fromTop="9" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:EditMessageBox/f:EditMessageBox.cs" caret="491" fromTop="17" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/f:GlobalKeyBoardHook.cs" caret="0" fromTop="0" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/f:TimeEstimate.cs" caret="412" fromTop="14" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:ComplexListBox/f:ComplexListBox.Designer.cs" caret="3456" fromTop="35" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Settings/f:SettingsForm.Designer.cs" caret="0" fromTop="0" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:XMLLogic/f:XMLLogic.cs" caret="469" fromTop="10" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/f:Task.cs" caret="387" fromTop="0" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:ComplexListBox/f:ComplexListBox.cs" caret="861" fromTop="12" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/f:Program.cs" caret="264" fromTop="11" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="404" fromTop="13" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="564" fromTop="17" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:XMLLogic/f:XMLToDoListConverter.cs" caret="620" fromTop="18" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/f:Form1.cs" caret="0" fromTop="0" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Reminder/f:INotified.cs" caret="126" fromTop="5" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Reminder/f:Reminder.cs" caret="655" fromTop="19" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="140" fromTop="3" />
+      <File id="49DECE59-6489-4ADD-8B3D-40770EAA14FA/f:App.xaml.cs" caret="47" fromTop="1" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:ComplexListBox/f:ComplexListBox.cs" caret="2068" fromTop="15" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:ComplexListBox/f:ComplexListBox.cs" caret="2068" fromTop="67" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:ComplexListBox/f:ComplexListBox.cs" caret="498" fromTop="18" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="1668" fromTop="27" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="555" fromTop="14" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="1105" fromTop="25" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="1645" fromTop="35" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="877" fromTop="24" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="620" fromTop="21" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="1022" fromTop="11" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="762" fromTop="7" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="501" fromTop="6" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="230" fromTop="6" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="435" fromTop="12" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/f:Task.cs" caret="387" fromTop="6" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="1580" fromTop="23" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="1657" fromTop="18" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="1753" fromTop="22" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="1587" fromTop="16" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="1254" fromTop="10" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Notification/f:XMLAnalyser.cs" caret="1180" fromTop="17" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="271" fromTop="7" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Reminder/f:Reminder.cs" caret="1315" fromTop="45" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Reminder/f:INotified.cs" caret="19" fromTop="0" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Reminder/f:Reminder.cs" caret="528" fromTop="17" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.7\bin\net-2.0\</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>

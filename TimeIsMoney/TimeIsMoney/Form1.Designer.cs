@@ -30,16 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.notifyIconUnsortedItems = new System.Windows.Forms.NotifyIcon(this.components);
             this.listBoxTasks = new TimeIsMoney.ColorableListBox();
+            this.notifyIconTasks = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
-            // notifyIcon1
+            // notifyIconUnsortedItems
             // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            this.notifyIconUnsortedItems.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconUnsortedItems.Icon")));
+            this.notifyIconUnsortedItems.Text = "notifyIcon1";
+            this.notifyIconUnsortedItems.Visible = true;
+            this.notifyIconUnsortedItems.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
             // listBoxTasks
             // 
@@ -49,6 +50,11 @@
             this.listBoxTasks.Name = "listBoxTasks";
             this.listBoxTasks.Size = new System.Drawing.Size(125, 238);
             this.listBoxTasks.TabIndex = 0;
+            // 
+            // notifyIconTasks
+            // 
+            this.notifyIconTasks.Text = "notifyIconTasks";
+            this.notifyIconTasks.Visible = true;
             // 
             // Form1
             // 
@@ -71,7 +77,8 @@
         #endregion
 
         private ColorableListBox listBoxTasks;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.NotifyIcon notifyIconUnsortedItems;
+        private System.Windows.Forms.NotifyIcon notifyIconTasks;
     }
 }
 

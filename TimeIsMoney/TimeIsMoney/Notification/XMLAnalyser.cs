@@ -8,7 +8,7 @@ namespace TimeIsMoney.Notification
     {
         private static List<Task> _allItems;
 
-        public static List<Task> Load(string filepath,bool reload = false)
+        public static void Load(string filepath,bool reload = false)
         {
             if (_allItems == null || reload)
             {
@@ -32,13 +32,25 @@ namespace TimeIsMoney.Notification
         public static List<Task> GetItemsWithNoDueDate(string filePath)
         {
             Load(filePath);
-            return _allItems.Where(t => Convert.ToDateTime(t.DueDate) == DateTime.MinValue).ToList();
+            return _allItems.Where(t => t.DueDate == String.Empty).ToList();
         }
 
-        public static List<Task>  GetItemsWithLowDueDate(string filePath,DateTime dateTime, TimeSpan timeSpan)
+        public static List<Task> GetItemsWithLowDueDate(string filePath,DateTime dateTimeLimit, TimeSpan timeSpan)
         {
             Load(filePath);
-            return _allItems.Where(t => Convert.ToDateTime(t.DueDate) - dateTime <= timeSpan).ToList();
+            DateTime dateTime;
+            List<Task> returnList =new List<Task>();
+            foreach (Task t in _allItems)
+            {
+                if (DateTime.TryParse(t.DueDateString, out dateTime))
+                {
+                    if (dateTime - dateTimeLimit <= timeSpan)
+                    {
+                        returnList.Add(t);
+                    }
+                }
+            }
+            return returnList;
         }
     }
 }

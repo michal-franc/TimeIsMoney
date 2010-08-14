@@ -1,5 +1,5 @@
 ﻿
-namespace TimeIsMoney
+namespace TimeIsMoney.Reminder
 {
     public interface INotified
     {
