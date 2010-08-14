@@ -46,12 +46,13 @@ namespace TimeIsMoney
 
         }
 
-        public Task(string title,int estTime,string estUnit,DateTime dueDate,int priority)
+        public Task(string title,int estTime,string estUnit,DateTime dueDate,int priority,string comment)
         {
             this.Title = title;
             this.TimeTodo = new TimeTodo(estTime,estUnit);
             this.DueDateString = dueDate.ToShortDateString();
             this.Priority = priority;
+            this.Comments = comment;
         }
 
         /// <summary>

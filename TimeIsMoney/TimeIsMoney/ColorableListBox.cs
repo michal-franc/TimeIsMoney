@@ -7,7 +7,7 @@ namespace TimeIsMoney
     {
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            SolidBrush whiteBrush = new SolidBrush(Color.White);
+            SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
 
             if (e.Index >= 0)
             {
@@ -36,9 +36,11 @@ namespace TimeIsMoney
                         e.Graphics.FillRectangle(redBrush, rect);
                     }
                     e.Graphics.DrawString(item.Title,
-                        Font, whiteBrush, new PointF(rect.X, rect.Y));
+                        Font, yellowBrush, new PointF(rect.X, rect.Y));
+
+                    if (item.TimeEstimate > 0.0)
+                        e.Graphics.DrawString(string.Format("{0} {1}",item.TimeEstimate.ToString(),item.TimeEstUnits), Font, yellowBrush, new PointF(rect.X + Width - 30, rect.Y));};
                 }
             }
         }
     }
-}

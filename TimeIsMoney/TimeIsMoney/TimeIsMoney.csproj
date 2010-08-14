@@ -104,6 +104,9 @@
     <EmbeddedResource Include="ComplexListBox\ComplexListBox.resx">
       <DependentUpon>ComplexListBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ComplexListBox\NewItemBox.resx">
+      <DependentUpon>NewItemBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditMessageBox\EditMessageBox.resx">
       <DependentUpon>EditMessageBox.cs</DependentUpon>
     </EmbeddedResource>

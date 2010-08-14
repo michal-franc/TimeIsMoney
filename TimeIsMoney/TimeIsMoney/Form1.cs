@@ -136,7 +136,7 @@ namespace TimeIsMoney
                     Int32.Parse(box.textBoxEstTime.Text),
                     "I",
                     box.dateTimePicker.Value,
-                    Convert.ToInt32(box.comboBoxPriority.SelectedItem)));
+                    Convert.ToInt32(box.comboBoxPriority.SelectedItem),box.textBoxComment.Text));
 
                 XMLLogic.XMLLogic.AddToXml(unsortedTasks, set.BinPath);
                 listBoxTasks.eReloadDataSource();
