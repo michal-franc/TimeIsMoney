@@ -47,7 +47,7 @@ namespace TimeIsMoney
             listBoxTasks.DisplayMember = "Title";
             settingsForm.complexListBox.SetData(set.Lists, typeof(TaskBin), "Name");
 
-            foreach (Task task in XMLLogic.XMLLogic.ReadXML(set.BinPath))
+            foreach (Task task in XMLLogic.XmlLogic.ReadXml(set.BinPath))
             {
                 unsortedTasks.Add(task);
             }
@@ -60,7 +60,7 @@ namespace TimeIsMoney
             gkh.HookedKeys.Add(Keys.B);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
 
-            Reminder.Reminder.AddObjectToNotify(new NotifierLowEstImatedTime(notifyIcon));
+            Reminder.Reminder.AddObjectToNotify(new NotifierLowEstImatedTime(notifyIcon,set.RemindListPath));
             Reminder.Reminder.AddObjectToNotify(new NotifierUnsortedItems(notifyIcon));
 
             Reminder.Reminder.Run(set.RemindTime, set.RemindDelay);
@@ -105,10 +105,10 @@ namespace TimeIsMoney
         {
             if (task != null)
             {
-                XMLLogic.XMLLogic.AddToXml(task, filePath);
+                XMLLogic.XmlLogic.AddToXml(task, filePath);
                 unsortedTasks.RemoveAt(listBoxTasks.SelectedIndex);
                 listBoxTasks.eReloadDataSource();
-                XMLLogic.XMLLogic.AddToXml(unsortedTasks, set.BinPath);
+                XMLLogic.XmlLogic.AddToXml(unsortedTasks, set.BinPath);
 
             }
         }
@@ -138,7 +138,7 @@ namespace TimeIsMoney
                     box.dateTimePicker.Value,
                     Convert.ToInt32(box.comboBoxPriority.SelectedItem),box.textBoxComment.Text));
 
-                XMLLogic.XMLLogic.AddToXml(unsortedTasks, set.BinPath);
+                XMLLogic.XmlLogic.AddToXml(unsortedTasks, set.BinPath);
                 listBoxTasks.eReloadDataSource();
             }
         }

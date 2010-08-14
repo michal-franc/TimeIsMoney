@@ -5,10 +5,12 @@ namespace TimeIsMoney.Notifiers
 {
     public class NotifierLowEstImatedTime : Notifier, INotified
     {
+        private readonly string _filePath;
 
-
-        public NotifierLowEstImatedTime(System.Windows.Forms.NotifyIcon obj) : base(obj)
-        {}
+        public NotifierLowEstImatedTime(System.Windows.Forms.NotifyIcon obj , string filePath) : base(obj)
+        {
+            _filePath = filePath;
+        }
 
         #region INotified Members
 
@@ -20,7 +22,7 @@ namespace TimeIsMoney.Notifiers
 
         public bool IsNotified()
         {
-            if (XmlAnalyser.GetItemsWithLowEstTime("Koszyk.tdl", 30, "I").Count > 0)
+            if (XmlAnalyser.GetItemsWithLowEstTime(XMLLogic.XmlLogic.ReadXml(_filePath), 30, "I").Count > 0)
                 return true;
             return false;
         }

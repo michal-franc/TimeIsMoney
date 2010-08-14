@@ -4,13 +4,14 @@ using System.Xml.Linq;
 
 namespace TimeIsMoney.XMLLogic
 {
-    public  static class XMLLogic
+    public  static class XmlLogic
     {
-        public static List<Task> ReadXML(string filePath)
+        public static List<Task> ReadXml(string filePath)
         {
+
             XDocument document = XDocument.Load(filePath);
 
-            var tasks   =  (from element in document.Descendants("TASK")
+            var tasks = (from element in document.Descendants("TASK")
                             select new Task(element)).ToList();
 
             return tasks;
@@ -53,7 +54,7 @@ namespace TimeIsMoney.XMLLogic
         /// <param name="task"></param>
         private static void SetIdAndPos(string filePath,Task task)
         {
-            List<Task> tasks = ReadXML(filePath);
+            List<Task> tasks = ReadXml(filePath);
             if (tasks.Count <= 0)
             {
                 task.Id = 1;

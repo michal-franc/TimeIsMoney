@@ -1,5 +1,4 @@
 ﻿using System;
-using TimeIsMoney.Notification;
 using TimeIsMoney.Reminder;
 
 namespace TimeIsMoney.Notifiers
@@ -28,7 +27,7 @@ namespace TimeIsMoney.Notifiers
 
         public bool IsNotified()
         {
-            count = XmlAnalyser.GetItemsCount("Koszyk.tdl");
+            count = XMLLogic.XmlLogic.ReadXml("Koszyk.tdl").Count;
 
             if (count > 0)
                 return true;

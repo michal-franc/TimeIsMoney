@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace TimeIsMoney.Settings
@@ -18,13 +12,27 @@ namespace TimeIsMoney.Settings
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-          Form1 parent =  this.FindForm() as Form1;
-          if (parent != null)
+            Settings settings = Settings.Load();
+            if (settings != null)
           {
-              parent.set.Save();
+              settings.RemindListPath = textBoxRemindList.Text;
+              settings.Save();
           }
 
           this.Hide();
+        }
+
+        private void textBoxRemindList_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog filedialog = new OpenFileDialog();
+            filedialog.ShowDialog();
+
+            if (DialogResult.OK == filedialog.ShowDialog())
+            {
+                textBoxRemindList.Text = filedialog.FileName;              
+            }
+
+
         }
     }
 }

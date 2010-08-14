@@ -6,37 +6,26 @@ namespace TimeIsMoney.Notification
 {
     public static  class XmlAnalyser
     {
-        private static List<Task> _allItems;
-
-        public static void Load(string filepath,bool reload = false)
+        public static List<Task> GetItemsWithLowEstTime(List<Task> allitems ,int timeLimit,string timeUnit)
         {
-                _allItems = XMLLogic.XMLLogic.ReadXML(filepath);
+            return allitems.Where(t => t.TimeTodo.Time <= TimeTodo.ConvertTime(timeLimit, timeUnit)).ToList();
         }
 
-        public static List<Task> GetItemsWithLowEstTime(string filePath,int timeLimit,string timeUnit)
+        public static List<Task> GetItemsWithNoEstTime(List<Task> allitems , int timeLimit, string timeUnit)
         {
-            Load(filePath);
-            return _allItems.Where(t => t.TimeTodo.Time <= TimeTodo.ConvertTime(timeLimit, timeUnit)).ToList();
+            return allitems.Where(t => t.TimeTodo.Time == 0).ToList();
         }
 
-        public static List<Task> GetItemsWithNoEstTime(string filePath, int timeLimit, string timeUnit)
+        public static List<Task> GetItemsWithNoDueDate(List<Task> allitems)
         {
-            Load(filePath);
-            return _allItems.Where(t => t.TimeTodo.Time == 0).ToList();
+            return allitems.Where(t => t.DueDate == String.Empty).ToList();
         }
 
-        public static List<Task> GetItemsWithNoDueDate(string filePath)
+        public static List<Task> GetItemsWithLowDueDate(List<Task> allitems,DateTime dateTimeLimit, TimeSpan timeSpan)
         {
-            Load(filePath);
-            return _allItems.Where(t => t.DueDate == String.Empty).ToList();
-        }
-
-        public static List<Task> GetItemsWithLowDueDate(string filePath,DateTime dateTimeLimit, TimeSpan timeSpan)
-        {
-            Load(filePath);
             DateTime dateTime;
             List<Task> returnList =new List<Task>();
-            foreach (Task t in _allItems)
+            foreach (Task t in allitems)
             {
                 if (DateTime.TryParse(t.DueDateString, out dateTime))
                 {
@@ -47,12 +36,6 @@ namespace TimeIsMoney.Notification
                 }
             }
             return returnList;
-        }
-
-        public static int GetItemsCount(string filePath)
-        {
-            Load(filePath);
-            return _allItems.Count;
         }
     }
 }

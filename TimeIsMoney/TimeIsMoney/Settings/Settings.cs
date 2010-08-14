@@ -14,6 +14,7 @@ namespace TimeIsMoney.Settings
         public bool RemindWholeDay { get; set; }
         public int RemindDelay { get; set; }
         public int BallonTipDelay { get; set; }
+        public string RemindListPath { get; set; }
 
         #region RemindTime
         private TimeSpan m_RemindTime;
