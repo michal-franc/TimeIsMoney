@@ -10,16 +10,12 @@ namespace TimeIsMoney.Notification
 
         public static void Load(string filepath,bool reload = false)
         {
-            if (_allItems == null || reload)
-            {
                 _allItems = XMLLogic.XMLLogic.ReadXML(filepath);
-            }
         }
 
         public static List<Task> GetItemsWithLowEstTime(string filePath,int timeLimit,string timeUnit)
         {
             Load(filePath);
-
             return _allItems.Where(t => t.TimeTodo.Time <= TimeTodo.ConvertTime(timeLimit, timeUnit)).ToList();
         }
 
@@ -51,6 +47,12 @@ namespace TimeIsMoney.Notification
                 }
             }
             return returnList;
+        }
+
+        public static int GetItemsCount(string filePath)
+        {
+            Load(filePath);
+            return _allItems.Count;
         }
     }
 }

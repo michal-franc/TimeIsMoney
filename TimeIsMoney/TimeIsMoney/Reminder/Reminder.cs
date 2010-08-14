@@ -24,7 +24,6 @@ namespace TimeIsMoney.Reminder
         /// <summary>
         /// Starts the thread of the reminder.
         /// </summary>
-        /// <param name="notifiedObject">Object which is being notified about evvent.</param>
         /// <param name="remindTime"></param>
         /// <param name="remindDelay"></param>
         /// <returns></returns>

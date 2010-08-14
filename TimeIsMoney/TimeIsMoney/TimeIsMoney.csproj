@@ -81,9 +81,9 @@
     </Compile>
     <Compile Include="GlobalKeyBoardHook.cs" />
     <Compile Include="Notification\XMLAnalyser.cs" />
-    <Compile Include="Notifier.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Notifiers\Notifier.cs" />
+    <Compile Include="Notifiers\NotifierLowEstImatedTime.cs" />
+    <Compile Include="Notifiers\NotifierUnsortedItems.cs" />
     <Compile Include="Reminder\INotified.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +109,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -145,7 +146,15 @@
       <Name>XMLModule</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\clock.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon1.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
