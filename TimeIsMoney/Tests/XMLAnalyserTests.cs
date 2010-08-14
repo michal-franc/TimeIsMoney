@@ -51,7 +51,12 @@ namespace Tests
                 Assert.IsTrue(results.Count == 7);
         }
 
-
+        [Test]
+        public void GetItemsCount()
+        {
+            var result = XmlAnalyser.GetItemsCount("tests.tdl");
+            Assert.IsTrue(result==8);
+        }
         public static void Main()
         {
 
