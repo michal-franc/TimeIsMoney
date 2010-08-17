@@ -178,8 +178,9 @@ namespace TimeIsMoney
 
         private void Close_MouseClick(object sender, EventArgs e)
         {
-            notifyIcon.Dispose();
+            Application.ExitThread();
             Application.Exit();
+            Reminder.Reminder.Stop();
         }
     }
 }
