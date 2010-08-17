@@ -1,5 +1,6 @@
 ﻿using TimeIsMoney.Notification;
 using TimeIsMoney.Reminder;
+using XMLModule.XMLLogic;
 
 namespace TimeIsMoney.Notifiers
 {
@@ -22,7 +23,7 @@ namespace TimeIsMoney.Notifiers
 
         public bool IsNotified()
         {
-            if (XmlAnalyser.GetItemsWithLowEstTime(XMLLogic.XmlLogic.ReadXml(_filePath), 30, "I").Count > 0)
+            if (XmlAnalyser.GetItemsWithLowEstTime(XmlLogic.ReadXml(_filePath), 30, "I").Count > 0)
                 return true;
             return false;
         }

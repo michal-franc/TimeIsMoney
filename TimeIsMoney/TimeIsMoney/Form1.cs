@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using TimeIsMoney.Notifiers;
 using TimeIsMoney.Settings;
+using XMLModule;
+using XMLModule.XMLLogic;
 
 namespace TimeIsMoney
 {
@@ -47,7 +49,7 @@ namespace TimeIsMoney
             listBoxTasks.DisplayMember = "Title";
             settingsForm.complexListBox.SetData(set.Lists, typeof(TaskBin), "Name");
 
-            foreach (Task task in XMLLogic.XmlLogic.ReadXml(set.BinPath))
+            foreach (Task task in XmlLogic.ReadXml(set.BinPath))
             {
                 unsortedTasks.Add(task);
             }
@@ -105,10 +107,10 @@ namespace TimeIsMoney
         {
             if (task != null)
             {
-                XMLLogic.XmlLogic.AddToXml(task, filePath);
+                XmlLogic.AddToXml(task, filePath);
                 unsortedTasks.RemoveAt(listBoxTasks.SelectedIndex);
                 listBoxTasks.eReloadDataSource();
-                XMLLogic.XmlLogic.AddToXml(unsortedTasks, set.BinPath);
+                XmlLogic.AddToXml(unsortedTasks, set.BinPath);
 
             }
         }
@@ -138,7 +140,7 @@ namespace TimeIsMoney
                     box.dateTimePicker.Value,
                     Convert.ToInt32(box.comboBoxPriority.SelectedItem),box.textBoxComment.Text));
 
-                XMLLogic.XmlLogic.AddToXml(unsortedTasks, set.BinPath);
+                XmlLogic.AddToXml(unsortedTasks, set.BinPath);
                 listBoxTasks.eReloadDataSource();
             }
         }
@@ -178,6 +180,7 @@ namespace TimeIsMoney
 
         private void Close_MouseClick(object sender, EventArgs e)
         {
+            box.Close();
             Application.ExitThread();
             Application.Exit();
             Reminder.Reminder.Stop();

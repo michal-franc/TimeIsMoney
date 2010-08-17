@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using TimeIsMoney;
 using TimeIsMoney.Notification;
+using XMLModule;
 
 namespace Tests
 {

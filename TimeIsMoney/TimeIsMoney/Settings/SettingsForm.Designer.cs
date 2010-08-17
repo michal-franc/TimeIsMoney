@@ -30,7 +30,7 @@
         {
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxRemindList = new System.Windows.Forms.TextBox();
-            this.complexListBox = new TimeIsMoney.ComplexListBox.ComplexListBox();
+            this.complexListBox = new ComplexListBox.ComplexListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 

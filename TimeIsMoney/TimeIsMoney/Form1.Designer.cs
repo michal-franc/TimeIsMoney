@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.listBoxTasks = new TimeIsMoney.ColorableListBox();
+            this.listBoxTasks = new ColorableListBox();
             this.SuspendLayout();
             // 
             // notifyIcon

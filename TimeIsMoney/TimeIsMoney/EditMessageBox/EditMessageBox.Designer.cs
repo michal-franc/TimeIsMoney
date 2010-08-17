@@ -31,7 +31,7 @@
             this.textBoxData = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBoxPriority = new TimeIsMoney.ColorAbleComboBox();
+            this.comboBoxPriority = new ColorAbleComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();

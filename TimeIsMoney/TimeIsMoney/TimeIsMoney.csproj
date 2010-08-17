@@ -8,7 +8,7 @@
     <ProjectGuid>{DDFC91B6-CBED-466E-9B13-341F84635FD3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TimeIsMoney</RootNamespace>
+    <RootNamespace>XMLModule</RootNamespace>
     <AssemblyName>TimeIsMoney</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -95,12 +95,7 @@
     <Compile Include="Settings\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Task.cs" />
     <Compile Include="TaskBin.cs" />
-    <Compile Include="TimeEstimate.cs" />
-    <Compile Include="XMLLogic\IXMLConverter.cs" />
-    <Compile Include="XMLLogic\XMLLogic.cs" />
-    <Compile Include="XMLLogic\XMLToDoListConverter.cs" />
     <EmbeddedResource Include="ComplexListBox\ComplexListBox.resx">
       <DependentUpon>ComplexListBox.cs</DependentUpon>
     </EmbeddedResource>
