@@ -1,5 +1,5 @@
-﻿using TimeIsMoney.Notification;
-using TimeIsMoney.Reminder;
+﻿using TimeIsMoney.Reminder;
+using XMLModule;
 using XMLModule.XMLLogic;
 
 namespace TimeIsMoney.Notifiers

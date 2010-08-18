@@ -80,7 +80,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalKeyBoardHook.cs" />
-    <Compile Include="Notification\XMLAnalyser.cs" />
     <Compile Include="Notifiers\Notifier.cs" />
     <Compile Include="Notifiers\NotifierLowEstImatedTime.cs" />
     <Compile Include="Notifiers\NotifierUnsortedItems.cs" />
