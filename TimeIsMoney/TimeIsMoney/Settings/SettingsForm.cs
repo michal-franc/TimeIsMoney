@@ -15,24 +15,10 @@ namespace TimeIsMoney.Settings
             Settings settings = Settings.Load();
             if (settings != null)
           {
-              settings.RemindListPath = textBoxRemindList.Text;
               settings.Save();
           }
 
           this.Hide();
-        }
-
-        private void textBoxRemindList_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog filedialog = new OpenFileDialog();
-            filedialog.ShowDialog();
-
-            if (DialogResult.OK == filedialog.ShowDialog())
-            {
-                textBoxRemindList.Text = filedialog.FileName;              
-            }
-
-
         }
     }
 }

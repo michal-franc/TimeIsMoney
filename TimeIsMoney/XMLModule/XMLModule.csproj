@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F7D3C29C-A544-4702-AE86-F7D56487CF6B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XMLModule</RootNamespace>
     <AssemblyName>XMLModule</AssemblyName>
@@ -33,10 +33,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="JustATestClass.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TimeTodo.cs" />
+    <Compile Include="XMLAnalyser.cs" />
     <Compile Include="XMLLogic\IXMLConverter.cs" />
     <Compile Include="XMLLogic\XMLLogic.cs" />
     <Compile Include="XMLLogic\XMLToDoListConverter.cs" />

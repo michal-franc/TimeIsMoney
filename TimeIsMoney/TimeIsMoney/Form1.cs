@@ -55,14 +55,14 @@ namespace TimeIsMoney
             }
 
             listBoxTasks.DataSource = unsortedTasks;
-            this.listBoxTasks.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBoxTasks_MouseClick);
+            this.listBoxTasks.MouseDown += this.listBoxTasks_MouseClick;
 
             box.Deactivate += new EventHandler(EditMessageBoxClosed);
 
             gkh.HookedKeys.Add(Keys.B);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
 
-            Reminder.Reminder.AddObjectToNotify(new NotifierLowEstImatedTime(notifyIcon,set.RemindListPath));
+            //Reminder.Reminder.AddObjectToNotify(new NotifierLowEstImatedTime(notifyIcon,set.RemindListPath));
             Reminder.Reminder.AddObjectToNotify(new NotifierUnsortedItems(notifyIcon));
 
             Reminder.Reminder.Run(set.RemindTime, set.RemindDelay);
@@ -158,17 +158,29 @@ namespace TimeIsMoney
 
         private void listBoxTasks_MouseClick(object sender, MouseEventArgs e)
         {
-            if (listBoxTasks.SelectedIndex >= 0)
+            if (e.Button == MouseButtons.Left)
             {
-                if (listBoxTasks.SelectedIndex == listBoxTasks.IndexFromPoint(e.X, e.Y))
+                if (listBoxTasks.SelectedIndex >= 0)
                 {
-                    Rectangle rect = listBoxTasks.GetItemRectangle(listBoxTasks.SelectedIndex);
+                    if (listBoxTasks.SelectedIndex == listBoxTasks.IndexFromPoint(e.X, e.Y))
+                    {
+                        Rectangle rect = listBoxTasks.GetItemRectangle(listBoxTasks.SelectedIndex);
 
-                    listSelector.Location = new Point(rect.X + listBoxTasks.Location.X, rect.Y + listBoxTasks.Location.Y);
-                    listSelector.eReloadDataSource();
-                    listSelector.BringToFront();
-                    listSelector.Show();
-                    listSelector.Focus();
+                        listSelector.Location = new Point(rect.X + listBoxTasks.Location.X,
+                                                          rect.Y + listBoxTasks.Location.Y);
+                        listSelector.eReloadDataSource();
+                        listSelector.BringToFront();
+                        listSelector.Show();
+                        listSelector.Focus();
+                    }
+                }
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                if (listBoxTasks.SelectedIndex >= 0)
+                {
+                    unsortedTasks.RemoveAt(listBoxTasks.IndexFromPoint(e.X, e.Y));
+                    listBoxTasks.eReloadDataSource();
                 }
             }
         }
@@ -180,6 +192,7 @@ namespace TimeIsMoney
 
         private void Close_MouseClick(object sender, EventArgs e)
         {
+            XmlLogic.AddToXml(unsortedTasks, set.BinPath);
             box.Close();
             box.Dispose();
             Application.ExitThread();

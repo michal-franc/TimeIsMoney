@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Xml.Linq;
 using XMLModule.XMLLogic;
+using System.Collections.Generic;
 
 namespace XMLModule
 {
@@ -10,12 +11,20 @@ namespace XMLModule
     /// </summary>
     public class Task
     {
+        #region Private
+
         [NonSerialized]
         private TimeTodo _timeTodo;
 
-        public TimeTodo TimeTodo { get { return _timeTodo; } set { _timeTodo = value;} }
+        private double _timeEstimate;
+        #endregion
 
-        public string Title { get; set; }
+
+        public TimeTodo TimeTodo { get { return _timeTodo; } set { _timeTodo = value; } }
+
+
+        private string title;
+        public string Title { get { return title; } set { title = value; } }
         public int Id { get; set; }
         public int Pos { get; set; }
         public string LastMod { get; set; }
@@ -23,40 +32,56 @@ namespace XMLModule
         public int Priority { get; set; }
         public int Risk { get; set; }
         public int PercentDone { get; set; }
-        public string StartDate{ get; set; }
+        public string StartDate { get; set; }
         public string StartDateString { get; set; }
         public string DueDate { get; set; }
         public string DueDateString { get; set; }
+        public string TimeSpent { get; set; }
 
-        public double TimeEstimate { get{return this.TimeTodo.TimeEstimate;}}
-        public string TimeEstUnits {get{return this.TimeTodo.TimeEstUnits;}}
+        public double TimeEstimate { get { return this.TimeTodo.TimeEstimate; } set { _timeEstimate = value; } }
+        public string TimeEstUnits { get { return this.TimeTodo.TimeEstUnits; } }
 
         public string CreationDate { get; set; }
         public string CreationDateString { get; set; }
+
+        public string CompletedDate { get; set; }
+        public string CompletedDateString { get; set; }
+
         public string PriorityColor { get; set; }
         public string PriorityWebColor { get; set; }
         // komentarze tez na razie obczaic
         public string Comments { get; set; }
 
         //Right now without childrens
-        public List<Task> children { get; set; }
+        public List<Task> Childrens { get; set; }
 
         public Task()
         {
 
         }
 
-        public Task(string title,int estTime,string estUnit,DateTime dueDate,int priority,string comment)
+        public Task(string title, int estTime, string estUnit, DateTime dueDate, int priority, string comment)
         {
             this.Title = title;
-            this.TimeTodo = new TimeTodo(estTime,estUnit);
+            this.TimeTodo = new TimeTodo(estTime, estUnit);
             this.DueDateString = dueDate.ToShortDateString();
             this.Priority = priority;
             this.Comments = comment;
+            Childrens = new List<Task>();
+        }
+
+        public Task(string title, int estTime, string estUnit, DateTime dueDate, int priority, string comment, List<Task> children)
+        {
+            this.Title = title;
+            this.TimeTodo = new TimeTodo(estTime, estUnit);
+            this.DueDateString = dueDate.ToShortDateString();
+            this.Priority = priority;
+            this.Comments = comment;
+            Childrens = children;
         }
 
         /// <summary>
-        /// Constructor which creates Task from the XElement
+        /// Constructor which creates Task from the XElement    
         /// </summary>
         /// <param name="element"></param>
         public Task(XElement element)
@@ -74,6 +99,7 @@ namespace XMLModule
             DueDate = (string)element.Attribute("DUEDATE") == null ? String.Empty : (string)element.Attribute("DUEDATE");
             DueDateString = (string)element.Attribute("DUEDATESTRING") == null ? String.Empty : (string)element.Attribute("DUEDATESTRING");
             CreationDate = (string)element.Attribute("CREATIONDATE") == null ? String.Empty : (string)element.Attribute("CREATIONDATE");
+            CompletedDateString = (string)element.Attribute("DONEDATESTRING") == null ? String.Empty : (string)element.Attribute("DONEDATESTRING");
             CreationDateString = (string)element.Attribute("CREATIONDATESTRING") == null ? String.Empty : (string)element.Attribute("CREATIONDATESTRING");
             PriorityColor = (string)element.Attribute("PRIORITYCOLOR") == null ? String.Empty : (string)element.Attribute("PRIORITYCOLOR");
             PriorityWebColor = (string)element.Attribute("PRIORITYWEBCOLOR") == null ? String.Empty : (string)element.Attribute("PRIORITYWEBCOLOR");
@@ -81,7 +107,7 @@ namespace XMLModule
 
 
             TimeTodo = new TimeTodo(
-                ((element.Attribute("TIMEESTIMATE") == null) ? 0 : Double.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".",","))),
+                ((element.Attribute("TIMEESTIMATE") == null) ? 0 : Double.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".", ","))),
                 ((string)element.Attribute("TIMEESTUNITS") == null ? String.Empty : (string)element.Attribute("TIMEESTUNITS")));
         }
 
