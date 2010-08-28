@@ -5,6 +5,8 @@ using XMLModule;
 using System.Timers;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Threading;
+using System.ComponentModel;
 
 namespace AvtivityTracker
 {
@@ -20,7 +22,7 @@ namespace AvtivityTracker
     public partial class MainWindow : Window
     {
         public TextBlock globalTimeSpent;
-        Timer timer = new Timer();
+        private Thread _backgroundWorker;
 
         public MainWindow()
         {
@@ -28,17 +30,17 @@ namespace AvtivityTracker
 
             List<Task> tasks = new List<Task>()
                                    {
-                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = "0"},
-                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = "0"},
-                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = "0"},
-                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = "0"}
+                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0},
+                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0},
+                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0},
+                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0}
                                    };
 
 
             InitializeComponent();
             tasks[0].Childrens = new List<Task>()
                                      {
-                                            new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = "0"}
+                                            new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0}
                                      };
 
             List<Project> projects = new List<Project>() { new Project() { Content = tasks, Title = "Projekt1" }, new Project() { Title = "Projekt2" } };
@@ -52,35 +54,36 @@ namespace AvtivityTracker
 
             if (btn != null)
             {
-                Grid grid = btn.Parent as Grid;
-                if (grid != null)
-                {
-                    globalTimeSpent = grid.FindName("TimeSpent") as TextBlock;
-                }
+                var template = btn.TemplatedParent as ContentPresenter;
+                Task task = template.Content as Task;
 
                 if (btn.Content.ToString() == "Start")
                 {
                     btn.Content = "Stop";
-                    timer.Interval = 1000;
-                    timer.Elapsed += TimerElapsed;
-                    timer.Start();
+
+                    if (_backgroundWorker != null)
+                        _backgroundWorker.Abort();
+
+                    _backgroundWorker = new Thread(delegate()
+                    {
+                        while (true)
+                        {
+                            task.TimeSpent++;
+                            //this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
+                            //        {
+                            //        }));
+                            Thread.Sleep(TimeSpan.FromSeconds(1));
+
+                        }
+                    });
+                    _backgroundWorker.Start();
                 }
                 else
                 {
                     btn.Content = "Start";
-                    timer.Stop();
-                    //Save i logika zapisywania
+                    _backgroundWorker.Abort();
                 }
             }
-        }
-
-        protected void TimerElapsed(object sender, EventArgs e)
-        {
-            this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
-            {
-                int i = Int32.Parse(globalTimeSpent.Text);
-                globalTimeSpent.Text = (++i).ToString();
-            }));
         }
     }
 }

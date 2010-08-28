@@ -3,13 +3,14 @@ using System.Collections.ObjectModel;
 using System.Xml.Linq;
 using XMLModule.XMLLogic;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace XMLModule
 {
     /// <summary>
     /// Class representing Task
     /// </summary>
-    public class Task
+    public class Task : INotifyPropertyChanged
     {
         #region Private
 
@@ -17,6 +18,9 @@ namespace XMLModule
         private TimeTodo _timeTodo;
 
         private double _timeEstimate;
+        private double _timeSpent;
+        private string _timeSpentString;
+        private string _timeEstimateString;
         #endregion
 
 
@@ -36,10 +40,13 @@ namespace XMLModule
         public string StartDateString { get; set; }
         public string DueDate { get; set; }
         public string DueDateString { get; set; }
-        public string TimeSpent { get; set; }
+        public double TimeSpent { get { return TimeTodo.ConvertTime(_timeSpent, "I"); } set { _timeSpent = value; OnPropertyChanged("TimeSpentString"); } }
 
-        public double TimeEstimate { get { return this.TimeTodo.TimeEstimate; } set { _timeEstimate = value; } }
-        public string TimeEstUnits { get { return this.TimeTodo.TimeEstUnits; } }
+        public double TimeEstimate { get { return this.TimeTodo.TimeValue; } set { _timeEstimate = value; } }
+        public string TimeEstUnits { get { return this.TimeTodo.TimeType; } }
+
+        public string TimeEstimateString { get { return TimeTodo.GetString((int)TimeEstimate); } set { _timeEstimateString = value; } }
+        public string TimeSpentString { get { return TimeTodo.GetString((int)TimeSpent); } set { _timeSpentString = value; } }
 
         public string CreationDate { get; set; }
         public string CreationDateString { get; set; }
@@ -107,7 +114,7 @@ namespace XMLModule
 
 
             TimeTodo = new TimeTodo(
-                ((element.Attribute("TIMEESTIMATE") == null) ? 0 : Double.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".", ","))),
+                ((element.Attribute("TIMEESTIMATE") == null) ? 0 : long.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".", ","))),
                 ((string)element.Attribute("TIMEESTUNITS") == null ? String.Empty : (string)element.Attribute("TIMEESTUNITS")));
         }
 
@@ -119,6 +126,18 @@ namespace XMLModule
         public XElement CreateXmlElement(IXMLConverter converter)
         {
             return converter.CreateXml(this);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // Create the OnPropertyChanged method to raise the event   
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

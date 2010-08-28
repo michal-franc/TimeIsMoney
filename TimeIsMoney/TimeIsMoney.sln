@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportModule", "ReportModul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLModule", "XMLModule\XMLModule.csproj", "{F7D3C29C-A544-4702-AE86-F7D56487CF6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtivityTracker", "AvtivityTracker\AvtivityTracker.csproj", "{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,16 @@ Global
 		{F7D3C29C-A544-4702-AE86-F7D56487CF6B}.Release|Mixed Platforms.Build.0 = Release|x86
 		{F7D3C29C-A544-4702-AE86-F7D56487CF6B}.Release|x86.ActiveCfg = Release|x86
 		{F7D3C29C-A544-4702-AE86-F7D56487CF6B}.Release|x86.Build.0 = Release|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Debug|x86.ActiveCfg = Debug|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Debug|x86.Build.0 = Debug|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Release|Any CPU.ActiveCfg = Release|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Release|Mixed Platforms.Build.0 = Release|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Release|x86.ActiveCfg = Release|x86
+		{4DAC4B44-C80A-4910-9B05-26CC1CF7F65B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

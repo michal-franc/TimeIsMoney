@@ -9,13 +9,14 @@
             <Grid Width="200">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Path=Title}"/>
-                <TextBlock Name="TimeSpent" Grid.Column="1" Text="{Binding Path=TimeSpent,Mode=TwoWay}"/>
-                <TextBlock Name="TimeEst" Grid.Column="2" Text="{Binding Path=TimeEstimate,Mode=TwoWay}"/>
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <TextBlock Name="TimeSpent" Text="{Binding Path=TimeSpentString,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Name="TimeEst"  Text="{Binding Path=TimeEstimateString,Mode=OneWay}"/>
+                </StackPanel>
                 <Button Grid.Column="3"  Click="btnStartClick">Start</Button>
             </Grid>
         </HierarchicalDataTemplate>
