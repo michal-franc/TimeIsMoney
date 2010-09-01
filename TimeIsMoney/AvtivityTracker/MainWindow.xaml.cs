@@ -10,37 +10,31 @@ using System.ComponentModel;
 
 namespace AvtivityTracker
 {
-    public class Project
-    {
-        public string Title { get; set; }
-        public List<Task> Content { get; set; }
-    }
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public TextBlock globalTimeSpent;
         private Thread _backgroundWorker;
 
         public MainWindow()
         {
 
 
-            List<Task> tasks = new List<Task>()
+            List<TaskWPF> tasks = new List<TaskWPF>()
                                    {
-                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0},
-                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0},
-                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0},
-                                       new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0}
+                                       new TaskWPF(new Task(("test"),10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0}),
+                                       new TaskWPF(new Task(("test"),10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0}),
+                                       new TaskWPF(new Task(("test"),10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0}),
+                                       new TaskWPF(new Task(("test"),10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0})
                                    };
 
 
             InitializeComponent();
-            tasks[0].Childrens = new List<Task>()
+            tasks[0].Childrens = new List<TaskWPF>()
                                      {
-                                            new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0}
+                                             new TaskWPF(new Task("test",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0})
                                      };
 
             List<Project> projects = new List<Project>() { new Project() { Content = tasks, Title = "Projekt1" }, new Project() { Title = "Projekt2" } };
@@ -55,7 +49,7 @@ namespace AvtivityTracker
             if (btn != null)
             {
                 var template = btn.TemplatedParent as ContentPresenter;
-                Task task = template.Content as Task;
+                TaskWPF task = template.Content as TaskWPF;
 
                 if (btn.Content.ToString() == "Start")
                 {
@@ -68,10 +62,10 @@ namespace AvtivityTracker
                     {
                         while (true)
                         {
-                            task.TimeSpent++;
-                            //this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
-                            //        {
-                            //        }));
+                            task.Increment();
+                            if (task.IsOverEstimatedTime)
+                            { }
+
                             Thread.Sleep(TimeSpan.FromSeconds(1));
 
                         }

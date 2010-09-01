@@ -11,7 +11,7 @@
     <ItemStatistics item="Default">
       <Item value="List`0" priority="0" />
       <Item value="results" priority="8" />
-      <Item value="public" priority="25" />
+      <Item value="public" priority="36" />
       <Item value="void" priority="10" />
       <Item value="var" priority="9" />
       <Item value="XMLAnalyser`0" priority="0" />
@@ -19,36 +19,36 @@
       <Item value="XMLLogic" priority="10" />
       <Item value="XMLLogic`0" priority="7" />
       <Item value="filePath" priority="6" />
-      <Item value="return" priority="7" />
+      <Item value="return" priority="12" />
       <Item value="allItems" priority="0" />
       <Item value="t" priority="8" />
       <Item value="dateTime" priority="5" />
       <Item value="timeSpan" priority="2" />
-      <Item value="new" priority="36" />
+      <Item value="new" priority="40" />
       <Item value="TimeSpan" priority="1" />
       <Item value="TimeSpan`0" priority="2" />
       <Item value="DateTime" priority="4" />
       <Item value="Assert`0" priority="6" />
       <Item value="XmlAnalyser`0" priority="3" />
-      <Item value="static" priority="3" />
+      <Item value="static" priority="4" />
       <Item value="LoaderOptimization`0" priority="0" />
       <Item value="List" priority="9" />
-      <Item value="Task`0" priority="5" />
-      <Item value="private" priority="4" />
-      <Item value="if" priority="17" />
+      <Item value="Task`0" priority="8" />
+      <Item value="private" priority="10" />
+      <Item value="if" priority="19" />
       <Item value="_allItems" priority="6" />
       <Item value="null" priority="1" />
-      <Item value="bool" priority="3" />
+      <Item value="bool" priority="4" />
       <Item value="Load`0" priority="1" />
       <Item value="Console`0" priority="0" />
-      <Item value="String`0" priority="2" />
+      <Item value="String`0" priority="4" />
       <Item value="out" priority="0" />
       <Item value="foreach" priority="1" />
       <Item value="ParallelEnumerable`0" priority="0" />
       <Item value="dateTimeLimit" priority="0" />
       <Item value="List&lt;Task&gt;" priority="6" />
       <Item value="returnList" priority="1" />
-      <Item value="Task" priority="4" />
+      <Item value="Task" priority="6" />
       <Item value="true" priority="1" />
       <Item value="Notifier`0" priority="3" />
       <Item value="System" priority="2" />
@@ -58,7 +58,7 @@
       <Item value="NotifierLowEstImatedTime`0" priority="0" />
       <Item value="base" priority="1" />
       <Item value="obj" priority="0" />
-      <Item value="int" priority="6" />
+      <Item value="int" priority="8" />
       <Item value="result" priority="0" />
       <Item value="Reminder`0" priority="1" />
       <Item value="notifyIconUnsortedItems" priority="0" />
@@ -66,7 +66,7 @@
       <Item value="this" priority="6" />
       <Item value="item" priority="1" />
       <Item value="Width" priority="0" />
-      <Item value="string" priority="14" />
+      <Item value="string" priority="22" />
       <Item value="box" priority="2" />
       <Item value="comment" priority="0" />
       <Item value="timeLimit" priority="0" />
@@ -89,7 +89,7 @@
       <Item value="Linq" priority="0" />
       <Item value="XMLModule" priority="2" />
       <Item value="XmlLogic`0" priority="1" />
-      <Item value="tasks" priority="12" />
+      <Item value="tasks" priority="13" />
       <Item value="e" priority="4" />
       <Item value="Left" priority="0" />
       <Item value="else" priority="1" />
@@ -127,12 +127,12 @@
       <Item value="ReportEngine`0" priority="1" />
       <Item value="CompletedDateString" priority="0" />
       <Item value="Contains`0" priority="0" />
-      <Item value="data" priority="3" />
+      <Item value="data" priority="6" />
       <Item value="IDictionary" priority="0" />
       <Item value="current" priority="5" />
       <Item value="false" priority="1" />
       <Item value="first" priority="0" />
-      <Item value="task" priority="2" />
+      <Item value="task" priority="8" />
       <Item value="Convert`0" priority="0" />
       <Item value="counter" priority="0" />
       <Item value="ContextMenu" priority="0" />
@@ -152,28 +152,49 @@
       <Item value="protected" priority="1" />
       <Item value="EventArgs`0" priority="1" />
       <Item value="Timer" priority="0" />
-      <Item value="timer" priority="5" />
+      <Item value="timer" priority="7" />
       <Item value="StylusButtonUpEvent" priority="0" />
       <Item value="sender" priority="0" />
-      <Item value="as" priority="2" />
+      <Item value="as" priority="3" />
       <Item value="Button`0" priority="0" />
-      <Item value="btn" priority="4" />
+      <Item value="btn" priority="5" />
       <Item value="WindowStyleProperty" priority="0" />
       <Item value="MessageBox`0" priority="0" />
-      <Item value="double" priority="0" />
-      <Item value="value" priority="0" />
+      <Item value="double" priority="1" />
+      <Item value="value" priority="2" />
       <Item value="TextBlock`0" priority="1" />
       <Item value="Grid`0" priority="1" />
       <Item value="grid" priority="1" />
       <Item value="i" priority="3" />
-      <Item value="override" priority="0" />
+      <Item value="override" priority="1" />
       <Item value="Is`0" priority="0" />
       <Item value="testData" priority="2" />
       <Item value="_value" priority="0" />
       <Item value="AddHour`0" priority="0" />
       <Item value="AddMinute`0" priority="0" />
-      <Item value="time" priority="3" />
+      <Item value="time" priority="6" />
       <Item value="long" priority="0" />
+      <Item value="returnString" priority="0" />
+      <Item value="testData1" priority="0" />
+      <Item value="TimeTodo" priority="1" />
+      <Item value="TimeEstimate" priority="0" />
+      <Item value="TimeTodo`0" priority="4" />
+      <Item value="_timeSpent" priority="0" />
+      <Item value="returnTime" priority="1" />
+      <Item value="index" priority="0" />
+      <Item value="temp" priority="1" />
+      <Item value="EventArgs" priority="1" />
+      <Item value="globalTimeSpent" priority="0" />
+      <Item value="ContentPresenter`0" priority="0" />
+      <Item value="template" priority="2" />
+      <Item value="ElapsedEventHandler" priority="0" />
+      <Item value="ThreadStaticAttribute`0" priority="0" />
+      <Item value="_backgroundWorker" priority="1" />
+      <Item value="TaskWPF`0" priority="0" />
+      <Item value="AppDomainSetup`0" priority="1" />
+      <Item value="_task" priority="5" />
+      <Item value="SettingsBindableAttribute`0" priority="0" />
+      <Item value="OnPropertyChanged`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="Indexer" priority="0" />
@@ -182,6 +203,7 @@
       <Item value="Add`0" priority="0" />
       <Item value="RemoveAt`0" priority="0" />
       <Item value="Sort`0" priority="0" />
+      <Item value="RemoveRange`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@TimeIsMoney.Notification.XMLAnalyser">
       <Item value="CheckItemsWithLowTime`0" priority="0" />
@@ -206,6 +228,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Convert">
       <Item value="ToDateTime`0" priority="2" />
+      <Item value="ToInt32`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.TimeSpan">
       <Item value="FromDays`0" priority="1" />
@@ -223,7 +246,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.String">
       <Item value="Empty" priority="2" />
-      <Item value="Format`0" priority="1" />
+      <Item value="Format`0" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:TimeIsMoney.Notifiers.Notifier">
       <Item value="_notifiedObject" priority="0" />
@@ -297,6 +320,12 @@
       <Item value="Priority" priority="0" />
       <Item value="CompletedDateString" priority="5" />
       <Item value="Childrens" priority="0" />
+      <Item value="TimeEstimate" priority="1" />
+      <Item value="TimeTodo" priority="1" />
+      <Item value="TimeSpent" priority="3" />
+      <Item value="TimeEstimateString" priority="1" />
+      <Item value="TimeSpentString" priority="2" />
+      <Item value="Title" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@Visifire.Charts.DataSeries">
       <Item value="RenderAsProperty" priority="0" />
@@ -318,6 +347,8 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.String">
       <Item value="Length" priority="0" />
+      <Item value="Contains`0" priority="0" />
+      <Item value="IndexOf`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.KeyValuePair`2">
       <Item value="Key" priority="0" />
@@ -373,6 +404,7 @@
     <ItemStatistics item="Qualified:System.Windows.Controls.Button">
       <Item value="Content" priority="2" />
       <Item value="Parent" priority="1" />
+      <Item value="Template" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Object">
       <Item value="ToString`0" priority="0" />
@@ -397,24 +429,49 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:XMLModule.TimeTodo">
       <Item value="TimeValue" priority="0" />
-      <Item value="AddSecond`0" priority="0" />
-      <Item value="AddMinute`0" priority="0" />
-      <Item value="AddHour`0" priority="0" />
-      <Item value="AddDay`0" priority="0" />
+      <Item value="AddSecond`0" priority="4" />
+      <Item value="AddMinute`0" priority="2" />
+      <Item value="AddHour`0" priority="1" />
+      <Item value="AddDay`0" priority="2" />
+      <Item value="ToString`0" priority="1" />
+      <Item value="GetString`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.TimeSpan">
-      <Item value="Days" priority="0" />
-      <Item value="Hours" priority="0" />
-      <Item value="Minutes" priority="0" />
-      <Item value="Seconds" priority="0" />
+      <Item value="Days" priority="1" />
+      <Item value="Hours" priority="1" />
+      <Item value="Minutes" priority="1" />
+      <Item value="Seconds" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@XMLModule.TimeTodo">
+      <Item value="ConvertTime`0" priority="0" />
+      <Item value="GetString`0" priority="0" />
+      <Item value="ConvertFromString`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Void">
+      <Item value="ToString`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Windows.Threading.DispatcherPriority">
+      <Item value="Render" priority="0" />
+      <Item value="DataBind" priority="0" />
+      <Item value="Send" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Controls.ContentPresenter">
+      <Item value="Content" priority="0" />
+      <Item value="InvalidateVisual`0" priority="0" />
+      <Item value="InvalidateProperty`0" priority="0" />
+      <Item value="ApplyTemplate`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Threading.Thread">
+      <Item value="Abort`0" priority="1" />
+      <Item value="Start`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:AvtivityTracker.TaskWPF">
+      <Item value="Increment`0" priority="0" />
+      <Item value="IsOverEstimatedTime" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:ComplexListBox/f:ComplexListBox.cs" caret="1646" fromTop="17" />
-      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:ComplexListBox/f:NewItemBox.cs" caret="1260" fromTop="33" />
-      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Reminder/f:Reminder.cs" caret="538" fromTop="0" />
-      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/f:ColorAbleComboBox.cs" caret="348" fromTop="11" />
       <File id="49DECE59-6489-4ADD-8B3D-40770EAA14FA/f:App.xaml" caret="314" fromTop="4" />
       <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/d:XMLLogic/f:XMLToDoListConverter.cs" caret="1234" fromTop="35" />
       <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/d:XMLLogic/f:IXMLConverter.cs" caret="59" fromTop="2" />
@@ -433,46 +490,50 @@
       <File id="49DECE59-6489-4ADD-8B3D-40770EAA14FA/f:MainWindow.xaml.cs" caret="657" fromTop="14" />
       <File id="49DECE59-6489-4ADD-8B3D-40770EAA14FA/f:Directory.cs" caret="0" fromTop="0" />
       <File id="49DECE59-6489-4ADD-8B3D-40770EAA14FA/f:ReportEngine.cs" caret="688" fromTop="15" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="1394" fromTop="5" />
       <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/d:XMLLogic/f:XMLLogic.cs" caret="1362" fromTop="31" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="655" fromTop="20" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="5357" fromTop="11" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:ComplexListBox/f:ComplexListBox.cs" caret="947" fromTop="18" />
       <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:XMLAnalyser.cs" caret="13" fromTop="0" />
       <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="0" fromTop="0" />
+      <File id="DDFC91B6-CBED-466E-9B13-341F84635FD3/d:Reminder/f:Reminder.cs" caret="1303" fromTop="19" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:Project.cs" caret="243" fromTop="10" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="324" fromTop="5" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2358" fromTop="54" />
+      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="58" fromTop="3" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:TaskWPF.cs" caret="703" fromTop="21" />
+      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="487" fromTop="3" />
       <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:TimeTODOTests.cs" caret="203" fromTop="9" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="1216" fromTop="17" />
     </RecentFiles>
     <RecentEdits>
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="1565" fromTop="18" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="4295" fromTop="27" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="1761" fromTop="14" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="2135" fromTop="16" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2316" fromTop="24" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2486" fromTop="25" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="515" fromTop="11" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="420" fromTop="10" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="396" fromTop="11" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="1212" fromTop="17" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2261" fromTop="15" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2919" fromTop="32" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="1984" fromTop="7" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2808" fromTop="31" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="1755" fromTop="17" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="465" fromTop="8" />
-      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="591" fromTop="19" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="1467" fromTop="25" />
-      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:XMLAnalyserTests.cs" caret="0" fromTop="0" />
-      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:TimeTODOTests.cs" caret="146" fromTop="7" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="1041" fromTop="18" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="426" fromTop="19" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="519" fromTop="24" />
-      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:TimeTODOTests.cs" caret="813" fromTop="23" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="95" fromTop="5" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="159" fromTop="9" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="651" fromTop="16" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="910" fromTop="29" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="5468" fromTop="13" />
-      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="1341" fromTop="22" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2825" fromTop="27" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2290" fromTop="17" />
+      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="314" fromTop="11" />
+      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="6556" fromTop="35" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="265" fromTop="11" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2164" fromTop="19" />
+      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="584" fromTop="19" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="994" fromTop="14" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="406" fromTop="13" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:Project.cs" caret="140" fromTop="6" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="274" fromTop="11" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:TaskWPF.cs" caret="922" fromTop="30" />
+      <File id="1E7AA46C-094B-4256-B582-1077950E51DC/f:TimeTODOTests.cs" caret="335" fromTop="9" />
+      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="1231" fromTop="26" />
+      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:TimeTodo.cs" caret="1351" fromTop="31" />
+      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="6556" fromTop="11" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:TaskWPF.cs" caret="1139" fromTop="23" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:TaskWPF.cs" caret="1476" fromTop="31" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:TaskWPF.cs" caret="997" fromTop="31" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:Project.cs" caret="243" fromTop="10" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="1937" fromTop="17" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="235" fromTop="2" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml" caret="463" fromTop="6" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="1073" fromTop="19" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="1371" fromTop="26" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:TaskWPF.cs" caret="654" fromTop="22" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:TaskWPF.cs" caret="421" fromTop="17" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:MainWindow.xaml.cs" caret="2455" fromTop="26" />
+      <File id="4DAC4B44-C80A-4910-9B05-26CC1CF7F65B/f:TaskWPF.cs" caret="807" fromTop="24" />
+      <File id="F7D3C29C-A544-4702-AE86-F7D56487CF6B/f:Task.cs" caret="1466" fromTop="15" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

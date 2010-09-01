@@ -10,40 +10,38 @@ namespace XMLModule
     /// <summary>
     /// Class representing Task
     /// </summary>
-    public class Task : INotifyPropertyChanged
+    public class Task
     {
         #region Private
 
         [NonSerialized]
-        private TimeTodo _timeTodo;
 
         private double _timeEstimate;
         private double _timeSpent;
         private string _timeSpentString;
         private string _timeEstimateString;
+
         #endregion
-
-
-        public TimeTodo TimeTodo { get { return _timeTodo; } set { _timeTodo = value; } }
-
-
-        private string title;
-        public string Title { get { return title; } set { title = value; } }
         public int Id { get; set; }
         public int Pos { get; set; }
+        public string Title { get; set; }
         public string LastMod { get; set; }
         public string LastModString { get; set; }
         public int Priority { get; set; }
         public int Risk { get; set; }
         public int PercentDone { get; set; }
+
         public string StartDate { get; set; }
         public string StartDateString { get; set; }
+
         public string DueDate { get; set; }
         public string DueDateString { get; set; }
-        public double TimeSpent { get { return TimeTodo.ConvertTime(_timeSpent, "I"); } set { _timeSpent = value; OnPropertyChanged("TimeSpentString"); } }
 
-        public double TimeEstimate { get { return this.TimeTodo.TimeValue; } set { _timeEstimate = value; } }
-        public string TimeEstUnits { get { return this.TimeTodo.TimeType; } }
+        public double TimeSpent { get { return TimeTodo.ConvertTime(_timeSpent, "I"); } set { _timeSpent = value; } }
+        public string TimeSpentUnits { get; set; }
+
+        public double TimeEstimate { get; set; }
+        public string TimeEstUnits { get; set; }
 
         public string TimeEstimateString { get { return TimeTodo.GetString((int)TimeEstimate); } set { _timeEstimateString = value; } }
         public string TimeSpentString { get { return TimeTodo.GetString((int)TimeSpent); } set { _timeSpentString = value; } }
@@ -56,10 +54,7 @@ namespace XMLModule
 
         public string PriorityColor { get; set; }
         public string PriorityWebColor { get; set; }
-        // komentarze tez na razie obczaic
         public string Comments { get; set; }
-
-        //Right now without childrens
         public List<Task> Childrens { get; set; }
 
         public Task()
@@ -70,7 +65,8 @@ namespace XMLModule
         public Task(string title, int estTime, string estUnit, DateTime dueDate, int priority, string comment)
         {
             this.Title = title;
-            this.TimeTodo = new TimeTodo(estTime, estUnit);
+            this.TimeEstimate = estTime;
+            this.TimeEstUnits = estUnit;
             this.DueDateString = dueDate.ToShortDateString();
             this.Priority = priority;
             this.Comments = comment;
@@ -78,12 +74,8 @@ namespace XMLModule
         }
 
         public Task(string title, int estTime, string estUnit, DateTime dueDate, int priority, string comment, List<Task> children)
+            : this(title, estTime, estUnit, dueDate, priority, comment)
         {
-            this.Title = title;
-            this.TimeTodo = new TimeTodo(estTime, estUnit);
-            this.DueDateString = dueDate.ToShortDateString();
-            this.Priority = priority;
-            this.Comments = comment;
             Childrens = children;
         }
 
@@ -93,29 +85,29 @@ namespace XMLModule
         /// <param name="element"></param>
         public Task(XElement element)
         {
-            Title = (string)element.Attribute("TITLE") == null ? String.Empty : (string)element.Attribute("TITLE");
+            Title = (string)element.Attribute("TITLE") ?? String.Empty;
             Id = (element.Attribute("ID") == null) ? -1 : (int)element.Attribute("ID");
             Pos = (element.Attribute("POS") == null) ? -1 : (int)element.Attribute("POS");
-            LastMod = (string)element.Attribute("LASTMOD") == null ? String.Empty : (string)element.Attribute("LASTMOD");
-            LastModString = (string)element.Attribute("LASTMODSTRING") == null ? String.Empty : (string)element.Attribute("LASTMODSTRING");
+            LastMod = (string)element.Attribute("LASTMOD") ?? String.Empty;
+            LastModString = (string)element.Attribute("LASTMODSTRING") ?? String.Empty;
             Priority = (element.Attribute("PRIORITY") == null) ? -1 : (int)element.Attribute("PRIORITY");
             Risk = (element.Attribute("RISK") == null) ? -1 : (int)element.Attribute("RISK");
             PercentDone = (element.Attribute("PERCENTDONE") == null) ? -1 : (int)element.Attribute("PERCENTDONE");
-            StartDate = (string)element.Attribute("STARTDATE") == null ? String.Empty : (string)element.Attribute("STARTDATE");
-            StartDateString = (string)element.Attribute("STARTDATESTRING") == null ? String.Empty : (string)element.Attribute("STARTDATESTRING");
-            DueDate = (string)element.Attribute("DUEDATE") == null ? String.Empty : (string)element.Attribute("DUEDATE");
-            DueDateString = (string)element.Attribute("DUEDATESTRING") == null ? String.Empty : (string)element.Attribute("DUEDATESTRING");
-            CreationDate = (string)element.Attribute("CREATIONDATE") == null ? String.Empty : (string)element.Attribute("CREATIONDATE");
-            CompletedDateString = (string)element.Attribute("DONEDATESTRING") == null ? String.Empty : (string)element.Attribute("DONEDATESTRING");
-            CreationDateString = (string)element.Attribute("CREATIONDATESTRING") == null ? String.Empty : (string)element.Attribute("CREATIONDATESTRING");
-            PriorityColor = (string)element.Attribute("PRIORITYCOLOR") == null ? String.Empty : (string)element.Attribute("PRIORITYCOLOR");
-            PriorityWebColor = (string)element.Attribute("PRIORITYWEBCOLOR") == null ? String.Empty : (string)element.Attribute("PRIORITYWEBCOLOR");
-            Comments = (string)element.Attribute("COMMENTS") == null ? String.Empty : (string)element.Attribute("COMMENTS");
+            StartDate = (string)element.Attribute("STARTDATE") ?? String.Empty;
+            StartDateString = (string)element.Attribute("STARTDATESTRING") ?? String.Empty;
+            DueDate = (string)element.Attribute("DUEDATE") ?? String.Empty;
+            DueDateString = (string)element.Attribute("DUEDATESTRING") ?? String.Empty;
+            CreationDate = (string)element.Attribute("CREATIONDATE") ?? String.Empty;
+            CompletedDateString = (string)element.Attribute("DONEDATESTRING") ?? String.Empty;
+            CreationDateString = (string)element.Attribute("CREATIONDATESTRING") ?? String.Empty;
+            PriorityColor = (string)element.Attribute("PRIORITYCOLOR") ?? String.Empty;
+            PriorityWebColor = (string)element.Attribute("PRIORITYWEBCOLOR") ?? String.Empty;
+            Comments = (string)element.Attribute("COMMENTS") ?? String.Empty;
+            TimeEstUnits = (string)element.Attribute("TIMEESTUNITS") ?? String.Empty;
 
-
-            TimeTodo = new TimeTodo(
-                ((element.Attribute("TIMEESTIMATE") == null) ? 0 : long.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".", ","))),
-                ((string)element.Attribute("TIMEESTUNITS") == null ? String.Empty : (string)element.Attribute("TIMEESTUNITS")));
+            TimeEstimate = ((element.Attribute("TIMEESTIMATE") == null)
+                                ? 0
+                                : long.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".", ",")));
         }
 
         /// <summary>
@@ -126,18 +118,6 @@ namespace XMLModule
         public XElement CreateXmlElement(IXMLConverter converter)
         {
             return converter.CreateXml(this);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Create the OnPropertyChanged method to raise the event   
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
         }
     }
 }

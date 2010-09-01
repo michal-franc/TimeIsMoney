@@ -1,11 +1,11 @@
 ﻿<Window x:Class="AvtivityTracker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:data="clr-namespace:XMLModule;assembly=XMLModule"
+        xmlns:data="clr-namespace:AvtivityTracker"
         Title="MainWindow" Height="293" Width="290">
     <Window.Resources>
         <HierarchicalDataTemplate x:Key="TaskTemplate" 
-                                  ItemsSource="{Binding Childrens}" DataType="{x:Type data:Task}" >
+                                  ItemsSource="{Binding Childrens}" DataType="{x:Type data:TaskWPF}" >
             <Grid Width="200">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
