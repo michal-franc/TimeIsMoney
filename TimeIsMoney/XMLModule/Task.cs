@@ -40,7 +40,7 @@ namespace XMLModule
         public double TimeSpent { get { return TimeTodo.ConvertTime(_timeSpent, "I"); } set { _timeSpent = value; } }
         public string TimeSpentUnits { get; set; }
 
-        public double TimeEstimate { get; set; }
+        public double TimeEstimate { get { return TimeTodo.ConvertTime(_timeEstimate, "I"); } set { _timeEstimate = value; } }
         public string TimeEstUnits { get; set; }
 
         public string TimeEstimateString { get { return TimeTodo.GetString((int)TimeEstimate); } set { _timeEstimateString = value; } }

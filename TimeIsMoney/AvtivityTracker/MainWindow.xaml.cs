@@ -51,7 +51,7 @@ namespace AvtivityTracker
                 var template = btn.TemplatedParent as ContentPresenter;
                 TaskWPF task = template.Content as TaskWPF;
 
-                if (btn.Content.ToString() == "Start")
+                if (task.state == TaskState.Stoped)
                 {
                     btn.Content = "Stop";
 
@@ -63,9 +63,7 @@ namespace AvtivityTracker
                         while (true)
                         {
                             task.Increment();
-                            if (task.IsOverEstimatedTime)
-                            { }
-
+                            task.ChangeState();
                             Thread.Sleep(TimeSpan.FromSeconds(1));
 
                         }

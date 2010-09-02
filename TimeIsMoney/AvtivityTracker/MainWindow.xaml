@@ -6,19 +6,26 @@
     <Window.Resources>
         <HierarchicalDataTemplate x:Key="TaskTemplate" 
                                   ItemsSource="{Binding Childrens}" DataType="{x:Type data:TaskWPF}" >
-            <Grid Width="200">
+            <Border Name="Border" Padding="2" BorderBrush="Black" BorderThickness="1,1,1,1" 
+                                        CornerRadius="10,10,10,10" Background="{Binding Path=TaskColor,UpdateSourceTrigger=PropertyChanged}">
+                <Grid Width="200">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding Path=Title}"/>
-                <StackPanel Orientation="Vertical" Grid.Column="1">
-                    <TextBlock Name="TimeSpent" Text="{Binding Path=TimeSpentString,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Name="TimeEst"  Text="{Binding Path=TimeEstimateString,Mode=OneWay}"/>
-                </StackPanel>
-                <Button Grid.Column="3"  Click="btnStartClick">Start</Button>
+
+                    <TextBlock Grid.Column="0" Text="{Binding Path=Title}"/>
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <TextBlock Name="TimeSpent" Text="{Binding Path=TimeSpentString,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Name="TimeEst"  Text="{Binding Path=TimeEstimateString,Mode=OneWay}"/>
+                    </StackPanel>
+                    <Button Grid.Column="3"  Click="btnStartClick">
+                        <TextBlock Text="{Binding Path=ButtonText,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                    </Button>
+
             </Grid>
+            </Border>
         </HierarchicalDataTemplate>
         <DataTemplate x:Key="TabItemTemplate">
             <Grid>
