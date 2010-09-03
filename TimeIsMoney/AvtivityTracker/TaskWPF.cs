@@ -20,6 +20,7 @@ namespace AvtivityTracker
         private string _color;
         private TaskState _state;
 
+        private TaskWPF _parent;
         public List<TaskWPF> Childrens { get; set; }
 
         public string Title
@@ -30,6 +31,11 @@ namespace AvtivityTracker
         public TaskState state
         {
             get { return _state; }
+        }
+
+        public int Priority
+        {
+            get { return _task.Priority; }
         }
 
         public string ButtonText
@@ -59,7 +65,10 @@ namespace AvtivityTracker
 
         public string TimeSpentString
         {
-            get { return _task.TimeSpentString; }
+            get
+            {
+                return _task.TimeSpentString;
+            }
         }
 
         public string TimeEstimateString
@@ -71,7 +80,10 @@ namespace AvtivityTracker
         {
             AddSecond(1);
             IsOverEstimatedTime();
-            OnPropertyChanged("ButtonText");
+            OnPropertyChanged("TimeSpentString");
+
+            if (_parent != null)
+                _parent.Increment();
         }
 
         public void ChangeState()
@@ -81,7 +93,7 @@ namespace AvtivityTracker
             else if (_state == TaskState.Stoped)
                 _state = TaskState.Started;
 
-            OnPropertyChanged("TimeSpentString");
+            OnPropertyChanged("ButtonText");
         }
 
         public void IsOverEstimatedTime()
@@ -93,9 +105,10 @@ namespace AvtivityTracker
             }
         }
 
-        public TaskWPF(Task task)
+        public TaskWPF(Task task, TaskWPF parent)
         {
             _task = task;
+            _parent = parent;
             TaskColor = "DarkOrange";
             _state = TaskState.Stoped;
         }
