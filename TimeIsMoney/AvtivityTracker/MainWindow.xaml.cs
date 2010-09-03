@@ -13,34 +13,29 @@ namespace AvtivityTracker
 {
 
 
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         private Thread _backgroundWorker;
+        public List<TaskWPF> ConvertTaskList(List<Task> tasks)
+        {
+            List<TaskWPF> wpfTasks = new List<TaskWPF>();
+            foreach (var task in tasks)
+            {
+                wpfTasks.Add(new TaskWPF(task, null));
+            }
+                
+            return wpfTasks;
+        }
 
         public MainWindow()
         {
 
-            //XMLModule.XMLLogic.XmlLogic.ReadXml();
-
-            List<TaskWPF> tasks = new List<TaskWPF>()
-                                   {
-                                       new TaskWPF(new Task(("test1"),10,"I",DateTime.Now,1,"komentarz"){TimeSpent = 0},null),
-                                       new TaskWPF(new Task(("test2"),10,"I",DateTime.Now,2,"komentarz"){TimeSpent = 0},null),
-                                       new TaskWPF(new Task(("test3"),10,"I",DateTime.Now,3,"komentarz"){TimeSpent = 0},null),
-                                       new TaskWPF(new Task(("test4"),10,"I",DateTime.Now,4,"komentarz"){TimeSpent = 0},null)
-                                   }.OrderByDescending(x => x.Priority).ToList();
-
+            List<TaskWPF> tasks = ConvertTaskList(XMLModule.XMLLogic.XmlLogic.ReadXml(@"C:\Users\LaM\Desktop\Praca Dyplomowa\TODO.tdl"));
 
             InitializeComponent();
-            tasks[0].Childrens = new List<TaskWPF>()
-                                     {
-                                             new TaskWPF(new Task("test8",10,"I",DateTime.Now,8,"komentarz"){TimeSpent = 0},tasks[0]),
-                                             new TaskWPF(new Task("test1",10,"I",DateTime.Now,1,"komentarz"){TimeSpent = 0},tasks[0])
-                                     }.OrderByDescending(x => x.Priority).ToList();
 
             List<Project> projects = new List<Project>() { new Project() { Content = tasks, Title = "Projekt1" }, new Project() { Title = "Projekt2" } };
             MainTabControl.ItemsSource = projects;

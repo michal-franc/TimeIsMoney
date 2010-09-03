@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace XMLModule.XMLLogic
 {
-    public  static class XmlLogic
+    public static class XmlLogic
     {
         public static List<Task> ReadXml(string filePath)
         {
@@ -12,18 +12,19 @@ namespace XMLModule.XMLLogic
             XDocument document = XDocument.Load(filePath);
 
             var tasks = (from element in document.Descendants("TASK")
-                            select new Task(element)).ToList();
+                         where element.Parent == document.Root
+                         select new Task(element, element.Descendants("TASK").ToList())).ToList();
 
             return tasks;
         }
 
-        public  static void AddToXml(Task task, string filePath)
+        public static void AddToXml(Task task, string filePath)
         {
             XDocument document = XDocument.Load(filePath);
 
-            XContainer element=  document.Root;
+            XContainer element = document.Root;
 
-            SetIdAndPos(filePath,task);
+            SetIdAndPos(filePath, task);
 
 
             element.Add(task.CreateXmlElement(new XMLToDoListConverter()));
@@ -36,7 +37,7 @@ namespace XMLModule.XMLLogic
             XContainer element = document.Root;
 
             document.Root.Descendants("TASK").Remove();
-            
+
             foreach (Task t in tasks)
             {
                 SetIdAndPos(filePath, t);
@@ -52,7 +53,7 @@ namespace XMLModule.XMLLogic
         /// </summary>
         /// <param name="filePath"></param>
         /// <param name="task"></param>
-        private static void SetIdAndPos(string filePath,Task task)
+        private static void SetIdAndPos(string filePath, Task task)
         {
             List<Task> tasks = ReadXml(filePath);
             if (tasks.Count <= 0)
@@ -67,9 +68,9 @@ namespace XMLModule.XMLLogic
                 foreach (Task t in tasks)
                 {
                     if (t.Id >= id)
-                        id = t.Id+1;
+                        id = t.Id + 1;
                     if (t.Pos >= pos)
-                        pos = t.Pos+1;
+                        pos = t.Pos + 1;
                 }
                 task.Pos = pos;
                 task.Id = id;

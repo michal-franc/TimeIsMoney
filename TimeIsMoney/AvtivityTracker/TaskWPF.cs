@@ -111,6 +111,16 @@ namespace AvtivityTracker
             _parent = parent;
             TaskColor = "DarkOrange";
             _state = TaskState.Stoped;
+
+            List<TaskWPF> tasks = new List<TaskWPF>();
+            if (task.Childrens != null)
+            {
+                foreach (var t in task.Childrens)
+                {
+                    tasks.Add(new TaskWPF(t, this));
+                }
+            }
+            this.Childrens = tasks;
         }
 
         private void AddSecond(int i)

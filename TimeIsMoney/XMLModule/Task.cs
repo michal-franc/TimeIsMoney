@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Xml.Linq;
 using XMLModule.XMLLogic;
 using System.Collections.Generic;
@@ -83,7 +84,7 @@ namespace XMLModule
         /// Constructor which creates Task from the XElement    
         /// </summary>
         /// <param name="element"></param>
-        public Task(XElement element)
+        public Task(XElement element, List<XElement> children)
         {
             Title = (string)element.Attribute("TITLE") ?? String.Empty;
             Id = (element.Attribute("ID") == null) ? -1 : (int)element.Attribute("ID");
@@ -108,6 +109,16 @@ namespace XMLModule
             TimeEstimate = ((element.Attribute("TIMEESTIMATE") == null)
                                 ? 0
                                 : long.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".", ",")));
+
+            if (children.Count > 0)
+            {
+                List<Task> childrens = new List<Task>();
+                foreach (var xElement in children)
+                {
+                    childrens.Add(new Task(xElement, xElement.Descendants("TASK").ToList()));
+                }
+                this.Childrens = childrens;
+            }
         }
 
         /// <summary>
