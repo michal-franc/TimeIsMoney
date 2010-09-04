@@ -19,6 +19,7 @@ namespace AvtivityTracker
     public partial class MainWindow : Window
     {
         private Thread _backgroundWorker;
+        private TaskWPF _currentTask;
         public List<TaskWPF> ConvertTaskList(List<Task> tasks)
         {
             List<TaskWPF> wpfTasks = new List<TaskWPF>();
@@ -26,7 +27,7 @@ namespace AvtivityTracker
             {
                 wpfTasks.Add(new TaskWPF(task, null));
             }
-                
+
             return wpfTasks;
         }
 
@@ -53,9 +54,18 @@ namespace AvtivityTracker
 
                 if (task.state == TaskState.Stoped)
                 {
-                    task.ChangeState();
+
                     if (_backgroundWorker != null)
+                    {
                         _backgroundWorker.Abort();
+                        if (_currentTask.state == TaskState.Started)
+                        {
+                            _currentTask.ChangeState();
+                        }
+                    }
+
+                    _currentTask = task;
+                    task.ChangeState();
 
                     _backgroundWorker = new Thread(delegate()
                     {

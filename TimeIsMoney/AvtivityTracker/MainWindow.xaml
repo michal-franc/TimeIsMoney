@@ -14,7 +14,6 @@
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
                     <TextBlock Grid.Column="0" Text="{Binding Path=Title}"/>
                     <StackPanel Orientation="Vertical" Grid.Column="1">
                         <TextBlock Name="TimeSpent" Text="{Binding Path=TimeSpentString,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -23,7 +22,6 @@
                     <Button Grid.Column="3"  Click="btnStartClick">
                         <TextBlock Text="{Binding Path=ButtonText,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     </Button>
-
             </Grid>
             </Border>
         </HierarchicalDataTemplate>
@@ -41,7 +39,10 @@
                             <StackPanel Orientation="Horizontal">
                                 <Border Name="Border" Padding="2" BorderBrush="Black" BorderThickness="1,1,1,1" 
                                         CornerRadius="10,10,0,0" Background="DarkOrange">
+                                    <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Path=Title}"></TextBlock>
+                                    <Button>-</Button>
+                                    </StackPanel>
                                 </Border>
                             </StackPanel>
                         </Grid>
@@ -66,7 +67,9 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TabPanel Grid.Row="0" Panel.ZIndex="1"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" />
+                            <TabPanel Grid.Row="0" Panel.ZIndex="1"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" >
+                             
+                            </TabPanel>
                             <Border Margin="0,0,0,0" Padding="0" Background="Gold" Grid.Row="1" BorderBrush="Black" BorderThickness="1,1,1,1" >
                                 <ContentPresenter ContentSource="SelectedContent" />
                             </Border>
