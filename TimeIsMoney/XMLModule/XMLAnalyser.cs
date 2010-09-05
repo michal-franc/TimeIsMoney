@@ -8,12 +8,12 @@ namespace XMLModule
     {
         public static List<Task> GetItemsWithLowEstTime(List<Task> allitems, int timeLimit, string timeUnit)
         {
-            return allitems.Where(t => TimeTodo.ConvertTime(t.TimeEstimate, t.TimeEstUnits) <= TimeTodo.ConvertTime(timeLimit, timeUnit)).ToList();
+            return allitems.Where(t => TimeTodo.ConvertToSeconds(t.TimeEstimate, t.TimeEstUnits) <= TimeTodo.ConvertToSeconds(timeLimit, timeUnit)).ToList();
         }
 
         public static List<Task> GetItemsWithNoEstTime(List<Task> allitems, int timeLimit, string timeUnit)
         {
-            return allitems.Where(t => TimeTodo.ConvertTime(t.TimeEstimate, t.TimeEstUnits) == 0).ToList();
+            return allitems.Where(t => TimeTodo.ConvertToSeconds(t.TimeEstimate, t.TimeEstUnits) == 0).ToList();
         }
 
         public static List<Task> GetItemsWithNoDueDate(List<Task> allitems)

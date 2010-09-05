@@ -125,7 +125,7 @@ namespace AvtivityTracker
 
         private void AddSecond(int i)
         {
-            _task.TimeSpent += i;
+            _task.IncrementSpent(i);
         }
 
         #region INotifyPropertyChanged Members

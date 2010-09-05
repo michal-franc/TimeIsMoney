@@ -15,10 +15,13 @@ namespace XMLModule
     {
         #region Private
 
-        [NonSerialized]
 
         private double _timeEstimate;
         private double _timeSpent;
+
+        private string _timeSpentUnit;
+        private string _timeEstUnit;
+
         private string _timeSpentString;
         private string _timeEstimateString;
 
@@ -38,14 +41,28 @@ namespace XMLModule
         public string DueDate { get; set; }
         public string DueDateString { get; set; }
 
-        public double TimeSpent { get { return TimeTodo.ConvertTime(_timeSpent, "I"); } set { _timeSpent = value; } }
-        public string TimeSpentUnits { get; set; }
+        public double TimeSpent { get { return TimeTodo.ConvertTime((int)_timeSpent).Value; } set { _timeSpent = value; } }
+        public string TimeSpentUnits { get { return TimeTodo.ConvertTime((int)_timeSpent).Type; } set { _timeSpentUnit = value; } }
 
-        public double TimeEstimate { get { return TimeTodo.ConvertTime(_timeEstimate, "I"); } set { _timeEstimate = value; } }
-        public string TimeEstUnits { get; set; }
+        public double TimeEstimate { get { return TimeTodo.ConvertTime((int)_timeEstimate).Value; } set { _timeEstimate = value; } }
+        public string TimeEstUnits { get { return TimeTodo.ConvertTime((int)_timeEstimate).Type; } set { _timeEstUnit = value; } }
 
-        public string TimeEstimateString { get { return TimeTodo.GetString((int)TimeEstimate); } set { _timeEstimateString = value; } }
-        public string TimeSpentString { get { return TimeTodo.GetString((int)TimeSpent); } set { _timeSpentString = value; } }
+        public string TimeEstimateString
+        {
+            get
+            {
+                return TimeTodo.GetString((int)_timeEstimate);
+            }
+            set { _timeEstimateString = value; }
+        }
+        public string TimeSpentString
+        {
+            get
+            {
+                return TimeTodo.GetString((int)_timeSpent);
+            }
+            set { _timeSpentString = value; }
+        }
 
         public string CreationDate { get; set; }
         public string CreationDateString { get; set; }
@@ -56,6 +73,7 @@ namespace XMLModule
         public string PriorityColor { get; set; }
         public string PriorityWebColor { get; set; }
         public string Comments { get; set; }
+
         public List<Task> Childrens { get; set; }
 
         public Task()
@@ -104,18 +122,23 @@ namespace XMLModule
             PriorityColor = (string)element.Attribute("PRIORITYCOLOR") ?? String.Empty;
             PriorityWebColor = (string)element.Attribute("PRIORITYWEBCOLOR") ?? String.Empty;
             Comments = (string)element.Attribute("COMMENTS") ?? String.Empty;
-            TimeEstUnits = (string)element.Attribute("TIMEESTUNITS") ?? String.Empty;
 
-            TimeEstimate = ((element.Attribute("TIMEESTIMATE") == null)
+            TimeEstimate = TimeTodo.ConvertToSeconds((element.Attribute("TIMEESTIMATE") == null)
                                 ? 0
-                                : long.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".", ",")));
+                                : double.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".", ",")),
+                                (string)element.Attribute("TIMEESTUNITS") ?? "I");
+
+            TimeSpent = TimeTodo.ConvertToSeconds((element.Attribute("TIMESPENT") == null)
+                                ? 0
+                                : double.Parse(((string)element.Attribute("TIMESPENT")).Replace(".", ",")),
+                                (string)element.Attribute("TIMESPENTUNITS") ?? "I");
 
             if (children.Count > 0)
             {
                 List<Task> childrens = new List<Task>();
                 foreach (var xElement in children)
                 {
-                    childrens.Add(new Task(xElement, xElement.Descendants("TASK").ToList()));
+                    childrens.Add(new Task(xElement, xElement.Descendants("TASK").Where(t => t.Parent == xElement).ToList()));
                 }
                 this.Childrens = childrens;
             }
@@ -126,9 +149,30 @@ namespace XMLModule
         /// </summary>
         /// <param name="converter">Converter which defines the object , its attributes etc.</param>
         /// <returns></returns>
-        public XElement CreateXmlElement(IXMLConverter converter)
+        public XElement CreateXmlElement(ref int currentID, IXMLConverter converter)
         {
-            return converter.CreateXml(this);
+            XElement xmlElement = converter.CreateXml(this);
+
+            int posCounter = 0;
+
+            if (Childrens != null)
+            {
+                foreach (var child in Childrens)
+                {
+                    currentID++;
+                    posCounter++;
+                    child.Id = currentID;
+                    child.Pos = posCounter;
+                    xmlElement.Add(child.CreateXmlElement(ref currentID, converter));
+                }
+            }
+
+            return xmlElement;
+        }
+
+        public void IncrementSpent(int i)
+        {
+            _timeSpent += i;
         }
     }
 }

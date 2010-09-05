@@ -23,7 +23,7 @@ namespace XMLModule.XMLLogic
 
             foreach (System.Reflection.PropertyInfo prop in properties)
             {
-                if (prop.GetValue(obj, null) != null)
+                if (prop.GetValue(obj, null) != null && prop.Name != "Childrens")
                 {
                     XAttribute attr = new XAttribute(prop.Name.ToUpper(), prop.GetValue(obj, null));
                     attributes.Add(attr);

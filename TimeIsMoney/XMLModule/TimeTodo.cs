@@ -2,20 +2,43 @@
 using System;
 namespace XMLModule
 {
-    public static class TimeTodo
+    public class TimeTodo
     {
-        public static double ConvertTime(double value, string type)
+        public string Type { get; set; }
+        public double Value { get; set; }
+
+        public static TimeTodo ConvertTime(int value)
         {
-            int multiplier = 1;
+            TimeTodo returnvalue = new TimeTodo();
+            if (value <= 60)
+            {
+                returnvalue.Type = "I";
+                returnvalue.Value = value / 60.0;
+            }
+            else
+            {
+                returnvalue.Type = "H";
+                returnvalue.Value = value / 3600.0;
+            }
+
+            return returnvalue;
+        }
+
+        public static int ConvertToSeconds(double value, string type)
+        {
+            int returnValue = 0;
+
             switch (type)
             {
-                case "I": multiplier = 1;
+                case "I":
+                    returnValue = Convert.ToInt32(Math.Floor(value * 60));
                     break;
-                case "H": multiplier = 60;
+                case "H":
+                    returnValue = Convert.ToInt32(Math.Floor(value * 60 * 60));
                     break;
             }
 
-            return value * multiplier;
+            return returnValue;
         }
 
         public static string GetString(int value)

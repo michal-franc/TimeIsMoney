@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using System.IO;
 
 namespace XMLModule.XMLLogic
 {
@@ -13,36 +15,56 @@ namespace XMLModule.XMLLogic
 
             var tasks = (from element in document.Descendants("TASK")
                          where element.Parent == document.Root
-                         select new Task(element, element.Descendants("TASK").ToList())).ToList();
+                         select new Task(element, element.Descendants("TASK").Where(t => t.Parent == element).ToList())).ToList();
 
             return tasks;
         }
 
         public static void AddToXml(Task task, string filePath)
         {
-            XDocument document = XDocument.Load(filePath);
+            throw new NotImplementedException();
+            //XDocument document = XDocument.Load(filePath);
 
-            XContainer element = document.Root;
+            //XContainer element = document.Root;
 
-            SetIdAndPos(filePath, task);
+            //SetIdAndPos(filePath, task);
 
 
-            element.Add(task.CreateXmlElement(new XMLToDoListConverter()));
-            document.Save(filePath);
+            //element.Add(task.CreateXmlElement(0, new XMLToDoListConverter()));
+            //document.Save(filePath);
         }
 
         public static void AddToXml(List<Task> tasks, string filePath)
         {
-            XDocument document = XDocument.Load(filePath);
+            XDocument document;
+            if (File.Exists(filePath))
+            {
+                document = XDocument.Load(filePath);
+                document.Root.Descendants("TASK").Remove();
+            }
+            else
+            {
+                document = new XDocument();
+                XElement root = new XElement("TODOLIST");
+                root.SetAttributeValue("FILENAME", filePath);
+                root.SetAttributeValue("FILEFORMAT", 9);
+                root.SetAttributeValue("FILEVERSION", 6);
+                root.SetAttributeValue("PROJECTNAME", "");
+                document.Add(root);
+                throw new NotImplementedException();
+            }
             XContainer element = document.Root;
 
-            document.Root.Descendants("TASK").Remove();
+            int idCounter = 1;
+            int posCounter = 1;
 
             foreach (Task t in tasks)
             {
-                SetIdAndPos(filePath, t);
+                t.Id = idCounter;
+                t.Pos = posCounter;
+                element.Add(t.CreateXmlElement(ref idCounter, new XMLToDoListConverter()));
 
-                element.Add(t.CreateXmlElement(new XMLToDoListConverter()));
+                idCounter++;
             }
 
             document.Save(filePath);

@@ -20,6 +20,7 @@ namespace AvtivityTracker
     {
         private Thread _backgroundWorker;
         private TaskWPF _currentTask;
+        private List<Task> _taskList;
         public List<TaskWPF> ConvertTaskList(List<Task> tasks)
         {
             List<TaskWPF> wpfTasks = new List<TaskWPF>();
@@ -33,8 +34,9 @@ namespace AvtivityTracker
 
         public MainWindow()
         {
+            _taskList = XMLModule.XMLLogic.XmlLogic.ReadXml(@"C:\Users\LaM\Desktop\TODO.tdl");
+            List<TaskWPF> tasks = ConvertTaskList(_taskList);
 
-            List<TaskWPF> tasks = ConvertTaskList(XMLModule.XMLLogic.XmlLogic.ReadXml(@"C:\Users\LaM\Desktop\Praca Dyplomowa\TODO.tdl"));
 
             InitializeComponent();
 
@@ -84,6 +86,11 @@ namespace AvtivityTracker
                     _backgroundWorker.Abort();
                 }
             }
+        }
+
+        private void WindowClosing(object sender, CancelEventArgs e)
+        {
+            XMLModule.XMLLogic.XmlLogic.AddToXml(_taskList, @"C:\Users\LaM\Desktop\TODO.tdl");
         }
     }
 }
