@@ -4,8 +4,14 @@ namespace XMLModule
 {
     public class TimeTodo
     {
+        #region Properties
+
         public string Type { get; set; }
         public double Value { get; set; }
+
+        #endregion
+
+        #region Static Methods
 
         public static TimeTodo ConvertTime(int value)
         {
@@ -54,5 +60,6 @@ namespace XMLModule
 
             return returnString;
         }
+        #endregion
     }
 }

@@ -6,29 +6,29 @@ using XMLModule;
 using System.Windows.Media;
 using System.ComponentModel;
 
-namespace AvtivityTracker
+namespace ActivityTracker
 {
-    public enum TaskState
+    public class TaskWpf : INotifyPropertyChanged
     {
-        Started,
-        Stoped
-    }
+        #region Private Fields
 
-    public class TaskWPF : INotifyPropertyChanged
-    {
         private Task _task;
         private string _color;
         private TaskState _state;
+        private TaskWpf _parent;
 
-        private TaskWPF _parent;
-        public List<TaskWPF> Childrens { get; set; }
+        #endregion
+
+        #region Properties
+
+        public List<TaskWpf> Childrens { get; set; }
 
         public string Title
         {
             get { return _task.Title; }
         }
 
-        public TaskState state
+        public TaskState State
         {
             get { return _state; }
         }
@@ -38,55 +38,96 @@ namespace AvtivityTracker
             get { return _task.Priority; }
         }
 
+        /// <summary>
+        /// Return Button Text according to State
+        /// </summary>
         public string ButtonText
         {
             get
             {
                 if (_state == TaskState.Started)
-                {
                     return "Stop";
-                }
                 else if (_state == TaskState.Stoped)
-                {
                     return "Start";
-                }
                 else
-                {
                     return "Error";
-                }
             }
         }
 
         public string TaskColor
         {
             get { return _color; }
-            set { _color = value; }
-        }
-
-        public string TimeSpentString
-        {
-            get
+            set
             {
-                return _task.TimeSpentString;
+                _color = value;
+                OnPropertyChanged("TaskColor");
             }
         }
 
+        /// <summary>
+        /// Return Time Spent formated as {0}d {0}m {0} s
+        /// </summary>
+        public string TimeSpentString
+        {
+            get { return _task.TimeSpentString; }
+        }
+
+        /// <summary>
+        /// Return Time Estimated formated as {0}d {0}m {0} s
+        /// </summary>
         public string TimeEstimateString
         {
             get { return _task.TimeEstimateString; }
         }
 
+        #endregion
+
+        #region Ctor
+
+        public TaskWpf(Task task, TaskWpf parent)
+        {
+            _task = task;
+            _parent = parent;
+            TaskColor = "DarkOrange";
+            _state = TaskState.Stoped;
+
+            List<TaskWpf> tasks = new List<TaskWpf>();
+            if (task.Childrens != null)
+            {
+                foreach (var t in task.Childrens)
+                {
+                    tasks.Add(new TaskWpf(t, this));
+                }
+            }
+            this.Childrens = tasks;
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Adds one second to SpentTime of this Task and its Parent and notifies the TextBlock to redraw itself
+        /// </summary>
         public void Increment()
         {
             AddSecond(1);
-            IsOverEstimatedTime();
+
+            if (IsOverEstimatedTime())
+                TaskColor = "Red";
+            //else
+            //TaskColor = "DarkOrange";
+
             OnPropertyChanged("TimeSpentString");
 
             if (_parent != null)
                 _parent.Increment();
         }
 
-        public void ChangeState()
+        /// <summary>
+        /// Toogles State and notifies the Button to redraw its Text
+        /// </summary>
+        public void ToogleState()
         {
             if (_state == TaskState.Started)
                 _state = TaskState.Stoped;
@@ -96,37 +137,26 @@ namespace AvtivityTracker
             OnPropertyChanged("ButtonText");
         }
 
-        public void IsOverEstimatedTime()
-        {
-            if (_task.TimeSpent > _task.TimeEstimate)
-            {
-                TaskColor = "Red";
-                OnPropertyChanged("TaskColor");
-            }
-        }
+        #endregion
 
-        public TaskWPF(Task task, TaskWPF parent)
-        {
-            _task = task;
-            _parent = parent;
-            TaskColor = "DarkOrange";
-            _state = TaskState.Stoped;
+        #region Private Methods
 
-            List<TaskWPF> tasks = new List<TaskWPF>();
-            if (task.Childrens != null)
-            {
-                foreach (var t in task.Childrens)
-                {
-                    tasks.Add(new TaskWPF(t, this));
-                }
-            }
-            this.Childrens = tasks;
+        /// <summary>
+        /// Checks if TimeSpent is greater than TimeEstimate
+        /// </summary>
+        private bool IsOverEstimatedTime()
+        {
+            return (_task.TimeSpent > _task.TimeEstimate) ? true : false;
         }
 
         private void AddSecond(int i)
         {
             _task.IncrementSpent(i);
         }
+
+        #endregion
+
+        #region Interfaces
 
         #region INotifyPropertyChanged Members
 
@@ -140,6 +170,8 @@ namespace AvtivityTracker
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
+
+        #endregion
 
         #endregion
     }

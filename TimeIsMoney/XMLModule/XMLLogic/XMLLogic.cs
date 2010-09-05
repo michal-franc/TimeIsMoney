@@ -6,11 +6,18 @@ using System.IO;
 
 namespace XMLModule.XMLLogic
 {
+    /// <summary>
+    /// Static class used for Xml Operations
+    /// </summary>
     public static class XmlLogic
     {
+        /// <summary>
+        /// Return the List of Task read from the Xml list
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public static List<Task> ReadXml(string filePath)
         {
-
             XDocument document = XDocument.Load(filePath);
 
             var tasks = (from element in document.Descendants("TASK")
@@ -20,6 +27,11 @@ namespace XMLModule.XMLLogic
             return tasks;
         }
 
+        /// <summary>
+        /// Adds single Task to the Xml File
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="filePath"></param>
         public static void AddToXml(Task task, string filePath)
         {
             throw new NotImplementedException();
@@ -34,12 +46,18 @@ namespace XMLModule.XMLLogic
             //document.Save(filePath);
         }
 
+        /// <summary>
+        /// Creates new Todo List file with specified tasks
+        /// </summary>
+        /// <param name="tasks"></param>
+        /// <param name="filePath"></param>
         public static void AddToXml(List<Task> tasks, string filePath)
         {
             XDocument document;
             if (File.Exists(filePath))
             {
                 document = XDocument.Load(filePath);
+                //Clear Xml File
                 document.Root.Descendants("TASK").Remove();
             }
             else
@@ -50,52 +68,30 @@ namespace XMLModule.XMLLogic
                 root.SetAttributeValue("FILEFORMAT", 9);
                 root.SetAttributeValue("FILEVERSION", 6);
                 root.SetAttributeValue("PROJECTNAME", "");
-                document.Add(root);
+
                 throw new NotImplementedException();
             }
-            XContainer element = document.Root;
 
-            int idCounter = 1;
-            int posCounter = 1;
-
-            foreach (Task t in tasks)
+            if (document != null)
             {
-                t.Id = idCounter;
-                t.Pos = posCounter;
-                element.Add(t.CreateXmlElement(ref idCounter, new XMLToDoListConverter()));
+                XContainer element = document.Root;
 
-                idCounter++;
-            }
+                int idCounter = 0;
+                int posCounter = 0;
 
-            document.Save(filePath);
-        }
+                foreach (Task t in tasks)
+                {
+                    t.Id = ++idCounter;
+                    t.Pos = ++posCounter;
+                    element.Add(t.CreateXmlElement(ref idCounter, new XMLToDoListConverter()));
+                }
 
-        /// <summary>
-        /// Method used to set the ID and Position of the Task. Tasks in todo list need unique ID and correct Position
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="task"></param>
-        private static void SetIdAndPos(string filePath, Task task)
-        {
-            List<Task> tasks = ReadXml(filePath);
-            if (tasks.Count <= 0)
-            {
-                task.Id = 1;
-                task.Pos = 1;
+                document.Save(filePath);
             }
             else
             {
-                int id = 0;
-                int pos = 0;
-                foreach (Task t in tasks)
-                {
-                    if (t.Id >= id)
-                        id = t.Id + 1;
-                    if (t.Pos >= pos)
-                        pos = t.Pos + 1;
-                }
-                task.Pos = pos;
-                task.Id = id;
+                //Todo Loger  
+                throw new NotImplementedException();
             }
         }
     }

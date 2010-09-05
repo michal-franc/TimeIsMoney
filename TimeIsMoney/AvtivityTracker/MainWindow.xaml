@@ -1,11 +1,11 @@
-﻿<Window x:Class="AvtivityTracker.MainWindow"
+﻿<Window x:Class="ActivityTracker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:data="clr-namespace:AvtivityTracker"
+        xmlns:data="clr-namespace:ActivityTracker"
         Title="MainWindow" Height="293" Width="290" Closing="WindowClosing">
     <Window.Resources>
         <HierarchicalDataTemplate x:Key="TaskTemplate" 
-                                  ItemsSource="{Binding Childrens}" DataType="{x:Type data:TaskWPF}" >
+                                  ItemsSource="{Binding Childrens}" DataType="{x:Type data:TaskWpf}" >
             <Border Name="Border" Padding="2" BorderBrush="Black" BorderThickness="1,1,1,1" 
                                         CornerRadius="10,10,10,10" Background="{Binding Path=TaskColor,UpdateSourceTrigger=PropertyChanged}">
                 <Grid Width="200">
@@ -41,7 +41,7 @@
                                         CornerRadius="10,10,0,0" Background="DarkOrange">
                                     <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Path=Title}"></TextBlock>
-                                    <Button>-</Button>
+                                    <Button Click="RemoveProjectClick">-</Button>
                                     </StackPanel>
                                 </Border>
                             </StackPanel>
@@ -67,9 +67,15 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TabPanel Grid.Row="0" Panel.ZIndex="1"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" >
-                             
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="14" />
+                                </Grid.ColumnDefinitions>
+                            <TabPanel Grid.Column="0" Panel.ZIndex="1"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" >                    
                             </TabPanel>
+                            <Button Grid.Column="1" Click="AddProjectClick">+</Button>
+                            </Grid>
                             <Border Margin="0,0,0,0" Padding="0" Background="Gold" Grid.Row="1" BorderBrush="Black" BorderThickness="1,1,1,1" >
                                 <ContentPresenter ContentSource="SelectedContent" />
                             </Border>
@@ -80,11 +86,15 @@
         </Style>
     </Window.Resources>
     <Grid Width="271">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="244*" />
+            <ColumnDefinition Width="27*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
-        <Grid Name="MainTree" Grid.Row="1" Grid.RowSpan="1">
+        <Grid Name="MainTree" Grid.Row="1" Grid.ColumnSpan="2">
             <TabControl Name="MainTabControl" ContentTemplate="{StaticResource TabItemTemplate}">
             </TabControl>
         </Grid>

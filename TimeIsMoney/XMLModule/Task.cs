@@ -13,7 +13,7 @@ namespace XMLModule
     /// </summary>
     public class Task
     {
-        #region Private
+        #region Fields
 
 
         private double _timeEstimate;
@@ -26,6 +26,9 @@ namespace XMLModule
         private string _timeEstimateString;
 
         #endregion
+
+        #region Properties
+
         public int Id { get; set; }
         public int Pos { get; set; }
         public string Title { get; set; }
@@ -47,6 +50,7 @@ namespace XMLModule
         public double TimeEstimate { get { return TimeTodo.ConvertTime((int)_timeEstimate).Value; } set { _timeEstimate = value; } }
         public string TimeEstUnits { get { return TimeTodo.ConvertTime((int)_timeEstimate).Type; } set { _timeEstUnit = value; } }
 
+        [NotConverted]
         public string TimeEstimateString
         {
             get
@@ -55,6 +59,8 @@ namespace XMLModule
             }
             set { _timeEstimateString = value; }
         }
+
+        [NotConverted]
         public string TimeSpentString
         {
             get
@@ -74,12 +80,11 @@ namespace XMLModule
         public string PriorityWebColor { get; set; }
         public string Comments { get; set; }
 
+        [NotConverted]
         public List<Task> Childrens { get; set; }
+        #endregion
 
-        public Task()
-        {
-
-        }
+        #region Ctor
 
         public Task(string title, int estTime, string estUnit, DateTime dueDate, int priority, string comment)
         {
@@ -90,12 +95,6 @@ namespace XMLModule
             this.Priority = priority;
             this.Comments = comment;
             Childrens = new List<Task>();
-        }
-
-        public Task(string title, int estTime, string estUnit, DateTime dueDate, int priority, string comment, List<Task> children)
-            : this(title, estTime, estUnit, dueDate, priority, comment)
-        {
-            Childrens = children;
         }
 
         /// <summary>
@@ -143,6 +142,7 @@ namespace XMLModule
                 this.Childrens = childrens;
             }
         }
+        #endregion
 
         /// <summary>
         /// Used to Create XML Object
