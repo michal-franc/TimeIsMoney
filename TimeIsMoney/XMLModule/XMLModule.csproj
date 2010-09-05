@@ -41,6 +41,7 @@
     <Compile Include="TimeTodo.cs" />
     <Compile Include="XMLAnalyser.cs" />
     <Compile Include="XMLLogic\IXMLConverter.cs" />
+    <Compile Include="XMLLogic\NotConverted.cs" />
     <Compile Include="XMLLogic\XMLLogic.cs" />
     <Compile Include="XMLLogic\XMLToDoListConverter.cs" />
   </ItemGroup>

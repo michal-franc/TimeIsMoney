@@ -91,6 +91,7 @@ namespace ActivityTracker
         {
             Microsoft.Win32.OpenFileDialog dialog = new OpenFileDialog();
             dialog.ShowDialog();
+
             if (dialog.FileName.Contains(".tdl"))
             {
                 List<Task> tasks = XMLModule.XMLLogic.XmlLogic.ReadXml(dialog.FileName);

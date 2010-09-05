@@ -114,7 +114,9 @@ namespace ActivityTracker
             AddSecond(1);
 
             if (IsOverEstimatedTime())
+            {
                 TaskColor = "Red";
+            }
             //else
             //TaskColor = "DarkOrange";
 
@@ -146,7 +148,7 @@ namespace ActivityTracker
         /// </summary>
         private bool IsOverEstimatedTime()
         {
-            return (_task.TimeSpent > _task.TimeEstimate) ? true : false;
+            return (TimeTodo.ConvertToSeconds(_task.TimeSpent, _task.TimeSpentUnits) > TimeTodo.ConvertToSeconds(_task.TimeEstimate, _task.TimeEstUnits)) ? true : false;
         }
 
         private void AddSecond(int i)
