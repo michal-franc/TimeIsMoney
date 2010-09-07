@@ -4,6 +4,50 @@
         xmlns:data="clr-namespace:ActivityTracker"
         Title="MainWindow" Height="293" Width="290" Closing="WindowClosing">
     <Window.Resources>
+        <Style x:Key="PlusButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border Name="Border" Padding="2" Margin="-8,3,0,0" Width="27" Height="18" BorderBrush="Black" BorderThickness="1,2,2,1" 
+                                        CornerRadius="0,10,0,0" Background="Gold"  Panel.ZIndex="0"></Border>
+                            <Line X1="3" Y1="12" X2="13" Y2="12"  Stroke="Black" StrokeThickness="3" />
+                            <Line X1="8" Y1="7" X2="8" Y2="17"  Stroke="Black" StrokeThickness="3" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"  Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="DarkOrange"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="Gold"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>                    
+                </Setter.Value>
+                
+            </Setter>
+        </Style>
+        <Style x:Key="MinusButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border Name="Border" Padding="0" Margin="-1,0,0,0" Width="20" BorderBrush="Black" BorderThickness="0,0,1,1" 
+                                        CornerRadius="10,0,0,0" Background="Gold"  Panel.ZIndex="0"></Border>
+                            <Line X1="5" Y1="10" X2="15" Y2="10"  Stroke="Black" StrokeThickness="3" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"  Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="DarkOrange"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="Gold"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <HierarchicalDataTemplate x:Key="TaskTemplate" 
                                   ItemsSource="{Binding Childrens}" DataType="{x:Type data:TaskWpf}" >
             <Border Name="Border" Padding="2" BorderBrush="Black" BorderThickness="1,1,1,1" 
@@ -19,7 +63,7 @@
                         <TextBlock Name="TimeSpent" Text="{Binding Path=TimeSpentString,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Name="TimeEst"  Text="{Binding Path=TimeEstimateString,Mode=OneWay}"/>
                     </StackPanel>
-                    <Button Grid.Column="3"  Click="btnStartClick">
+                    <Button Grid.Column="3" Click="btnStartClick">
                         <TextBlock Text="{Binding Path=ButtonText,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     </Button>
             </Grid>
@@ -37,11 +81,11 @@
                     <ControlTemplate TargetType="TabItem">
                         <Grid>
                             <StackPanel Orientation="Horizontal">
-                                <Border Name="Border" Padding="2" BorderBrush="Black" BorderThickness="1,1,1,1" 
+                                <Border Name="Border" Margin="0,2,0,0" Height="20" BorderBrush="Black" BorderThickness="2,2,2,2" 
                                         CornerRadius="10,10,0,0" Background="DarkOrange">
                                     <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Path=Title}"></TextBlock>
-                                    <Button Click="RemoveProjectClick">-</Button>
+                                        <Button Click="RemoveProjectClick" Style="{StaticResource MinusButton}"></Button>
+                                        <TextBlock Text="{Binding Path=Title}"></TextBlock>
                                     </StackPanel>
                                 </Border>
                             </StackPanel>
@@ -70,11 +114,11 @@
                             <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="14" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                            <TabPanel Grid.Column="0" Panel.ZIndex="1"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" >                    
+                            <TabPanel Panel.ZIndex="5" Grid.Column="0" Height="20"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" >                    
                             </TabPanel>
-                            <Button Grid.Column="1" Click="AddProjectClick">+</Button>
+                                <Button Grid.Column="1"  Style="{StaticResource PlusButton}" Click="AddProjectClick"></Button>
                             </Grid>
                             <Border Margin="0,0,0,0" Padding="0" Background="Gold" Grid.Row="1" BorderBrush="Black" BorderThickness="1,1,1,1" >
                                 <ContentPresenter ContentSource="SelectedContent" />
