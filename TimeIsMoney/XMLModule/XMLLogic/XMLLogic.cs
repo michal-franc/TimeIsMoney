@@ -82,7 +82,7 @@ namespace XMLModule.XMLLogic
                 foreach (Task t in tasks)
                 {
                     t.Id = ++idCounter;
-                    t.Pos = ++posCounter;
+                    t.Position = ++posCounter;
                     element.Add(t.CreateXmlElement(ref idCounter, new XMLToDoListConverter()));
                 }
 

@@ -15,6 +15,7 @@ namespace XMLModule
     {
         #region Fields
 
+        private XElement _base;
 
         private double _timeEstimate;
         private double _timeSpent;
@@ -29,14 +30,94 @@ namespace XMLModule
 
         #region Properties
 
-        public int Id { get; set; }
-        public int Pos { get; set; }
-        public string Title { get; set; }
-        public string LastMod { get; set; }
-        public string LastModString { get; set; }
-        public int Priority { get; set; }
-        public int Risk { get; set; }
-        public int PercentDone { get; set; }
+        public int Id
+        {
+            get
+            {
+                return (_base.Attribute("ID") == null) ? -1 : (int)_base.Attribute("ID");
+            }
+            set
+            {
+                _base.SetAttributeValue("ID", value);
+            }
+        }
+        public int Position
+        {
+            get
+            {
+                return (_base.Attribute("POS") == null) ? -1 : (int)_base.Attribute("POS");
+            }
+            set
+            {
+                _base.SetAttributeValue("POS", value);
+            }
+        }
+        public string Title
+        {
+            get
+            {
+                return (string)_base.Attribute("TITLE") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("TITLE", value);
+            }
+        }
+        public string LastMod
+        {
+            get
+            {
+                return (string)_base.Attribute("LASTMOD") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("LASTMOD", value);
+            }
+        }
+        public string LastModString
+        {
+            get
+            {
+                return (string)_base.Attribute("LASTMODSTRING") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("LASTMODSTRING", value);
+            }
+        }
+        public int Priority
+        {
+            get
+            {
+                return (_base.Attribute("PRIORITY") == null) ? -1 : (int)_base.Attribute("PRIORITY");
+            }
+            set
+            {
+                _base.SetAttributeValue("PRIORITY", value);
+            }
+        }
+        public int Risk
+        {
+            get
+            {
+                return (_base.Attribute("RISK") == null) ? -1 : (int)_base.Attribute("RISK");
+            }
+            set
+            {
+                _base.SetAttributeValue("RISK", value);
+            }
+        }
+        public int PercentDone
+        {
+            get
+            {
+                return (_base.Attribute("PERCENTDONE") == null) ? -1 : (int)_base.Attribute("PERCENTDONE");
+            }
+            set
+            {
+                _base.SetAttributeValue("PERCENTDONE", value);
+            }
+        }
 
         public string StartDate { get; set; }
         public string StartDateString { get; set; }
@@ -70,15 +151,77 @@ namespace XMLModule
             set { _timeSpentString = value; }
         }
 
-        public string CreationDate { get; set; }
-        public string CreationDateString { get; set; }
+        public string CreationDate
+        {
+            get
+            {
+                return (string)_base.Attribute("CREATIONDATE") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("CREATIONDATE", value);
+            }
+        }
+        public string CreationDateString
+        {
+            get
+            {
+                return (string)_base.Attribute("CREATIONDATESTRING") ?? String.Empty;
+
+            }
+            set
+            {
+                _base.SetAttributeValue("CREATIONDATESTRING", value);
+            }
+        }
 
         public string CompletedDate { get; set; }
-        public string CompletedDateString { get; set; }
+        public string CompletedDateString
+        {
+            get
+            {
+                return (string)_base.Attribute("DONEDATESTRING") ?? String.Empty;
+            }
 
-        public string PriorityColor { get; set; }
-        public string PriorityWebColor { get; set; }
-        public string Comments { get; set; }
+            set
+            {
+                _base.SetAttributeValue("DONEDATESTRING", value);
+            }
+        }
+
+        public string PriorityColor
+        {
+            get
+            {
+                return (string)_base.Attribute("PRIORITYCOLOR") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("PRIORITYCOLOR", value);
+            }
+        }
+        public string PriorityWebColor
+        {
+            get
+            {
+                return (string)_base.Attribute("PRIORITYWEBCOLOR") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("PRIORITYWEBCOLOR", value);
+            }
+        }
+        public string Comments
+        {
+            get
+            {
+                return (string)_base.Attribute("COMMENTS") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("COMMENTS", value);
+            }
+        }
 
         [NotConverted]
         public List<Task> Childrens { get; set; }
@@ -103,24 +246,12 @@ namespace XMLModule
         /// <param name="element"></param>
         public Task(XElement element, List<XElement> children)
         {
-            Title = (string)element.Attribute("TITLE") ?? String.Empty;
-            Id = (element.Attribute("ID") == null) ? -1 : (int)element.Attribute("ID");
-            Pos = (element.Attribute("POS") == null) ? -1 : (int)element.Attribute("POS");
-            LastMod = (string)element.Attribute("LASTMOD") ?? String.Empty;
-            LastModString = (string)element.Attribute("LASTMODSTRING") ?? String.Empty;
-            Priority = (element.Attribute("PRIORITY") == null) ? -1 : (int)element.Attribute("PRIORITY");
-            Risk = (element.Attribute("RISK") == null) ? -1 : (int)element.Attribute("RISK");
-            PercentDone = (element.Attribute("PERCENTDONE") == null) ? -1 : (int)element.Attribute("PERCENTDONE");
+
+            _base = element;
             StartDate = (string)element.Attribute("STARTDATE") ?? String.Empty;
             StartDateString = (string)element.Attribute("STARTDATESTRING") ?? String.Empty;
             DueDate = (string)element.Attribute("DUEDATE") ?? String.Empty;
             DueDateString = (string)element.Attribute("DUEDATESTRING") ?? String.Empty;
-            CreationDate = (string)element.Attribute("CREATIONDATE") ?? String.Empty;
-            CompletedDateString = (string)element.Attribute("DONEDATESTRING") ?? String.Empty;
-            CreationDateString = (string)element.Attribute("CREATIONDATESTRING") ?? String.Empty;
-            PriorityColor = (string)element.Attribute("PRIORITYCOLOR") ?? String.Empty;
-            PriorityWebColor = (string)element.Attribute("PRIORITYWEBCOLOR") ?? String.Empty;
-            Comments = (string)element.Attribute("COMMENTS") ?? String.Empty;
 
             TimeEstimate = TimeTodo.ConvertToSeconds((element.Attribute("TIMEESTIMATE") == null)
                                 ? 0
@@ -162,7 +293,7 @@ namespace XMLModule
                     currentID++;
                     posCounter++;
                     child.Id = currentID;
-                    child.Pos = posCounter;
+                    child.Position = posCounter;
                     xmlElement.Add(child.CreateXmlElement(ref currentID, converter));
                 }
             }
