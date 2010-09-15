@@ -2,24 +2,142 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:data="clr-namespace:ActivityTracker"
-        Title="MainWindow" Height="293" Width="290" Closing="WindowClosing">
+        xmlns:custom="clr-namespace:ActivityTracker"
+        Title="MainWindow" Height="600" Width="300" Closing="WindowClosing">
     <Window.Resources>
+        <Style x:Key="TreeViewItemFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Height="15" Width="15" Background="Transparent">
+                            <Ellipse  Name="btn" Stroke="Red" StrokeThickness="2" Width="7" Height="7"></Ellipse>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Stroke" TargetName="btn" Value="Red"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Stroke" TargetName="btn" Value="Green"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsChecked" Value="True"/>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="btn" Property="Fill" Value="Red"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsChecked" Value="False"/>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="btn" Property="Fill" Value="Green"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="btn" Property="Fill" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TreeViewItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Padding" Value="1,0,0,0"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="19" Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <ToggleButton x:Name="Expander" Style="{StaticResource ExpandCollapseToggleStyle}" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.BitmapEffect>
+                                    <DropShadowBitmapEffect/>
+                                </ToggleButton.BitmapEffect>
+                            </ToggleButton>
+                            <Border x:Name="Bd" SnapsToDevicePixels="true" Grid.Column="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                                <ContentPresenter x:Name="PART_Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" ContentSource="Header"/>
+                            </Border>
+                            <ItemsPresenter x:Name="ItemsHost" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsExpanded" Value="false">
+                                <Setter Property="Visibility" TargetName="ItemsHost" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="Foreground" Value="Yellow"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true"/>
+                                    <Condition Property="IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="Yellow"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="VirtualizingStackPanel.IsVirtualizing" Value="true">
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="PlusButton" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
                             <Border Name="Border" Padding="2" Margin="-8,3,0,0" Width="27" Height="18" BorderBrush="Black" BorderThickness="1,2,2,1" 
-                                        CornerRadius="0,10,0,0" Background="Gold"  Panel.ZIndex="0"></Border>
+                                        CornerRadius="0,10,0,0" Background="Yellow"  Panel.ZIndex="0"></Border>
                             <Line X1="3" Y1="12" X2="13" Y2="12"  Stroke="Black" StrokeThickness="3" />
                             <Line X1="8" Y1="7" X2="8" Y2="17"  Stroke="Black" StrokeThickness="3" />
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver"  Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="DarkOrange"/>
+                                <Setter TargetName="Border" Property="Background" Value="Green"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="Gold"/>
+                                <Setter TargetName="Border" Property="Background" Value="Yellow"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>                    
@@ -33,41 +151,57 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
                             <Border Name="Border" Padding="0" Margin="-1,0,0,0" Width="20" BorderBrush="Black" BorderThickness="0,0,1,1" 
-                                        CornerRadius="10,0,0,0" Background="Gold"  Panel.ZIndex="0"></Border>
+                                        CornerRadius="10,0,0,0" Background="Yellow"  Panel.ZIndex="0"></Border>
                             <Line X1="5" Y1="10" X2="15" Y2="10"  Stroke="Black" StrokeThickness="3" />
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver"  Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="DarkOrange"/>
+                                <Setter TargetName="Border" Property="Background" Value="Green"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="Gold"/>
+                                <Setter TargetName="Border" Property="Background" Value="Yellow"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style> 
+        <Style x:Key="StartStopButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                   <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Image Name="btnImage" Source="{Binding Path=ImageSource,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></Image>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
+
         <HierarchicalDataTemplate x:Key="TaskTemplate" 
                                   ItemsSource="{Binding Childrens}" DataType="{x:Type data:TaskWpf}" >
-            <Border Name="Border" Padding="2" BorderBrush="Black" BorderThickness="1,1,1,1" 
-                                        CornerRadius="10,10,10,10" Background="{Binding Path=TaskColor,UpdateSourceTrigger=PropertyChanged}">
+            <Border Name="Border" Padding="2" BorderBrush="Black" BorderThickness="2,2,2,2" 
+                                        CornerRadius="1,1,1,1" Background="{Binding Path=TaskColor,UpdateSourceTrigger=PropertyChanged}">
                 <Grid Width="200">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{Binding Path=Title}"/>
-                    <StackPanel Orientation="Vertical" Grid.Column="1">
-                        <TextBlock Name="TimeSpent" Text="{Binding Path=TimeSpentString,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Name="TimeEst"  Text="{Binding Path=TimeEstimateString,Mode=OneWay}"/>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" Text="{Binding Path=Title}" FontFamily="Comic Sans MS" FontWeight="Black"   TextWrapping="Wrap" />
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center"  Grid.Column="1">
+                        <TextBlock Name="TimeSpent" FontFamily="Comic Sans MS" FontWeight="Black"  FontSize="11" Text="{Binding Path=TimeSpentString,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Name="TimeEst"  FontFamily="Comic Sans MS" FontWeight="Black"    FontSize="11"   Text="{Binding Path=TimeEstimateString,Mode=OneWay}"/>
                     </StackPanel>
-                    <Button Grid.Column="3" Click="btnStartClick">
-                        <TextBlock Text="{Binding Path=ButtonText,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                    <Button Grid.Column="3" Click="FillableButton_Click" Style="{StaticResource StartStopButton}">
                     </Button>
             </Grid>
             </Border>
+            <HierarchicalDataTemplate.Triggers>
+                <Trigger SourceName="TimeEst" Property="Text" Value="0s">
+                    <Setter TargetName="TimeEst" Property="Visibility" Value="Hidden"/>
+                </Trigger>
+            </HierarchicalDataTemplate.Triggers>
         </HierarchicalDataTemplate>
         <DataTemplate x:Key="TabItemTemplate">
             <Grid>
@@ -82,7 +216,7 @@
                         <Grid>
                             <StackPanel Orientation="Horizontal">
                                 <Border Name="Border" Margin="0,2,0,0" Height="20" BorderBrush="Black" BorderThickness="2,2,2,2" 
-                                        CornerRadius="10,10,0,0" Background="DarkOrange">
+                                        CornerRadius="10,10,0,0" Background="Green">
                                     <StackPanel Orientation="Horizontal">
                                         <Button Click="RemoveProjectClick" Style="{StaticResource MinusButton}"></Button>
                                         <TextBlock Text="{Binding Path=Title}"></TextBlock>
@@ -95,7 +229,7 @@
                                 <Setter TargetName="Border" Property="Background" Value="Gold"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="DarkOrange"/>
+                                <Setter TargetName="Border" Property="Background" Value="Green"/>
                             </Trigger> 
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -116,11 +250,11 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                            <TabPanel Panel.ZIndex="5" Grid.Column="0" Height="20"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" >                    
+                            <TabPanel  Panel.ZIndex="5" Grid.Column="0" Height="20"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" >                    
                             </TabPanel>
                                 <Button Grid.Column="1"  Style="{StaticResource PlusButton}" Click="AddProjectClick"></Button>
                             </Grid>
-                            <Border Margin="0,0,0,0" Padding="0" Background="Gold" Grid.Row="1" BorderBrush="Black" BorderThickness="1,1,1,1" >
+                            <Border Margin="0,0,0,0" Padding="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1,1,1,1" Background="#FF52CB1D">
                                 <ContentPresenter ContentSource="SelectedContent" />
                             </Border>
                         </Grid>
@@ -129,7 +263,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Width="271">
+    <Grid Width="300" Background="#FF359E4A">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="244*" />
             <ColumnDefinition Width="27*" />
@@ -138,8 +272,12 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
-        <Grid Name="MainTree" Grid.Row="1" Grid.ColumnSpan="2">
-            <TabControl Name="MainTabControl" ContentTemplate="{StaticResource TabItemTemplate}">
+        <Grid Name="MainTree" Grid.Row="1" Grid.ColumnSpan="2"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="203*" />
+                <ColumnDefinition Width="68" />
+            </Grid.ColumnDefinitions>
+            <TabControl Name="MainTabControl" ContentTemplate="{StaticResource TabItemTemplate}" Grid.ColumnSpan="2">
             </TabControl>
         </Grid>
     </Grid>

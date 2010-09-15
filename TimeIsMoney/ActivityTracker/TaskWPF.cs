@@ -10,6 +10,14 @@ namespace ActivityTracker
 {
     public class TaskWpf : INotifyPropertyChanged
     {
+        #region Static Fields
+
+        private static string srcOkButton = @"/AvtivityTracker;component/button-ok.png";
+        private static string srcCancelButton = @"/AvtivityTracker;component/button-cancel.png";
+
+        #endregion
+
+
         #region Private Fields
 
         private Task _task;
@@ -36,6 +44,12 @@ namespace ActivityTracker
         public int Priority
         {
             get { return _task.Priority; }
+        }
+
+        public string ImageSource
+        {
+            get;
+            set;
         }
 
         /// <summary>
@@ -88,7 +102,11 @@ namespace ActivityTracker
         {
             _task = task;
             _parent = parent;
-            TaskColor = "DarkOrange";
+            if (IsOverEstimatedTime())
+                TaskColor = "Red";
+            else
+                TaskColor = "YellowGreen";
+
             _state = TaskState.Stoped;
 
             List<TaskWpf> tasks = new List<TaskWpf>();
@@ -100,6 +118,9 @@ namespace ActivityTracker
                 }
             }
             this.Childrens = tasks;
+
+            ImageSource = srcOkButton;
+
         }
 
         #endregion
@@ -117,8 +138,6 @@ namespace ActivityTracker
             {
                 TaskColor = "Red";
             }
-            //else
-            //TaskColor = "DarkOrange";
 
             OnPropertyChanged("TimeSpentString");
 
@@ -132,11 +151,17 @@ namespace ActivityTracker
         public void ToogleState()
         {
             if (_state == TaskState.Started)
+            {
                 _state = TaskState.Stoped;
+                ImageSource = srcOkButton;
+            }
             else if (_state == TaskState.Stoped)
+            {
                 _state = TaskState.Started;
+                ImageSource = srcCancelButton;
+            }
 
-            OnPropertyChanged("ButtonText");
+            OnPropertyChanged("ImageSource");
         }
 
         #endregion
@@ -148,7 +173,8 @@ namespace ActivityTracker
         /// </summary>
         private bool IsOverEstimatedTime()
         {
-            return (TimeTodo.ConvertToSeconds(_task.TimeSpent, _task.TimeSpentUnits) > TimeTodo.ConvertToSeconds(_task.TimeEstimate, _task.TimeEstUnits)) ? true : false;
+            return (TimeTodo.ConvertToSeconds(_task.TimeSpent, _task.TimeSpentUnits) > TimeTodo.ConvertToSeconds(_task.TimeEstimate, _task.TimeEstUnits)
+                    && _task.TimeEstimate > 0);
         }
 
         private void AddSecond(int i)
