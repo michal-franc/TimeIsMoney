@@ -17,12 +17,6 @@ namespace XMLModule
 
         private XElement _base;
 
-        private double _timeEstimate;
-        private double _timeSpent;
-
-        private string _timeSpentUnit;
-        private string _timeEstUnit;
-
         private string _timeSpentString;
         private string _timeEstimateString;
 
@@ -118,25 +112,108 @@ namespace XMLModule
                 _base.SetAttributeValue("PERCENTDONE", value);
             }
         }
+        public string StartDate
+        {
+            get
+            {
+                return (string)_base.Attribute("STARTDATE") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("STARTDATE", value);
+            }
 
-        public string StartDate { get; set; }
-        public string StartDateString { get; set; }
+        }
+        public string StartDateString
+        {
+            get
+            {
+                return (string)_base.Attribute("STARTDATESTRING") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("STARTDATESTRING", value);
+            }
+        }
+        public string DueDate
+        {
+            get
+            {
+                return (string)_base.Attribute("DUEDATE") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("DUEDATE", value);
+            }
+        }
+        public string DueDateString
+        {
+            get
+            {
+                return (string)_base.Attribute("DUEDATESTRING") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("DUEDATESTRING", value);
+            }
+        }
 
-        public string DueDate { get; set; }
-        public string DueDateString { get; set; }
+        public double TimeSpent
+        {
+            get
+            {
+                return (_base.Attribute("TIMESPENT") == null)
+                                ? 0
+                                : double.Parse(((string)_base.Attribute("TIMESPENT")).Replace(".", ","));
+            }
+            set
+            {
+                _base.SetAttributeValue("TIMESPENT", value);
+            }
+        }
+        public string TimeSpentUnits
+        {
+            get
+            {
+                return (string)_base.Attribute("TIMESPENTUNITS") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("TIMESPENTUNITS", value);
+            }
+        }
 
-        public double TimeSpent { get { return TimeTodo.ConvertTime((int)_timeSpent).Value; } set { _timeSpent = value; } }
-        public string TimeSpentUnits { get { return TimeTodo.ConvertTime((int)_timeSpent).Type; } set { _timeSpentUnit = value; } }
-
-        public double TimeEstimate { get { return TimeTodo.ConvertTime((int)_timeEstimate).Value; } set { _timeEstimate = value; } }
-        public string TimeEstUnits { get { return TimeTodo.ConvertTime((int)_timeEstimate).Type; } set { _timeEstUnit = value; } }
+        public double TimeEstimate
+        {
+            get
+            {
+                return (_base.Attribute("TIMEESTIMATE") == null)
+                                ? 0
+                                : double.Parse(((string)_base.Attribute("TIMEESTIMATE")).Replace(".", ","));
+            }
+            set
+            {
+                _base.SetAttributeValue("TIMEESTIMATE", value);
+            }
+        }
+        public string TimeEstUnits
+        {
+            get
+            {
+                return (string)_base.Attribute("TIMEESTUNITS") ?? String.Empty;
+            }
+            set
+            {
+                _base.SetAttributeValue("TIMEESTUNITS", value);
+            }
+        }
 
         [NotConverted]
         public string TimeEstimateString
         {
             get
             {
-                return TimeTodo.GetString((int)_timeEstimate);
+                return TimeTodo.GetString((int)TimeEstimate);
             }
             set { _timeEstimateString = value; }
         }
@@ -146,7 +223,7 @@ namespace XMLModule
         {
             get
             {
-                return TimeTodo.GetString((int)_timeSpent);
+                return TimeTodo.GetString((int)TimeSpent);
             }
             set { _timeSpentString = value; }
         }
@@ -248,29 +325,18 @@ namespace XMLModule
         {
 
             _base = element;
-            StartDate = (string)element.Attribute("STARTDATE") ?? String.Empty;
-            StartDateString = (string)element.Attribute("STARTDATESTRING") ?? String.Empty;
-            DueDate = (string)element.Attribute("DUEDATE") ?? String.Empty;
-            DueDateString = (string)element.Attribute("DUEDATESTRING") ?? String.Empty;
 
-            TimeEstimate = TimeTodo.ConvertToSeconds((element.Attribute("TIMEESTIMATE") == null)
-                                ? 0
-                                : double.Parse(((string)element.Attribute("TIMEESTIMATE")).Replace(".", ",")),
-                                (string)element.Attribute("TIMEESTUNITS") ?? "I");
-
-            TimeSpent = TimeTodo.ConvertToSeconds((element.Attribute("TIMESPENT") == null)
-                                ? 0
-                                : double.Parse(((string)element.Attribute("TIMESPENT")).Replace(".", ",")),
-                                (string)element.Attribute("TIMESPENTUNITS") ?? "I");
-
-            if (children.Count > 0)
+            if (children != null)
             {
-                List<Task> childrens = new List<Task>();
-                foreach (var xElement in children)
+                if (children.Count > 0)
                 {
-                    childrens.Add(new Task(xElement, xElement.Descendants("TASK").Where(t => t.Parent == xElement).ToList()));
+                    List<Task> childrens = new List<Task>();
+                    foreach (var xElement in children)
+                    {
+                        childrens.Add(new Task(xElement, xElement.Descendants("TASK").Where(t => t.Parent == xElement).ToList()));
+                    }
+                    this.Childrens = childrens;
                 }
-                this.Childrens = childrens;
             }
         }
         #endregion
@@ -303,7 +369,7 @@ namespace XMLModule
 
         public void IncrementSpent(int i)
         {
-            _timeSpent += i;
+            TimeSpent += i;
         }
     }
 }

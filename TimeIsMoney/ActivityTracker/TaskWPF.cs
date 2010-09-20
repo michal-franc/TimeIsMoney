@@ -173,7 +173,7 @@ namespace ActivityTracker
         /// </summary>
         private bool IsOverEstimatedTime()
         {
-            return (TimeTodo.ConvertToSeconds(_task.TimeSpent, _task.TimeSpentUnits) > TimeTodo.ConvertToSeconds(_task.TimeEstimate, _task.TimeEstUnits)
+            return (TimeTodo.ConvertToSeconds(TimeTodo.ConvertTime(_task.TimeSpent)) > TimeTodo.ConvertToSeconds(TimeTodo.ConvertTime(_task.TimeEstimate))
                     && _task.TimeEstimate > 0);
         }
 

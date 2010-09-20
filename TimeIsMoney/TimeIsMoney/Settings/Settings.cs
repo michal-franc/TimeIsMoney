@@ -35,10 +35,10 @@ namespace TimeIsMoney.Settings
         }
 
         #endregion
-        
+
         public List<TaskBin> Lists { get; set; }
- 
-            
+
+
         private Settings()
         {
             // Default Values
@@ -68,5 +68,5 @@ namespace TimeIsMoney.Settings
                 return new Settings();
             }
         }
-}
+    }
 }
