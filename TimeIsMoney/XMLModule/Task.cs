@@ -168,8 +168,18 @@ namespace XMLModule
                     return 0;
                 else
                 {
-                    _timeSpent = TimeTodo.ConvertTime(TimeSpentInternal);
+                    double timeSpent = TimeSpentInternal;
+                    if (Childrens != null)
+                    {
+                        foreach (Task t in Childrens)
+                        {
+                            timeSpent -= t.TimeSpentInternal;
+                        }
+                    }
+
+                    _timeSpent = TimeTodo.ConvertTime(timeSpent);
                     TimeSpentUnits = _timeSpent.Type;
+
                     return _timeSpent.Value;
                 }
             }
