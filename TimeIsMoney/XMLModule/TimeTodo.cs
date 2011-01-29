@@ -16,10 +16,10 @@ namespace XMLModule
         public static TimeTodo ConvertTime(double value)
         {
             TimeTodo returnvalue = new TimeTodo();
-            if (value <= 60)
+            if (value <= 3600)
             {
                 returnvalue.Type = "I";
-                returnvalue.Value = value / 60.0;
+                returnvalue.Value = value / 60;
             }
             else
             {

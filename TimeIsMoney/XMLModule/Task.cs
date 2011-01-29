@@ -17,6 +17,8 @@ namespace XMLModule
 
         private XElement _base;
 
+        private TimeTodo _timeSpent;
+
         private string _timeSpentString;
         private string _timeEstimateString;
 
@@ -162,13 +164,18 @@ namespace XMLModule
         {
             get
             {
-                return (_base.Attribute("TIMESPENT") == null)
-                                ? 0
-                                : double.Parse(((string)_base.Attribute("TIMESPENT")).Replace(".", ","));
+                if (TimeSpentInternal == null)
+                    return 0;
+                else
+                {
+                    _timeSpent = TimeTodo.ConvertTime(TimeSpentInternal);
+                    TimeSpentUnits = _timeSpent.Type;
+                    return _timeSpent.Value;
+                }
             }
             set
             {
-                _base.SetAttributeValue("TIMESPENT", value);
+                TimeSpentInternal = value;
             }
         }
         public string TimeSpentUnits
@@ -176,6 +183,7 @@ namespace XMLModule
             get
             {
                 return (string)_base.Attribute("TIMESPENTUNITS") ?? String.Empty;
+
             }
             set
             {
@@ -200,6 +208,7 @@ namespace XMLModule
         {
             get
             {
+                
                 return (string)_base.Attribute("TIMEESTUNITS") ?? String.Empty;
             }
             set
@@ -218,12 +227,19 @@ namespace XMLModule
             set { _timeEstimateString = value; }
         }
 
+        public double TimeSpentInternal
+        {
+            get;
+            set;
+        }
+
+
         [NotConverted]
         public string TimeSpentString
         {
             get
             {
-                return TimeTodo.GetString((int)TimeSpent);
+                return TimeTodo.GetString((int)TimeSpentInternal);
             }
             set { _timeSpentString = value; }
         }
@@ -369,7 +385,7 @@ namespace XMLModule
 
         public void IncrementSpent(int i)
         {
-            TimeSpent += i;
+            TimeSpentInternal += i;
         }
     }
 }
