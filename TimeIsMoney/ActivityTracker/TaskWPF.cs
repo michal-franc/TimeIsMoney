@@ -130,9 +130,9 @@ namespace ActivityTracker
         /// <summary>
         /// Adds one second to SpentTime of this Task and its Parent and notifies the TextBlock to redraw itself
         /// </summary>
-        public void Increment()
+        public void Increment(int i)
         {
-            AddSecond(1);
+            AddSecond(i);
 
             if (IsOverEstimatedTime())
             {
@@ -142,7 +142,7 @@ namespace ActivityTracker
             OnPropertyChanged("TimeSpentString");
 
             if (_parent != null)
-                _parent.Increment();
+                _parent.Increment(0);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace ActivityTracker
         /// </summary>
         private bool IsOverEstimatedTime()
         {
-            return (TimeTodo.ConvertToSeconds(TimeTodo.ConvertTime(_task.TimeSpent)) > TimeTodo.ConvertToSeconds(TimeTodo.ConvertTime(_task.TimeEstimate))
+            return (_task.TimeSpentInternal > TimeTodo.ConvertToSeconds(TimeTodo.ConvertTime(_task.TimeEstimate))
                     && _task.TimeEstimate > 0);
         }
 

@@ -151,7 +151,7 @@ namespace ActivityTracker
                                     p.SaveProject();
                                 }
                             }
-                            task.Increment();
+                            task.Increment(1);
                             Thread.Sleep(TimeSpan.FromSeconds(1));
 
                         }
