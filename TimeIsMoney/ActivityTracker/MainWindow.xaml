@@ -5,6 +5,7 @@
         xmlns:custom="clr-namespace:ActivityTracker"
         Title="MainWindow" Height="600" Width="300" Closing="WindowClosing">
     <Window.Resources>
+
         <Style x:Key="TreeViewItemFocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -140,9 +141,9 @@
                                 <Setter TargetName="Border" Property="Background" Value="Yellow"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
-                    </ControlTemplate>                    
+                    </ControlTemplate>
                 </Setter.Value>
-                
+
             </Setter>
         </Style>
         <Style x:Key="MinusButton" TargetType="{x:Type Button}">
@@ -165,14 +166,69 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style> 
+        </Style>
         <Style x:Key="StartStopButton" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
-                   <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
                             <Image Name="btnImage" Source="{Binding Path=ImageSource,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></Image>
                         </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style  TargetType="{x:Type TabControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TabPanel  Panel.ZIndex="5" Grid.Column="0" Height="20"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" >
+                                </TabPanel>
+                                <Button Grid.Column="1"  Style="{StaticResource PlusButton}" Click="AddProjectClick"></Button>
+                            </Grid>
+                            <Border Margin="0,0,0,0" Padding="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1,1,1,1" Background="#FF52CB1D">
+                                <ContentPresenter ContentSource="SelectedContent" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Name="Border" Margin="0,2,0,0" Height="20" BorderBrush="Black" BorderThickness="2,2,2,2" 
+                                        CornerRadius="10,10,0,0" Background="Green">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Click="RemoveProjectClick" Style="{StaticResource MinusButton}"></Button>
+                                        <TextBlock Text="{Binding Path=Title}"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="Gold"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="Green"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -209,59 +265,7 @@
                     </TreeView>
             </Grid>
         </DataTemplate>
-        <Style TargetType="TabItem">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TabItem">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Name="Border" Margin="0,2,0,0" Height="20" BorderBrush="Black" BorderThickness="2,2,2,2" 
-                                        CornerRadius="10,10,0,0" Background="Green">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Click="RemoveProjectClick" Style="{StaticResource MinusButton}"></Button>
-                                        <TextBlock Text="{Binding Path=Title}"></TextBlock>
-                                    </StackPanel>
-                                </Border>
-                            </StackPanel>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="Gold"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="Green"/>
-                            </Trigger> 
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style  TargetType="{x:Type TabControl}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabControl}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                            <TabPanel  Panel.ZIndex="5" Grid.Column="0" Height="20"  Margin="0,0,0,0"  IsItemsHost="True"   Background="Transparent" >                    
-                            </TabPanel>
-                                <Button Grid.Column="1"  Style="{StaticResource PlusButton}" Click="AddProjectClick"></Button>
-                            </Grid>
-                            <Border Margin="0,0,0,0" Padding="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1,1,1,1" Background="#FF52CB1D">
-                                <ContentPresenter ContentSource="SelectedContent" />
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+
     </Window.Resources>
     <Grid Width="300" Background="#FF359E4A">
         <Grid.ColumnDefinitions>

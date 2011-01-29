@@ -367,7 +367,8 @@ namespace XMLModule
                     {
                         childrens.Add(new Task(xElement, xElement.Descendants("TASK").Where(t => t.Parent == xElement).ToList()));
                     }
-                    this.Childrens = childrens;
+
+                    this.Childrens = childrens.OrderByDescending(x => x.Priority).ToList();
                 }
             }
         }
