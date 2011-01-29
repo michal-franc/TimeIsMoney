@@ -3,4 +3,4 @@ bin
 Bin
 ClientBin
 GeneratedCode
-tdl
+*.tdl
