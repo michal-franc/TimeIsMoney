@@ -179,6 +179,30 @@
             </Setter>
         </Style>
 
+        <Style x:Key="CompleteTaskButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Image Name="btnImage" Source="completeTaskButton.png" Height="20" Width="20"></Image>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CloseTaskButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Image Name="btnImage" Source="closeButton.png"></Image>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style  TargetType="{x:Type TabControl}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -249,8 +273,21 @@
                         <TextBlock Name="TimeSpent" FontFamily="Comic Sans MS" FontWeight="Black"  FontSize="11" Text="{Binding Path=TimeSpentString,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Name="TimeEst"  FontFamily="Comic Sans MS" FontWeight="Black"    FontSize="11"   Text="{Binding Path=TimeEstimateString,Mode=OneWay}"/>
                     </StackPanel>
-                    <Button Grid.Column="3" Click="FillableButton_Click" Style="{StaticResource StartStopButton}">
-                    </Button>
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="3*"></RowDefinition>
+                            <RowDefinition Height="2*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Column="1" Style="{StaticResource CloseTaskButton}"></Button>
+                        <Button Grid.ColumnSpan="2" Grid.Row="1" Click="FillableButton_Click" Style="{StaticResource StartStopButton}"/>
+                        <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource CompleteTaskButton}"></Button>
+                        <TextBlock Name="PriorityText" Grid.Column="1" Grid.Row="2" Text="{Binding Path=Priority,Mode=OneWay}" ></TextBlock>
+                    </Grid>
             </Grid>
             </Border>
             <HierarchicalDataTemplate.Triggers>

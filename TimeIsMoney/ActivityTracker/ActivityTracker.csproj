@@ -107,8 +107,12 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="button-cancel.png" />
-    <Resource Include="button-ok.png" />
+    <Resource Include="closeButton.png" />
+    <Resource Include="completeTaskButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ButtonPlay.png" />
+    <Resource Include="ButtonStop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,8 +12,8 @@ namespace ActivityTracker
     {
         #region Static Fields
 
-        private static string srcOkButton = @"/AvtivityTracker;component/button-ok.png";
-        private static string srcCancelButton = @"/AvtivityTracker;component/button-cancel.png";
+        private static string srcOkButton = @"/AvtivityTracker;component/ButtonPlay.png";
+        private static string srcCancelButton = @"/AvtivityTracker;component/ButtonStop.png";
 
         #endregion
 
@@ -108,6 +108,8 @@ namespace ActivityTracker
                 TaskColor = "YellowGreen";
 
             _state = TaskState.Stoped;
+
+            
 
             List<TaskWpf> tasks = new List<TaskWpf>();
             if (task.Childrens != null)
