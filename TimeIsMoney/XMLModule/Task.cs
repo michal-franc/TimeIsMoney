@@ -374,6 +374,12 @@ namespace XMLModule
         }
         #endregion
 
+
+        public override string ToString()
+        {
+            return this.Title.ToString();
+        }
+
         /// <summary>
         /// Used to Create XML Object
         /// </summary>

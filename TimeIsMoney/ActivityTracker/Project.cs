@@ -43,6 +43,22 @@ namespace ActivityTracker
         {
             XMLModule.XMLLogic.XmlLogic.AddToXml(_tasks, Path);
         }
+
+        public void DeleteTask(TaskWpf task)
+        {
+            if (this.Content.Contains(task))
+            {
+                this.Content.Remove(task);
+            }
+            else
+            {
+                foreach (TaskWpf t in Content)
+                {
+                    t.Delete(task);
+                }
+            }
+
+        }
         #endregion
 
         #region Private Methods

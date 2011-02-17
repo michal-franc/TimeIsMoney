@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityTracker", "Activity
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTests", "NUnitTests\NUnitTests.csproj", "{54BA48BA-7E39-4407-90A9-312FF02953B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DekstopTodo", "DekstopTodo\DekstopTodo.csproj", "{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,16 @@ Global
 		{54BA48BA-7E39-4407-90A9-312FF02953B3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{54BA48BA-7E39-4407-90A9-312FF02953B3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{54BA48BA-7E39-4407-90A9-312FF02953B3}.Release|x86.ActiveCfg = Release|Any CPU
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Debug|x86.ActiveCfg = Debug|x86
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Debug|x86.Build.0 = Debug|x86
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Release|Any CPU.ActiveCfg = Release|x86
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Release|Mixed Platforms.Build.0 = Release|x86
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Release|x86.ActiveCfg = Release|x86
+		{C2BEA0F0-3B3D-412A-8921-BFB38C652AF4}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

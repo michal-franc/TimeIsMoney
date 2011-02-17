@@ -77,7 +77,7 @@ namespace ActivityTracker
                 {
                     if (dialog.FileName == p.Path)
                     {
-                        MessageBox.Show("Projecy already added");
+                        MessageBox.Show("Project already added");
                         return;
                     }
                 }
@@ -126,8 +126,6 @@ namespace ActivityTracker
                 TaskWpf task = template.Content as TaskWpf;
                 if (task.State == TaskState.Stoped)
                 {
-
-
                     if (_backgroundWorker != null)
                     {
                         _backgroundWorker.Abort();
@@ -163,6 +161,26 @@ namespace ActivityTracker
                     task.ToogleState();
                     _backgroundWorker.Abort();
                 }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null)
+            {   
+                var template = btn.TemplatedParent as ContentPresenter;
+                TaskWpf task = template.Content as TaskWpf;
+
+                foreach (Project p in projects)
+                {
+                        p.DeleteTask(task);
+                        p.SaveProject();
+                        MainTabControl.ItemsSource = null;
+                        MainTabControl.ItemsSource = projects;
+                        return;
+                }
+                    
             }
         }
 

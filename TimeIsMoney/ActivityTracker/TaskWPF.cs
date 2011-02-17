@@ -204,5 +204,20 @@ namespace ActivityTracker
         #endregion
 
         #endregion
+
+        internal void Delete(TaskWpf task)
+        {
+            if (Childrens.Contains(task))
+            {
+                Childrens.Remove(task);
+            }
+            else
+            {
+                foreach (TaskWpf t in Childrens)
+                {
+                    t.Delete(task);
+                }
+            }
+        }
     }
 }
