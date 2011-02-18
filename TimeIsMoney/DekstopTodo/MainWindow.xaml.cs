@@ -23,6 +23,14 @@ namespace DekstopTodo
         List<Project> _projects = new List<Project>();
         List<OverlayWindow> _spawnedWindows = new List<OverlayWindow>();
 
+        public List<Project>  Projects
+        {
+            get
+            {
+                return _projects;
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -87,6 +95,8 @@ namespace DekstopTodo
 
             overlay.txtBlockProjectName.Text = newProject.Title;
             overlay.mainTree.ItemsSource = newProject.Tasks;
+            overlay.Tasks = newProject.Tasks;
+            overlay.ParentWindow = this;
             _spawnedWindows.Add(overlay);
             overlay.Show();
         }

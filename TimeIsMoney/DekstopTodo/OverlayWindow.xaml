@@ -8,12 +8,27 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
+        <Style x:Key="TextBlockButton" TargetType="{x:Type TextBlock}" >
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="8"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Focusable" Value="False" />
+            <Style.Triggers>
+                <Trigger Property="TextBox.IsMouseOver"    Value="True">
+                    <Setter Property="Foreground" Value="Yellow"/>
+                </Trigger>
+                <Trigger Property="TextBox.IsMouseOver"    Value="False">
+                    <Setter Property="Foreground"  Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     
     <Grid >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="9*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -24,8 +39,17 @@
                                         ShadowDepth="10" Opacity=".5" Softness="9" />
         </Grid.BitmapEffect>
         <TextBlock  Name="txtBlockProjectName" Margin="10,0,0,0" Foreground="White" FontWeight="Bold"  FontSize="14" FontStyle="Normal" FontStretch="Normal" FontFamily="Arial" Focusable="False" MouseLeftButtonDown="txtBlockProjectName_MouseLeftButtonDown"></TextBlock>
-        <TextBlock Grid.Column="1" Name="txtClose" Foreground="White" FontWeight="Bold"  FontSize="8" FontStyle="Normal" FontStretch="Normal" FontFamily="Arial" Focusable="False" Text="X" MouseLeftButtonDown="txtClose_MouseLeftButtonDown" ></TextBlock>
-        <Grid Grid.Row="1" Grid.ColumnSpan="2" Name="mainGrid" Height="180" Width="180" Background="Black"  Opacity="0.80"  MouseLeftButtonDown="Grid_MouseLeftButtonDown" >
+        <StackPanel Grid.Column="1" Orientation="Horizontal"  >
+            <TextBlock Name="txtDay" Style="{StaticResource TextBlockButton}" Text="D " MouseLeftButtonDown="txtDay_MouseLeftButtonDown" >
+            </TextBlock>
+            <TextBlock Name="txtWeek" Style="{StaticResource TextBlockButton}" Text="W " MouseLeftButtonDown="txtWeek_MouseLeftButtonDown" >
+            </TextBlock>
+            <TextBlock Name="txtAll" Style="{StaticResource TextBlockButton}" Text="A     " MouseLeftButtonDown="txtAll_MouseLeftButtonDown">
+            </TextBlock>
+            <TextBlock Name="txtClose" Style="{StaticResource TextBlockButton}" Text="X " MouseLeftButtonDown="txtClose_MouseLeftButtonDown" >
+            </TextBlock>
+        </StackPanel>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Name="mainGrid" Height="180" Width="180" Background="Black"  Opacity="0.80"  MouseLeftButtonDown="Grid_MouseLeftButtonDown" >
             <StackPanel Margin="10,5,0,0">
                 <TreeView Name="mainTree" Background="Transparent"  BorderBrush="Transparent">
                 </TreeView>

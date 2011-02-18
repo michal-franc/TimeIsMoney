@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using XMLModule;
 
 namespace DekstopTodo
 {
@@ -18,6 +19,22 @@ namespace DekstopTodo
     /// </summary>
     public partial class OverlayWindow : Window
     {
+
+        private List<Task> _tasks = new List<Task>();
+
+        public Object ParentWindow { get; set; }
+        public List<Task> Tasks 
+        {
+            get
+            {
+                return _tasks;
+            }
+            set
+            {
+                _tasks = value;
+            }
+        }
+
         public OverlayWindow()
         {
             InitializeComponent();
@@ -38,7 +55,36 @@ namespace DekstopTodo
 
         private void txtClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            MainWindow parent = this.ParentWindow as MainWindow;
+            if (parent != null)
+            {
+                parent.Projects.Remove(parent.Projects.Where(x => x.Title == this.txtBlockProjectName.Text).First());
+            }
             this.Close();
+        }
+
+        private void txtWeek_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.mainTree.ItemsSource = null;
+            this.mainTree.ItemsSource = Tasks.Where(
+                x => !String.IsNullOrWhiteSpace(x.DueDateString)
+                    && DateTime.Parse(x.DueDateString).Date <= DateTime.Now.Date.AddDays(7)
+                    ).Select(x => x);
+        }
+
+        private void txtDay_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.mainTree.ItemsSource = null;
+            this.mainTree.ItemsSource = Tasks.Where(
+                x => !String.IsNullOrWhiteSpace(x.DueDateString) 
+                    && DateTime.Parse(x.DueDateString).Date <= DateTime.Now.Date
+                    ).Select(x => x);
+        }
+
+        private void txtAll_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.mainTree.ItemsSource = null;
+            this.mainTree.ItemsSource = Tasks;
         }
     }
 }
