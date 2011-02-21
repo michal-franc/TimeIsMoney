@@ -86,19 +86,22 @@ namespace DekstopTodo
 
         private void CreateNewProjectWindow(string path)
         {
-            List<Task> tasks = XMLModule.XMLLogic.XmlLogic.ReadXml(path);
-            string projectTitle = path.Remove(path.IndexOf(".")).Substring(path.LastIndexOf("\\")).Replace('\\', ' ');
-            Project newProject = new Project(tasks, projectTitle, path);
-            _projects.Add(newProject);
+            if (System.IO.File.Exists(path))
+            {
+                List<Task> tasks = XMLModule.XMLLogic.XmlLogic.ReadXml(path);
+                string projectTitle = path.Remove(path.IndexOf(".")).Substring(path.LastIndexOf("\\")).Replace('\\', ' ');
+                Project newProject = new Project(tasks, projectTitle, path);
+                _projects.Add(newProject);
 
-            OverlayWindow overlay = new OverlayWindow();
+                OverlayWindow overlay = new OverlayWindow();
 
-            overlay.txtBlockProjectName.Text = newProject.Title;
-            overlay.mainTree.ItemsSource = newProject.Tasks;
-            overlay.Tasks = newProject.Tasks;
-            overlay.ParentWindow = this;
-            _spawnedWindows.Add(overlay);
-            overlay.Show();
+                overlay.txtBlockProjectName.Text = newProject.Title;
+                overlay.mainTree.ItemsSource = newProject.Tasks;
+                overlay.Tasks = newProject.Tasks;
+                overlay.ParentWindow = this;
+                _spawnedWindows.Add(overlay);
+                overlay.Show();
+            }
         }
 
         private void ExitApp_Click(object sender, RoutedEventArgs e)

@@ -38,15 +38,19 @@ namespace ActivityTracker
 
             foreach (string s in set.Projects)
             {
+                if (System.IO.File.Exists(s))
+                {
+
                 List<Task> tasks = XMLModule.XMLLogic.XmlLogic.ReadXml(s);
                 string projectTitle = s.Remove(s.IndexOf(".")).Substring(s.LastIndexOf("\\")).Replace('\\', ' ');
+
                 Project newProject = new Project(tasks, projectTitle, s);
-
                 projects.Add(newProject);
-
-                MainTabControl.ItemsSource = null;
-                MainTabControl.ItemsSource = projects;
+                }
             }
+
+            MainTabControl.ItemsSource = null;
+            MainTabControl.ItemsSource = projects;
 
         }
 
@@ -85,9 +89,11 @@ namespace ActivityTracker
 
                 List<Task> tasks = XMLModule.XMLLogic.XmlLogic.ReadXml(dialog.FileName);
                 string projectTitle = dialog.FileName.Remove(dialog.FileName.IndexOf(".")).Substring(dialog.FileName.LastIndexOf("\\")).Replace('\\', ' ');
-                Project newProject = new Project(tasks, projectTitle, dialog.FileName);
-
-                projects.Add(newProject);
+                if (System.IO.File.Exists(dialog.FileName))
+                {
+                    Project newProject = new Project(tasks, projectTitle, dialog.FileName);
+                    projects.Add(newProject);
+                }
 
                 MainTabControl.ItemsSource = null;
                 MainTabControl.ItemsSource = projects;
