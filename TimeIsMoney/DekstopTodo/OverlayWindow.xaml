@@ -5,6 +5,7 @@
         Title="OverlayWindow" Height="200" Width="210"  Background="Transparent" AllowsTransparency="True"  ShowInTaskbar="False" WindowStyle="None">
     <Window.Resources>
 
+        <SolidColorBrush x:Key="ExpanderColor" Color="Yellow" />
         <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
             <Setter Property="Focusable" Value="False"/>
             <Setter Property="Width" Value="25"/>
@@ -13,28 +14,28 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                         <Border Height="15" Width="15" Background="Transparent">
-                            <Ellipse  Name="btn" Stroke="Red" StrokeThickness="2" Width="7" Height="7"></Ellipse>
+                            <Ellipse  Name="btn" Stroke="{StaticResource ExpanderColor}" StrokeThickness="1" Width="7" Height="7"></Ellipse>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Stroke" TargetName="btn" Value="Red"/>
+                                <Setter Property="Stroke" TargetName="btn" Value="{StaticResource ExpanderColor}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="False">
-                                <Setter Property="Stroke" TargetName="btn" Value="Green"/>
+                                <Setter Property="Stroke" TargetName="btn" Value="{StaticResource ExpanderColor}"/>
                             </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsChecked" Value="True"/>
                                     <Condition Property="IsMouseOver" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="btn" Property="Fill" Value="Red"/>
+                                <Setter TargetName="btn" Property="Fill" Value="{StaticResource ExpanderColor}"/>
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsChecked" Value="False"/>
                                     <Condition Property="IsMouseOver" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="btn" Property="Fill" Value="Green"/>
+                                <Setter TargetName="btn" Property="Fill" Value="{StaticResource ExpanderColor}"/>
                             </MultiTrigger>
                             <Trigger Property="IsMouseOver" Value="False">
                                 <Setter TargetName="btn" Property="Fill" Value="Transparent"/>
@@ -44,7 +45,29 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+        <Style x:Key="CompleteTaskButton" TargetType="{x:Type Button}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Height="15" Width="15" Background="Transparent">
+                            <Polyline Name="line" Points="0,0 2,6 6,-2" Stroke="{StaticResource ExpanderColor}" StrokeThickness="1" >
+                            </Polyline>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="line" Property="StrokeThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="line" Property="StrokeThickness" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="{x:Type TreeViewItem}">
             <Setter Property="Foreground" Value="Yellow"/>
             <Setter Property="FontSize" Value="12"/>
@@ -98,9 +121,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
-        
-        
+        </Style>      
         <Style x:Key="TextBlockButton" TargetType="{x:Type TextBlock}" >
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="8"/>
@@ -116,19 +137,17 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
-            <SolidColorBrush x:Key="StandardBorderBrush" Color="Yellow" />
-            <SolidColorBrush x:Key="StandardBackgroundBrush" Color="Black" />
-            <SolidColorBrush x:Key="HoverBorderBrush" Color="Black" />
-            <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Black" />
-            <SolidColorBrush x:Key="SelectedForegroundBrush" Color="Black" />
-            <SolidColorBrush x:Key="DisabledForegroundBrush" Color="Black" />
-            <SolidColorBrush x:Key="NormalBrush" Color="Black" />
+        <SolidColorBrush x:Key="StandardBorderBrush" Color="Yellow" />
+        <SolidColorBrush x:Key="StandardBackgroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="HoverBorderBrush" Color="Black" />
+        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="SelectedForegroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="NormalBrush" Color="Black" />
         <SolidColorBrush x:Key="NormalBorderBrush" Color="Black" />
-            <SolidColorBrush x:Key="HorizontalNormalBrush" Color="Black" />
-            <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="Yellow" />
-            <SolidColorBrush x:Key="GlyphBrush" Color="Yellow" />
-
+        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="Black" />
+        <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="Yellow" />
+        <SolidColorBrush x:Key="GlyphBrush" Color="Yellow" />
         <Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -179,7 +198,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
         <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
             <Grid >
                 <Grid.RowDefinitions>
@@ -203,7 +221,7 @@
                 <RepeatButton  Grid.Row="3" Style="{StaticResource ScrollBarLineButton}" Height="18" Command="ScrollBar.LineDownCommand" Content="M 0 0 L 4 4 L 8 0 Z"/>
             </Grid>
       </ControlTemplate>
-      <ControlTemplate x:Key="HorizontalScrollBar"  TargetType="{x:Type ScrollBar}">
+        <ControlTemplate x:Key="HorizontalScrollBar"  TargetType="{x:Type ScrollBar}">
            <Grid >
                 <Grid.ColumnDefinitions>
                         <ColumnDefinition MaxWidth="5"/>
@@ -226,7 +244,7 @@
                  <RepeatButton Grid.Column="3" Style="{StaticResource ScrollBarLineButton}" Width="18" Command="ScrollBar.LineRightCommand" Content="M 0 0 L 4 4 L 0 8 Z"/>
           </Grid>
       </ControlTemplate>
-      <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Style.Triggers>
@@ -243,8 +261,7 @@
              </Trigger>
         </Style.Triggers>
        </Style>
-
-      <Style x:Key="FavsScrollViewer" TargetType="{x:Type ScrollViewer}">
+        <Style x:Key="FavsScrollViewer" TargetType="{x:Type ScrollViewer}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -268,11 +285,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <HierarchicalDataTemplate x:Key="TaskTemplate" 
-                                  ItemsSource="{Binding Childrens}" DataType="{x:Type custom:Task}" >
-                    <TextBlock  FontSize="11" Text="{Binding Path=Title}" FontWeight="Black" />
+         <HierarchicalDataTemplate x:Key="TaskTemplate" ItemsSource="{Binding Childrens}" DataType="{x:Type custom:Task}" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="9*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"  FontSize="11" Text="{Binding Path=Title}" FontWeight="Black" />
+                <Button Grid.Column="1" Style="{StaticResource CompleteTaskButton}" ></Button>
+            </Grid>
         </HierarchicalDataTemplate>
+        
     </Window.Resources>
     
     <Grid >
