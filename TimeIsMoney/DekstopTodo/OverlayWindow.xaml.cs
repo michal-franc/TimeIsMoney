@@ -22,6 +22,8 @@ namespace DekstopTodo
 
         private List<Task> _tasks = new List<Task>();
 
+        public string Path { get; set; }
+
         public Object ParentWindow { get; set; }
         public List<Task> Tasks 
         {
@@ -58,7 +60,7 @@ namespace DekstopTodo
             MainWindow parent = this.ParentWindow as MainWindow;
             if (parent != null)
             {
-                parent.Projects.Remove(parent.Projects.Where(x => x.Title == this.txtBlockProjectName.Text).First());
+                parent.Projects.Remove(parent.Projects.Where(x => x.Path == Path).First());
             }
             this.Close();
         }

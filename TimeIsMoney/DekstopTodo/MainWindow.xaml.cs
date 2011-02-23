@@ -99,6 +99,7 @@ namespace DekstopTodo
                 overlay.mainTree.ItemsSource = newProject.Tasks;
                 overlay.Tasks = newProject.Tasks;
                 overlay.ParentWindow = this;
+                overlay.Path = path;
                 _spawnedWindows.Add(overlay);
                 overlay.Show();
             }
