@@ -111,6 +111,7 @@ namespace DekstopTodo
             {
                 win.Close();
             }
+            NotifyIcon.Dispose();
             this.Close();
         }
     }
