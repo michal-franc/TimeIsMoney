@@ -94,7 +94,24 @@ namespace DekstopTodo
 
         private void CompleteTask_Click(object sender, RoutedEventArgs e)
         {
-            
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                var template = btn.TemplatedParent as ContentPresenter;
+                Task task = template.Content as Task;
+                if (task != null)
+                {
+                    task.DoneDate = ConvertDateToUnixDate(DateTime.Now);
+                    task.DoneDateString = DateTime.Now.ToShortDateString();
+                    task.PercentDone = 100;
+                    Project.SaveProject();
+                }
+            }
+        }
+
+        public double ConvertDateToUnixDate(DateTime date)
+        {
+            return (double)date.ToOADate();
         }
     }
 }
