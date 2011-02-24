@@ -92,6 +92,19 @@ namespace XMLModule
                 _base.SetAttributeValue("PRIORITY", value);
             }
         }
+
+        public double DateDone
+        {
+            get
+            {
+                return (_base.Attribute("DONEDATE") == null) ? -1 : (double)_base.Attribute("DONEDATE");
+            }
+            set
+            {
+                _base.SetAttributeValue("DONEDATE", value);
+            }
+        }
+
         public int Risk
         {
             get
