@@ -28,5 +28,13 @@ namespace DekstopTodo
 
         #endregion
 
+
+        /// <summary>
+        /// Saves the project on project Path
+        /// </summary>
+        public void SaveProject()
+        {
+            XMLModule.XMLLogic.XmlLogic.AddToXml(Tasks, Path);
+        }
     }
 }

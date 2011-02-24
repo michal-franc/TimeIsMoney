@@ -93,7 +93,7 @@ namespace XMLModule
             }
         }
 
-        public double DateDone
+        public double DoneDate
         {
             get
             {
@@ -295,7 +295,7 @@ namespace XMLModule
         }
 
         public string CompletedDate { get; set; }
-        public string CompletedDateString
+        public string DoneDateString
         {
             get
             {
