@@ -292,7 +292,7 @@
                     <ColumnDefinition Width="9*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"  FontSize="11" Text="{Binding Path=Title}" FontWeight="Black" />
-                <Button Grid.Column="1" Style="{StaticResource CompleteTaskButton}" ></Button>
+                <Button Grid.Column="1" Style="{StaticResource CompleteTaskButton}" Click="CompleteTask_Click" ></Button>
             </Grid>
         </HierarchicalDataTemplate>
         

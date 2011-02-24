@@ -93,13 +93,8 @@ namespace DekstopTodo
                 Project newProject = new Project(tasks, projectTitle, path);
                 _projects.Add(newProject);
 
-                OverlayWindow overlay = new OverlayWindow();
+                OverlayWindow overlay = new OverlayWindow(newProject,this);
 
-                overlay.txtBlockProjectName.Text = newProject.Title;
-                overlay.mainTree.ItemsSource = newProject.Tasks;
-                overlay.Tasks = newProject.Tasks;
-                overlay.ParentWindow = this;
-                overlay.Path = path;
                 _spawnedWindows.Add(overlay);
                 overlay.Show();
             }

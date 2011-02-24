@@ -19,27 +19,30 @@ namespace DekstopTodo
     /// </summary>
     public partial class OverlayWindow : Window
     {
-
-        private List<Task> _tasks = new List<Task>();
-
-        public string Path { get; set; }
+        public Project Project { get; set; }
 
         public Object ParentWindow { get; set; }
         public List<Task> Tasks 
         {
             get
             {
-                return _tasks;
+                return Project.Tasks;
             }
             set
             {
-                _tasks = value;
+                Project.Tasks = value;
             }
         }
 
-        public OverlayWindow()
+        public OverlayWindow(Project newProject,Object parent)
         {
             InitializeComponent();
+
+
+            this.txtBlockProjectName.Text = newProject.Title;
+            this.mainTree.ItemsSource = newProject.Tasks;
+            this.Project = newProject;
+            this.ParentWindow = parent;
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -60,7 +63,7 @@ namespace DekstopTodo
             MainWindow parent = this.ParentWindow as MainWindow;
             if (parent != null)
             {
-                parent.Projects.Remove(parent.Projects.Where(x => x.Path == Path).First());
+                parent.Projects.Remove(parent.Projects.Where(x => x.Path == Project.Path).First());
             }
             this.Close();
         }
@@ -87,6 +90,11 @@ namespace DekstopTodo
         {
             this.mainTree.ItemsSource = null;
             this.mainTree.ItemsSource = Tasks;
+        }
+
+        private void CompleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
