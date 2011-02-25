@@ -52,7 +52,14 @@ namespace XMLModule
         {
             get
             {
-                return (string)_base.Attribute("TITLE") ?? String.Empty;
+                string s = (string)_base.Attribute("TITLE") ?? String.Empty;
+                if (s.Length > 18)
+                {
+                    string newS = s.Substring(0, 18);
+                    return newS.Insert(17, "...");
+                }
+                else
+                    return (string)_base.Attribute("TITLE") ?? String.Empty;
             }
             set
             {
