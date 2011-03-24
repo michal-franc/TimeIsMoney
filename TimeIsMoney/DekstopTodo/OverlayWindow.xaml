@@ -291,8 +291,8 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="9*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0"  FontSize="11" Text="{Binding Path=Title}" FontWeight="Black" />
-                <Button Grid.Column="1" Style="{StaticResource CompleteTaskButton}" Click="CompleteTask_Click" ></Button>
+                <TextBlock Name="txtBlock" Grid.Column="0" TextDecorations="{Binding Path=TaskDecoration,UpdateSourceTrigger=PropertyChanged}" FontSize="11" Text="{Binding Path=Title}" FontWeight="Black" />
+                <Button Name="btnCompleteTask" Visibility="{Binding Path=HiddenButton,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Style="{StaticResource CompleteTaskButton}" Click="CompleteTask_Click" ></Button>
             </Grid>
         </HierarchicalDataTemplate>
         
@@ -324,6 +324,7 @@
         </StackPanel>
         <Grid Grid.Row="1" Grid.ColumnSpan="2" Name="mainGrid" Height="180" Width="180" Background="Black"  Opacity="0.80"  MouseLeftButtonDown="Grid_MouseLeftButtonDown" >
             <TreeView Margin="5,5,0,0"  Name="mainTree"   Background="Transparent"  BorderBrush="Transparent" ItemTemplate="{StaticResource TaskTemplate}" >
+                
                 </TreeView>
         </Grid>
     </Grid>

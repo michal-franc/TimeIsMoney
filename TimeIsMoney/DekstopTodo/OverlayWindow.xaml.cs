@@ -38,11 +38,18 @@ namespace DekstopTodo
         {
             InitializeComponent();
 
-
             this.txtBlockProjectName.Text = newProject.Title;
             this.mainTree.ItemsSource = newProject.Tasks;
             this.Project = newProject;
             this.ParentWindow = parent;
+
+            foreach (Task t in newProject.Tasks)
+            {
+                if (t.DoneDate >= 0)
+                {
+                    t.TaskDecoration = "Strikethrough";
+                }
+            }
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -97,13 +104,17 @@ namespace DekstopTodo
             Button btn = sender as Button;
             if (btn != null)
             {
-                var template = btn.TemplatedParent as ContentPresenter;
+                var template = btn.TemplatedParent as ContentPresenter;            
                 Task task = template.Content as Task;
                 if (task != null)
                 {
                     task.DoneDate = ConvertDateToUnixDate(DateTime.Now);
                     task.DoneDateString = DateTime.Now.ToShortDateString();
                     task.PercentDone = 100;
+                    task.TaskDecoration = "Strikethrough";
+ 
+                    btn.Visibility = System.Windows.Visibility.Hidden;
+
                     Project.SaveProject();
                 }
             }

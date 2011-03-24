@@ -11,10 +11,11 @@ namespace XMLModule
     /// <summary>
     /// Class representing Task
     /// </summary>
-    public class Task
+    public class Task : INotifyPropertyChanged
     {
         #region Fields
 
+        private const int TaskMaxLength = 18;
         private XElement _base;
 
         private TimeTodo _timeSpent;
@@ -25,6 +26,36 @@ namespace XMLModule
         #endregion
 
         #region Properties
+
+        private bool IsButtonHidden = false;
+        [NotConverted]
+        public string HiddenButton
+        {
+            get
+            {
+                if (IsButtonHidden)
+                    return "Hidden";
+                else
+                    return "Visible";
+            }
+        }
+
+        private string _taskDecoration="";
+        [NotConverted]
+        public string TaskDecoration
+        {
+            get
+            {
+                return _taskDecoration;
+            }
+            set
+            {
+                _taskDecoration = value;
+                IsButtonHidden = true;
+                OnPropertyChanged("TaskDecoration");
+                OnPropertyChanged("HiddenButton");
+            }
+        }
 
         public int Id
         {
@@ -53,10 +84,10 @@ namespace XMLModule
             get
             {
                 string s = (string)_base.Attribute("TITLE") ?? String.Empty;
-                if (s.Length > 18)
+                if (s.Length > TaskMaxLength)
                 {
-                    string newS = s.Substring(0, 18);
-                    return newS.Insert(17, "...");
+                    string newS = s.Substring(0, TaskMaxLength);
+                    return newS.Insert(TaskMaxLength-1, "...");
                 }
                 else
                     return (string)_base.Attribute("TITLE") ?? String.Empty;
@@ -430,5 +461,21 @@ namespace XMLModule
         {
             TimeSpentInternal += i;
         }
+
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        #endregion
     }
 }
